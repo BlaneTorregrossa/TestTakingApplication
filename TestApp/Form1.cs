@@ -56,7 +56,7 @@ namespace TestApp
 
         private void CreateTestButton_Click(object sender, EventArgs e)
         {
-            var frm = new NewTestForm();
+            var frm = new TestSettingsForm();
             frm.Location = this.Location;
             frm.StartPosition = FormStartPosition.Manual;
             this.Hide();

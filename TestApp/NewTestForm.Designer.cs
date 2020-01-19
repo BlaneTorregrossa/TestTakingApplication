@@ -35,53 +35,56 @@
             this.QuestionLabel = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.TrueFalseGroupBox = new System.Windows.Forms.GroupBox();
-            this.TrueRadioButton = new System.Windows.Forms.RadioButton();
             this.FalseRadioButton = new System.Windows.Forms.RadioButton();
+            this.TrueRadioButton = new System.Windows.Forms.RadioButton();
             this.FillInTheBlankAnswerGroupBox = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.AnswersTextBox = new System.Windows.Forms.TextBox();
-            this.Question1Label = new System.Windows.Forms.Label();
-            this.Question2Label = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.QuestionOneTextBox = new System.Windows.Forms.TextBox();
-            this.QuestionTwoTextBox = new System.Windows.Forms.TextBox();
-            this.QuestionThreeTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.QuestionFourTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.QuestionSixTextBox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.QuestionEightTextBox = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.QuestionNineTextBox = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.QuestionTenTextBox = new System.Windows.Forms.TextBox();
+            this.AnswersNeededNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.AvalibleAnswersNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
-            this.NeededAnswersTextBox = new System.Windows.Forms.TextBox();
+            this.QuestionTenTextBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.QuestionNineTextBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.QuestionEightTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.QuestionSixTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.QuestionFourTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.QuestionThreeTextBox = new System.Windows.Forms.TextBox();
+            this.QuestionTwoTextBox = new System.Windows.Forms.TextBox();
+            this.QuestionOneTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Question2Label = new System.Windows.Forms.Label();
+            this.Question1Label = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.MultipleChoiceGroupBox = new System.Windows.Forms.GroupBox();
-            this.CorrectAnswerGroupBox = new System.Windows.Forms.GroupBox();
-            this.RadioButtonMultipleChoiceA = new System.Windows.Forms.RadioButton();
-            this.RadioButtonMultipleChoiceB = new System.Windows.Forms.RadioButton();
-            this.RadioButtonMultipleChoiceC = new System.Windows.Forms.RadioButton();
-            this.RadioButtonMultipleChoiceD = new System.Windows.Forms.RadioButton();
-            this.ChoiceALabel = new System.Windows.Forms.Label();
-            this.ChoiceBLabel = new System.Windows.Forms.Label();
-            this.ChoiceCLabel = new System.Windows.Forms.Label();
-            this.ChoiceDLabel = new System.Windows.Forms.Label();
-            this.ChoiceATextBox = new System.Windows.Forms.TextBox();
-            this.ChoiceBTextBox = new System.Windows.Forms.TextBox();
-            this.ChoiceCTextBox = new System.Windows.Forms.TextBox();
             this.ChoiceDTextBox = new System.Windows.Forms.TextBox();
+            this.ChoiceCTextBox = new System.Windows.Forms.TextBox();
+            this.ChoiceBTextBox = new System.Windows.Forms.TextBox();
+            this.ChoiceATextBox = new System.Windows.Forms.TextBox();
+            this.ChoiceDLabel = new System.Windows.Forms.Label();
+            this.ChoiceCLabel = new System.Windows.Forms.Label();
+            this.ChoiceBLabel = new System.Windows.Forms.Label();
+            this.ChoiceALabel = new System.Windows.Forms.Label();
+            this.CorrectAnswerGroupBox = new System.Windows.Forms.GroupBox();
+            this.RadioButtonMultipleChoiceD = new System.Windows.Forms.RadioButton();
+            this.RadioButtonMultipleChoiceC = new System.Windows.Forms.RadioButton();
+            this.RadioButtonMultipleChoiceB = new System.Windows.Forms.RadioButton();
+            this.RadioButtonMultipleChoiceA = new System.Windows.Forms.RadioButton();
             this.AnotherQuestionButton = new System.Windows.Forms.Button();
             this.ReviewButton = new System.Windows.Forms.Button();
             this.QuitButton = new System.Windows.Forms.Button();
+            this.ConsoleReadDebugButton = new System.Windows.Forms.Button();
             this.QuestionTypeGroupBox.SuspendLayout();
             this.TrueFalseGroupBox.SuspendLayout();
             this.FillInTheBlankAnswerGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AnswersNeededNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AvalibleAnswersNumericUpDown)).BeginInit();
             this.MultipleChoiceGroupBox.SuspendLayout();
             this.CorrectAnswerGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -164,18 +167,6 @@
             this.TrueFalseGroupBox.Text = "True/False Answer";
             this.TrueFalseGroupBox.Enter += new System.EventHandler(this.TrueFalseGroupBox_Enter);
             // 
-            // TrueRadioButton
-            // 
-            this.TrueRadioButton.AutoSize = true;
-            this.TrueRadioButton.Location = new System.Drawing.Point(6, 19);
-            this.TrueRadioButton.Name = "TrueRadioButton";
-            this.TrueRadioButton.Size = new System.Drawing.Size(47, 17);
-            this.TrueRadioButton.TabIndex = 0;
-            this.TrueRadioButton.TabStop = true;
-            this.TrueRadioButton.Text = "True";
-            this.TrueRadioButton.UseVisualStyleBackColor = true;
-            this.TrueRadioButton.CheckedChanged += new System.EventHandler(this.TrueRadioButton_CheckedChanged);
-            // 
             // FalseRadioButton
             // 
             this.FalseRadioButton.AutoSize = true;
@@ -188,9 +179,22 @@
             this.FalseRadioButton.UseVisualStyleBackColor = true;
             this.FalseRadioButton.CheckedChanged += new System.EventHandler(this.FalseRadioButton_CheckedChanged);
             // 
+            // TrueRadioButton
+            // 
+            this.TrueRadioButton.AutoSize = true;
+            this.TrueRadioButton.Location = new System.Drawing.Point(6, 19);
+            this.TrueRadioButton.Name = "TrueRadioButton";
+            this.TrueRadioButton.Size = new System.Drawing.Size(47, 17);
+            this.TrueRadioButton.TabIndex = 0;
+            this.TrueRadioButton.TabStop = true;
+            this.TrueRadioButton.Text = "True";
+            this.TrueRadioButton.UseVisualStyleBackColor = true;
+            this.TrueRadioButton.CheckedChanged += new System.EventHandler(this.TrueRadioButton_CheckedChanged);
+            // 
             // FillInTheBlankAnswerGroupBox
             // 
-            this.FillInTheBlankAnswerGroupBox.Controls.Add(this.NeededAnswersTextBox);
+            this.FillInTheBlankAnswerGroupBox.Controls.Add(this.AnswersNeededNumericUpDown);
+            this.FillInTheBlankAnswerGroupBox.Controls.Add(this.AvalibleAnswersNumericUpDown);
             this.FillInTheBlankAnswerGroupBox.Controls.Add(this.label10);
             this.FillInTheBlankAnswerGroupBox.Controls.Add(this.QuestionTenTextBox);
             this.FillInTheBlankAnswerGroupBox.Controls.Add(this.label9);
@@ -212,7 +216,6 @@
             this.FillInTheBlankAnswerGroupBox.Controls.Add(this.label2);
             this.FillInTheBlankAnswerGroupBox.Controls.Add(this.Question2Label);
             this.FillInTheBlankAnswerGroupBox.Controls.Add(this.Question1Label);
-            this.FillInTheBlankAnswerGroupBox.Controls.Add(this.AnswersTextBox);
             this.FillInTheBlankAnswerGroupBox.Controls.Add(this.label1);
             this.FillInTheBlankAnswerGroupBox.Location = new System.Drawing.Point(15, 321);
             this.FillInTheBlankAnswerGroupBox.Name = "FillInTheBlankAnswerGroupBox";
@@ -222,73 +225,145 @@
             this.FillInTheBlankAnswerGroupBox.Text = "Fill in the Blank Answers";
             this.FillInTheBlankAnswerGroupBox.Enter += new System.EventHandler(this.FillInTheBlankAnswerGroupBox_Enter);
             // 
-            // label1
+            // AnswersNeededNumericUpDown
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Number of Answers (1-10)";
+            this.AnswersNeededNumericUpDown.Location = new System.Drawing.Point(356, 17);
+            this.AnswersNeededNumericUpDown.Name = "AnswersNeededNumericUpDown";
+            this.AnswersNeededNumericUpDown.Size = new System.Drawing.Size(94, 20);
+            this.AnswersNeededNumericUpDown.TabIndex = 26;
+            this.AnswersNeededNumericUpDown.ValueChanged += new System.EventHandler(this.AnswersNeededNumericUpDown_ValueChanged);
             // 
-            // AnswersTextBox
+            // AvalibleAnswersNumericUpDown
             // 
-            this.AnswersTextBox.Location = new System.Drawing.Point(142, 16);
-            this.AnswersTextBox.Name = "AnswersTextBox";
-            this.AnswersTextBox.Size = new System.Drawing.Size(50, 20);
-            this.AnswersTextBox.TabIndex = 2;
-            this.AnswersTextBox.TextChanged += new System.EventHandler(this.AnswersTextBox_TextChanged);
+            this.AvalibleAnswersNumericUpDown.Location = new System.Drawing.Point(142, 17);
+            this.AvalibleAnswersNumericUpDown.Name = "AvalibleAnswersNumericUpDown";
+            this.AvalibleAnswersNumericUpDown.Size = new System.Drawing.Size(46, 20);
+            this.AvalibleAnswersNumericUpDown.TabIndex = 25;
+            this.AvalibleAnswersNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.AvalibleAnswersNumericUpDown.ValueChanged += new System.EventHandler(this.AvalibleAnswersNumericUpDown_ValueChanged);
             // 
-            // Question1Label
+            // label10
             // 
-            this.Question1Label.AutoSize = true;
-            this.Question1Label.Location = new System.Drawing.Point(3, 48);
-            this.Question1Label.Name = "Question1Label";
-            this.Question1Label.Size = new System.Drawing.Size(20, 13);
-            this.Question1Label.TabIndex = 3;
-            this.Question1Label.Text = "#1";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(212, 19);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(138, 13);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "How many answers needed";
             // 
-            // Question2Label
+            // QuestionTenTextBox
             // 
-            this.Question2Label.AutoSize = true;
-            this.Question2Label.Location = new System.Drawing.Point(3, 71);
-            this.Question2Label.Name = "Question2Label";
-            this.Question2Label.Size = new System.Drawing.Size(20, 13);
-            this.Question2Label.TabIndex = 4;
-            this.Question2Label.Text = "#2";
+            this.QuestionTenTextBox.Location = new System.Drawing.Point(29, 247);
+            this.QuestionTenTextBox.Name = "QuestionTenTextBox";
+            this.QuestionTenTextBox.Size = new System.Drawing.Size(421, 20);
+            this.QuestionTenTextBox.TabIndex = 22;
+            this.QuestionTenTextBox.TextChanged += new System.EventHandler(this.QuestionTenTextBox_TextChanged);
             // 
-            // label2
+            // label9
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 94);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "#3";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 250);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(26, 13);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "#10";
             // 
-            // QuestionOneTextBox
+            // QuestionNineTextBox
             // 
-            this.QuestionOneTextBox.Location = new System.Drawing.Point(29, 45);
-            this.QuestionOneTextBox.Name = "QuestionOneTextBox";
-            this.QuestionOneTextBox.Size = new System.Drawing.Size(421, 20);
-            this.QuestionOneTextBox.TabIndex = 6;
-            this.QuestionOneTextBox.TextChanged += new System.EventHandler(this.QuestionOneTextBox_TextChanged);
+            this.QuestionNineTextBox.Location = new System.Drawing.Point(29, 224);
+            this.QuestionNineTextBox.Name = "QuestionNineTextBox";
+            this.QuestionNineTextBox.Size = new System.Drawing.Size(421, 20);
+            this.QuestionNineTextBox.TabIndex = 20;
+            this.QuestionNineTextBox.TextChanged += new System.EventHandler(this.QuestionNineTextBox_TextChanged);
             // 
-            // QuestionTwoTextBox
+            // label8
             // 
-            this.QuestionTwoTextBox.Location = new System.Drawing.Point(29, 68);
-            this.QuestionTwoTextBox.Name = "QuestionTwoTextBox";
-            this.QuestionTwoTextBox.Size = new System.Drawing.Size(421, 20);
-            this.QuestionTwoTextBox.TabIndex = 7;
-            this.QuestionTwoTextBox.TextChanged += new System.EventHandler(this.QuestionTwoTextBox_TextChanged);
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 227);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(20, 13);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "#9";
             // 
-            // QuestionThreeTextBox
+            // QuestionEightTextBox
             // 
-            this.QuestionThreeTextBox.Location = new System.Drawing.Point(29, 91);
-            this.QuestionThreeTextBox.Name = "QuestionThreeTextBox";
-            this.QuestionThreeTextBox.Size = new System.Drawing.Size(421, 20);
-            this.QuestionThreeTextBox.TabIndex = 8;
-            this.QuestionThreeTextBox.TextChanged += new System.EventHandler(this.QuestionThreeTextBox_TextChanged);
+            this.QuestionEightTextBox.Location = new System.Drawing.Point(29, 204);
+            this.QuestionEightTextBox.Name = "QuestionEightTextBox";
+            this.QuestionEightTextBox.Size = new System.Drawing.Size(421, 20);
+            this.QuestionEightTextBox.TabIndex = 18;
+            this.QuestionEightTextBox.TextChanged += new System.EventHandler(this.QuestionEightTextBox_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 207);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(20, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "#8";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(29, 182);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(421, 20);
+            this.textBox3.TabIndex = 16;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 185);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(20, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "#7";
+            // 
+            // QuestionSixTextBox
+            // 
+            this.QuestionSixTextBox.Location = new System.Drawing.Point(29, 160);
+            this.QuestionSixTextBox.Name = "QuestionSixTextBox";
+            this.QuestionSixTextBox.Size = new System.Drawing.Size(421, 20);
+            this.QuestionSixTextBox.TabIndex = 14;
+            this.QuestionSixTextBox.TextChanged += new System.EventHandler(this.QuestionSixTextBox_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 163);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(20, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "#6";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(29, 137);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(421, 20);
+            this.textBox2.TabIndex = 12;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 140);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(20, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "#5";
+            // 
+            // QuestionFourTextBox
+            // 
+            this.QuestionFourTextBox.Location = new System.Drawing.Point(29, 114);
+            this.QuestionFourTextBox.Name = "QuestionFourTextBox";
+            this.QuestionFourTextBox.Size = new System.Drawing.Size(421, 20);
+            this.QuestionFourTextBox.TabIndex = 10;
+            this.QuestionFourTextBox.TextChanged += new System.EventHandler(this.QuestionFourTextBox_TextChanged);
             // 
             // label3
             // 
@@ -300,132 +375,65 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "#4";
             // 
-            // QuestionFourTextBox
+            // QuestionThreeTextBox
             // 
-            this.QuestionFourTextBox.Location = new System.Drawing.Point(29, 114);
-            this.QuestionFourTextBox.Name = "QuestionFourTextBox";
-            this.QuestionFourTextBox.Size = new System.Drawing.Size(421, 20);
-            this.QuestionFourTextBox.TabIndex = 10;
-            this.QuestionFourTextBox.TextChanged += new System.EventHandler(this.QuestionFourTextBox_TextChanged);
+            this.QuestionThreeTextBox.Location = new System.Drawing.Point(29, 91);
+            this.QuestionThreeTextBox.Name = "QuestionThreeTextBox";
+            this.QuestionThreeTextBox.Size = new System.Drawing.Size(421, 20);
+            this.QuestionThreeTextBox.TabIndex = 8;
+            this.QuestionThreeTextBox.TextChanged += new System.EventHandler(this.QuestionThreeTextBox_TextChanged);
             // 
-            // label4
+            // QuestionTwoTextBox
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 140);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(20, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "#5";
+            this.QuestionTwoTextBox.Location = new System.Drawing.Point(29, 68);
+            this.QuestionTwoTextBox.Name = "QuestionTwoTextBox";
+            this.QuestionTwoTextBox.Size = new System.Drawing.Size(421, 20);
+            this.QuestionTwoTextBox.TabIndex = 7;
+            this.QuestionTwoTextBox.TextChanged += new System.EventHandler(this.QuestionTwoTextBox_TextChanged);
             // 
-            // textBox2
+            // QuestionOneTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(29, 137);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(421, 20);
-            this.textBox2.TabIndex = 12;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.QuestionOneTextBox.Location = new System.Drawing.Point(29, 45);
+            this.QuestionOneTextBox.Name = "QuestionOneTextBox";
+            this.QuestionOneTextBox.Size = new System.Drawing.Size(421, 20);
+            this.QuestionOneTextBox.TabIndex = 6;
+            this.QuestionOneTextBox.TextChanged += new System.EventHandler(this.QuestionOneTextBox_TextChanged);
             // 
-            // label5
+            // label2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 163);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(20, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "#6";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 94);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(20, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "#3";
             // 
-            // QuestionSixTextBox
+            // Question2Label
             // 
-            this.QuestionSixTextBox.Location = new System.Drawing.Point(29, 160);
-            this.QuestionSixTextBox.Name = "QuestionSixTextBox";
-            this.QuestionSixTextBox.Size = new System.Drawing.Size(421, 20);
-            this.QuestionSixTextBox.TabIndex = 14;
-            this.QuestionSixTextBox.TextChanged += new System.EventHandler(this.QuestionSixTextBox_TextChanged);
+            this.Question2Label.AutoSize = true;
+            this.Question2Label.Location = new System.Drawing.Point(3, 71);
+            this.Question2Label.Name = "Question2Label";
+            this.Question2Label.Size = new System.Drawing.Size(20, 13);
+            this.Question2Label.TabIndex = 4;
+            this.Question2Label.Text = "#2";
             // 
-            // label6
+            // Question1Label
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 185);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(20, 13);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "#7";
+            this.Question1Label.AutoSize = true;
+            this.Question1Label.Location = new System.Drawing.Point(3, 48);
+            this.Question1Label.Name = "Question1Label";
+            this.Question1Label.Size = new System.Drawing.Size(20, 13);
+            this.Question1Label.TabIndex = 3;
+            this.Question1Label.Text = "#1";
             // 
-            // textBox3
+            // label1
             // 
-            this.textBox3.Location = new System.Drawing.Point(29, 182);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(421, 20);
-            this.textBox3.TabIndex = 16;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 207);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(20, 13);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "#8";
-            // 
-            // QuestionEightTextBox
-            // 
-            this.QuestionEightTextBox.Location = new System.Drawing.Point(29, 204);
-            this.QuestionEightTextBox.Name = "QuestionEightTextBox";
-            this.QuestionEightTextBox.Size = new System.Drawing.Size(421, 20);
-            this.QuestionEightTextBox.TabIndex = 18;
-            this.QuestionEightTextBox.TextChanged += new System.EventHandler(this.QuestionEightTextBox_TextChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 227);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(20, 13);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "#9";
-            // 
-            // QuestionNineTextBox
-            // 
-            this.QuestionNineTextBox.Location = new System.Drawing.Point(29, 224);
-            this.QuestionNineTextBox.Name = "QuestionNineTextBox";
-            this.QuestionNineTextBox.Size = new System.Drawing.Size(421, 20);
-            this.QuestionNineTextBox.TabIndex = 20;
-            this.QuestionNineTextBox.TextChanged += new System.EventHandler(this.QuestionNineTextBox_TextChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 250);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(26, 13);
-            this.label9.TabIndex = 21;
-            this.label9.Text = "#10";
-            // 
-            // QuestionTenTextBox
-            // 
-            this.QuestionTenTextBox.Location = new System.Drawing.Point(29, 247);
-            this.QuestionTenTextBox.Name = "QuestionTenTextBox";
-            this.QuestionTenTextBox.Size = new System.Drawing.Size(421, 20);
-            this.QuestionTenTextBox.TabIndex = 22;
-            this.QuestionTenTextBox.TextChanged += new System.EventHandler(this.QuestionTenTextBox_TextChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(212, 19);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(138, 13);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "How many answers needed";
-            // 
-            // NeededAnswersTextBox
-            // 
-            this.NeededAnswersTextBox.Location = new System.Drawing.Point(356, 16);
-            this.NeededAnswersTextBox.Name = "NeededAnswersTextBox";
-            this.NeededAnswersTextBox.Size = new System.Drawing.Size(94, 20);
-            this.NeededAnswersTextBox.TabIndex = 24;
-            this.NeededAnswersTextBox.TextChanged += new System.EventHandler(this.NeededAnswersTextBox_TextChanged);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(129, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Number of Answers (1-10)";
             // 
             // MultipleChoiceGroupBox
             // 
@@ -446,6 +454,78 @@
             this.MultipleChoiceGroupBox.Text = "Multiple Choice";
             this.MultipleChoiceGroupBox.Enter += new System.EventHandler(this.MultipleChoiceGroupBox_Enter);
             // 
+            // ChoiceDTextBox
+            // 
+            this.ChoiceDTextBox.Location = new System.Drawing.Point(73, 222);
+            this.ChoiceDTextBox.Multiline = true;
+            this.ChoiceDTextBox.Name = "ChoiceDTextBox";
+            this.ChoiceDTextBox.Size = new System.Drawing.Size(472, 56);
+            this.ChoiceDTextBox.TabIndex = 11;
+            this.ChoiceDTextBox.TextChanged += new System.EventHandler(this.ChoiceDTextBox_TextChanged);
+            // 
+            // ChoiceCTextBox
+            // 
+            this.ChoiceCTextBox.Location = new System.Drawing.Point(73, 152);
+            this.ChoiceCTextBox.Multiline = true;
+            this.ChoiceCTextBox.Name = "ChoiceCTextBox";
+            this.ChoiceCTextBox.Size = new System.Drawing.Size(472, 60);
+            this.ChoiceCTextBox.TabIndex = 10;
+            this.ChoiceCTextBox.TextChanged += new System.EventHandler(this.ChoiceCTextBox_TextChanged);
+            // 
+            // ChoiceBTextBox
+            // 
+            this.ChoiceBTextBox.Location = new System.Drawing.Point(73, 84);
+            this.ChoiceBTextBox.Multiline = true;
+            this.ChoiceBTextBox.Name = "ChoiceBTextBox";
+            this.ChoiceBTextBox.Size = new System.Drawing.Size(472, 58);
+            this.ChoiceBTextBox.TabIndex = 9;
+            this.ChoiceBTextBox.TextChanged += new System.EventHandler(this.ChoiceBTextBox_TextChanged);
+            // 
+            // ChoiceATextBox
+            // 
+            this.ChoiceATextBox.Location = new System.Drawing.Point(73, 22);
+            this.ChoiceATextBox.Multiline = true;
+            this.ChoiceATextBox.Name = "ChoiceATextBox";
+            this.ChoiceATextBox.Size = new System.Drawing.Size(472, 52);
+            this.ChoiceATextBox.TabIndex = 8;
+            this.ChoiceATextBox.TextChanged += new System.EventHandler(this.ChoiceATextBox_TextChanged);
+            // 
+            // ChoiceDLabel
+            // 
+            this.ChoiceDLabel.AutoSize = true;
+            this.ChoiceDLabel.Location = new System.Drawing.Point(6, 225);
+            this.ChoiceDLabel.Name = "ChoiceDLabel";
+            this.ChoiceDLabel.Size = new System.Drawing.Size(51, 13);
+            this.ChoiceDLabel.TabIndex = 7;
+            this.ChoiceDLabel.Text = "Choice D";
+            // 
+            // ChoiceCLabel
+            // 
+            this.ChoiceCLabel.AutoSize = true;
+            this.ChoiceCLabel.Location = new System.Drawing.Point(6, 152);
+            this.ChoiceCLabel.Name = "ChoiceCLabel";
+            this.ChoiceCLabel.Size = new System.Drawing.Size(50, 13);
+            this.ChoiceCLabel.TabIndex = 6;
+            this.ChoiceCLabel.Text = "Choice C";
+            // 
+            // ChoiceBLabel
+            // 
+            this.ChoiceBLabel.AutoSize = true;
+            this.ChoiceBLabel.Location = new System.Drawing.Point(6, 87);
+            this.ChoiceBLabel.Name = "ChoiceBLabel";
+            this.ChoiceBLabel.Size = new System.Drawing.Size(50, 13);
+            this.ChoiceBLabel.TabIndex = 5;
+            this.ChoiceBLabel.Text = "Choice B";
+            // 
+            // ChoiceALabel
+            // 
+            this.ChoiceALabel.AutoSize = true;
+            this.ChoiceALabel.Location = new System.Drawing.Point(6, 25);
+            this.ChoiceALabel.Name = "ChoiceALabel";
+            this.ChoiceALabel.Size = new System.Drawing.Size(50, 13);
+            this.ChoiceALabel.TabIndex = 4;
+            this.ChoiceALabel.Text = "Choice A";
+            // 
             // CorrectAnswerGroupBox
             // 
             this.CorrectAnswerGroupBox.Controls.Add(this.RadioButtonMultipleChoiceD);
@@ -459,29 +539,17 @@
             this.CorrectAnswerGroupBox.TabStop = false;
             this.CorrectAnswerGroupBox.Text = "Correct Answer";
             // 
-            // RadioButtonMultipleChoiceA
+            // RadioButtonMultipleChoiceD
             // 
-            this.RadioButtonMultipleChoiceA.AutoSize = true;
-            this.RadioButtonMultipleChoiceA.Location = new System.Drawing.Point(6, 19);
-            this.RadioButtonMultipleChoiceA.Name = "RadioButtonMultipleChoiceA";
-            this.RadioButtonMultipleChoiceA.Size = new System.Drawing.Size(32, 17);
-            this.RadioButtonMultipleChoiceA.TabIndex = 0;
-            this.RadioButtonMultipleChoiceA.TabStop = true;
-            this.RadioButtonMultipleChoiceA.Text = "A";
-            this.RadioButtonMultipleChoiceA.UseVisualStyleBackColor = true;
-            this.RadioButtonMultipleChoiceA.CheckedChanged += new System.EventHandler(this.RadioButtonMultipleChoiceA_CheckedChanged);
-            // 
-            // RadioButtonMultipleChoiceB
-            // 
-            this.RadioButtonMultipleChoiceB.AutoSize = true;
-            this.RadioButtonMultipleChoiceB.Location = new System.Drawing.Point(6, 42);
-            this.RadioButtonMultipleChoiceB.Name = "RadioButtonMultipleChoiceB";
-            this.RadioButtonMultipleChoiceB.Size = new System.Drawing.Size(32, 17);
-            this.RadioButtonMultipleChoiceB.TabIndex = 1;
-            this.RadioButtonMultipleChoiceB.TabStop = true;
-            this.RadioButtonMultipleChoiceB.Text = "B";
-            this.RadioButtonMultipleChoiceB.UseVisualStyleBackColor = true;
-            this.RadioButtonMultipleChoiceB.CheckedChanged += new System.EventHandler(this.RadioButtonMultipleChoiceB_CheckedChanged);
+            this.RadioButtonMultipleChoiceD.AutoSize = true;
+            this.RadioButtonMultipleChoiceD.Location = new System.Drawing.Point(6, 88);
+            this.RadioButtonMultipleChoiceD.Name = "RadioButtonMultipleChoiceD";
+            this.RadioButtonMultipleChoiceD.Size = new System.Drawing.Size(33, 17);
+            this.RadioButtonMultipleChoiceD.TabIndex = 3;
+            this.RadioButtonMultipleChoiceD.TabStop = true;
+            this.RadioButtonMultipleChoiceD.Text = "D";
+            this.RadioButtonMultipleChoiceD.UseVisualStyleBackColor = true;
+            this.RadioButtonMultipleChoiceD.CheckedChanged += new System.EventHandler(this.RadioButtonMultipleChoiceD_CheckedChanged);
             // 
             // RadioButtonMultipleChoiceC
             // 
@@ -495,89 +563,29 @@
             this.RadioButtonMultipleChoiceC.UseVisualStyleBackColor = true;
             this.RadioButtonMultipleChoiceC.CheckedChanged += new System.EventHandler(this.RadioButtonMultipleChoiceC_CheckedChanged);
             // 
-            // RadioButtonMultipleChoiceD
+            // RadioButtonMultipleChoiceB
             // 
-            this.RadioButtonMultipleChoiceD.AutoSize = true;
-            this.RadioButtonMultipleChoiceD.Location = new System.Drawing.Point(6, 88);
-            this.RadioButtonMultipleChoiceD.Name = "RadioButtonMultipleChoiceD";
-            this.RadioButtonMultipleChoiceD.Size = new System.Drawing.Size(33, 17);
-            this.RadioButtonMultipleChoiceD.TabIndex = 3;
-            this.RadioButtonMultipleChoiceD.TabStop = true;
-            this.RadioButtonMultipleChoiceD.Text = "D";
-            this.RadioButtonMultipleChoiceD.UseVisualStyleBackColor = true;
-            this.RadioButtonMultipleChoiceD.CheckedChanged += new System.EventHandler(this.RadioButtonMultipleChoiceD_CheckedChanged);
+            this.RadioButtonMultipleChoiceB.AutoSize = true;
+            this.RadioButtonMultipleChoiceB.Location = new System.Drawing.Point(6, 42);
+            this.RadioButtonMultipleChoiceB.Name = "RadioButtonMultipleChoiceB";
+            this.RadioButtonMultipleChoiceB.Size = new System.Drawing.Size(32, 17);
+            this.RadioButtonMultipleChoiceB.TabIndex = 1;
+            this.RadioButtonMultipleChoiceB.TabStop = true;
+            this.RadioButtonMultipleChoiceB.Text = "B";
+            this.RadioButtonMultipleChoiceB.UseVisualStyleBackColor = true;
+            this.RadioButtonMultipleChoiceB.CheckedChanged += new System.EventHandler(this.RadioButtonMultipleChoiceB_CheckedChanged);
             // 
-            // ChoiceALabel
+            // RadioButtonMultipleChoiceA
             // 
-            this.ChoiceALabel.AutoSize = true;
-            this.ChoiceALabel.Location = new System.Drawing.Point(6, 25);
-            this.ChoiceALabel.Name = "ChoiceALabel";
-            this.ChoiceALabel.Size = new System.Drawing.Size(50, 13);
-            this.ChoiceALabel.TabIndex = 4;
-            this.ChoiceALabel.Text = "Choice A";
-            // 
-            // ChoiceBLabel
-            // 
-            this.ChoiceBLabel.AutoSize = true;
-            this.ChoiceBLabel.Location = new System.Drawing.Point(6, 87);
-            this.ChoiceBLabel.Name = "ChoiceBLabel";
-            this.ChoiceBLabel.Size = new System.Drawing.Size(50, 13);
-            this.ChoiceBLabel.TabIndex = 5;
-            this.ChoiceBLabel.Text = "Choice B";
-            // 
-            // ChoiceCLabel
-            // 
-            this.ChoiceCLabel.AutoSize = true;
-            this.ChoiceCLabel.Location = new System.Drawing.Point(6, 152);
-            this.ChoiceCLabel.Name = "ChoiceCLabel";
-            this.ChoiceCLabel.Size = new System.Drawing.Size(50, 13);
-            this.ChoiceCLabel.TabIndex = 6;
-            this.ChoiceCLabel.Text = "Choice C";
-            // 
-            // ChoiceDLabel
-            // 
-            this.ChoiceDLabel.AutoSize = true;
-            this.ChoiceDLabel.Location = new System.Drawing.Point(6, 225);
-            this.ChoiceDLabel.Name = "ChoiceDLabel";
-            this.ChoiceDLabel.Size = new System.Drawing.Size(51, 13);
-            this.ChoiceDLabel.TabIndex = 7;
-            this.ChoiceDLabel.Text = "Choice D";
-            // 
-            // ChoiceATextBox
-            // 
-            this.ChoiceATextBox.Location = new System.Drawing.Point(73, 22);
-            this.ChoiceATextBox.Multiline = true;
-            this.ChoiceATextBox.Name = "ChoiceATextBox";
-            this.ChoiceATextBox.Size = new System.Drawing.Size(472, 52);
-            this.ChoiceATextBox.TabIndex = 8;
-            this.ChoiceATextBox.TextChanged += new System.EventHandler(this.ChoiceATextBox_TextChanged);
-            // 
-            // ChoiceBTextBox
-            // 
-            this.ChoiceBTextBox.Location = new System.Drawing.Point(73, 84);
-            this.ChoiceBTextBox.Multiline = true;
-            this.ChoiceBTextBox.Name = "ChoiceBTextBox";
-            this.ChoiceBTextBox.Size = new System.Drawing.Size(472, 58);
-            this.ChoiceBTextBox.TabIndex = 9;
-            this.ChoiceBTextBox.TextChanged += new System.EventHandler(this.ChoiceBTextBox_TextChanged);
-            // 
-            // ChoiceCTextBox
-            // 
-            this.ChoiceCTextBox.Location = new System.Drawing.Point(73, 152);
-            this.ChoiceCTextBox.Multiline = true;
-            this.ChoiceCTextBox.Name = "ChoiceCTextBox";
-            this.ChoiceCTextBox.Size = new System.Drawing.Size(472, 60);
-            this.ChoiceCTextBox.TabIndex = 10;
-            this.ChoiceCTextBox.TextChanged += new System.EventHandler(this.ChoiceCTextBox_TextChanged);
-            // 
-            // ChoiceDTextBox
-            // 
-            this.ChoiceDTextBox.Location = new System.Drawing.Point(73, 222);
-            this.ChoiceDTextBox.Multiline = true;
-            this.ChoiceDTextBox.Name = "ChoiceDTextBox";
-            this.ChoiceDTextBox.Size = new System.Drawing.Size(472, 56);
-            this.ChoiceDTextBox.TabIndex = 11;
-            this.ChoiceDTextBox.TextChanged += new System.EventHandler(this.ChoiceDTextBox_TextChanged);
+            this.RadioButtonMultipleChoiceA.AutoSize = true;
+            this.RadioButtonMultipleChoiceA.Location = new System.Drawing.Point(6, 19);
+            this.RadioButtonMultipleChoiceA.Name = "RadioButtonMultipleChoiceA";
+            this.RadioButtonMultipleChoiceA.Size = new System.Drawing.Size(32, 17);
+            this.RadioButtonMultipleChoiceA.TabIndex = 0;
+            this.RadioButtonMultipleChoiceA.TabStop = true;
+            this.RadioButtonMultipleChoiceA.Text = "A";
+            this.RadioButtonMultipleChoiceA.UseVisualStyleBackColor = true;
+            this.RadioButtonMultipleChoiceA.CheckedChanged += new System.EventHandler(this.RadioButtonMultipleChoiceA_CheckedChanged);
             // 
             // AnotherQuestionButton
             // 
@@ -609,11 +617,22 @@
             this.QuitButton.UseVisualStyleBackColor = true;
             this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
             // 
+            // ConsoleReadDebugButton
+            // 
+            this.ConsoleReadDebugButton.Location = new System.Drawing.Point(1110, 392);
+            this.ConsoleReadDebugButton.Name = "ConsoleReadDebugButton";
+            this.ConsoleReadDebugButton.Size = new System.Drawing.Size(381, 63);
+            this.ConsoleReadDebugButton.TabIndex = 28;
+            this.ConsoleReadDebugButton.Text = "Console Read Debug";
+            this.ConsoleReadDebugButton.UseVisualStyleBackColor = true;
+            this.ConsoleReadDebugButton.Click += new System.EventHandler(this.ConsoleReadDebugButton_Click);
+            // 
             // NewTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1503, 613);
+            this.Controls.Add(this.ConsoleReadDebugButton);
             this.Controls.Add(this.QuitButton);
             this.Controls.Add(this.ReviewButton);
             this.Controls.Add(this.AnotherQuestionButton);
@@ -625,12 +644,15 @@
             this.Controls.Add(this.QuestionTypeGroupBox);
             this.Name = "NewTestForm";
             this.Text = "NewTestForm";
+            this.Load += new System.EventHandler(this.NewTestForm_Load);
             this.QuestionTypeGroupBox.ResumeLayout(false);
             this.QuestionTypeGroupBox.PerformLayout();
             this.TrueFalseGroupBox.ResumeLayout(false);
             this.TrueFalseGroupBox.PerformLayout();
             this.FillInTheBlankAnswerGroupBox.ResumeLayout(false);
             this.FillInTheBlankAnswerGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AnswersNeededNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AvalibleAnswersNumericUpDown)).EndInit();
             this.MultipleChoiceGroupBox.ResumeLayout(false);
             this.MultipleChoiceGroupBox.PerformLayout();
             this.CorrectAnswerGroupBox.ResumeLayout(false);
@@ -652,7 +674,6 @@
         private System.Windows.Forms.RadioButton TrueRadioButton;
         private System.Windows.Forms.GroupBox FillInTheBlankAnswerGroupBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox AnswersTextBox;
         private System.Windows.Forms.TextBox QuestionOneTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label Question2Label;
@@ -671,7 +692,6 @@
         private System.Windows.Forms.TextBox QuestionNineTextBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox QuestionEightTextBox;
-        private System.Windows.Forms.TextBox NeededAnswersTextBox;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox QuestionTenTextBox;
         private System.Windows.Forms.Label label9;
@@ -692,5 +712,8 @@
         private System.Windows.Forms.Button AnotherQuestionButton;
         private System.Windows.Forms.Button ReviewButton;
         private System.Windows.Forms.Button QuitButton;
+        private System.Windows.Forms.NumericUpDown AvalibleAnswersNumericUpDown;
+        private System.Windows.Forms.NumericUpDown AnswersNeededNumericUpDown;
+        private System.Windows.Forms.Button ConsoleReadDebugButton;
     }
 }

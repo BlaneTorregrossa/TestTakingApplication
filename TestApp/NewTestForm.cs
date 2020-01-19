@@ -12,47 +12,40 @@ namespace TestApp
 {
     public partial class NewTestForm : Form
     {
+        public QuestionBehaviour QBInstance = new QuestionBehaviour();
+
         public NewTestForm()
         {
             InitializeComponent();
+            QBInstance.questionType = QuestionType.None;
         }
 
         private void TrueFalseRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            
+            QBInstance.questionType = QuestionType.TrueFalse;
         }
 
         private void FillInTheBlankRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-           
+            QBInstance.questionType = QuestionType.FillInTheBlank;
         }
 
         private void MultipleChoiceRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            
+            QBInstance.questionType = QuestionType.MultipleChoice;
         }
 
         private void TrueRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-
+            QBInstance.TFAnswer = true;
         }
 
         private void FalseRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void AnswersTextBox_TextChanged(object sender, EventArgs e)
-        {
-
+            QBInstance.TFAnswer = false;
         }
 
         private void QuestionOneTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void NeededAnswersTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -173,6 +166,36 @@ namespace TestApp
         }
 
         private void QuitButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AvalibleAnswersNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (AvalibleAnswersNumericUpDown.Value < 1)
+                AvalibleAnswersNumericUpDown.Value = 1;
+            else if (AvalibleAnswersNumericUpDown.Value > 10)
+                AvalibleAnswersNumericUpDown.Value = 10;
+
+            QBInstance.AnswersAvalible = Convert.ToInt32(AvalibleAnswersNumericUpDown.Value);
+        }
+
+        private void AnswersNeededNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (AnswersNeededNumericUpDown.Value < 0)
+                AnswersNeededNumericUpDown.Value = 0;
+            else if (AnswersNeededNumericUpDown.Value > AvalibleAnswersNumericUpDown.Value)
+                AnswersNeededNumericUpDown.Value = AvalibleAnswersNumericUpDown.Value;
+
+            QBInstance.FITBRequirment = Convert.ToInt32(AnswersNeededNumericUpDown.Value);
+        }
+
+        private void ConsoleReadDebugButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NewTestForm_Load(object sender, EventArgs e)
         {
 
         }
