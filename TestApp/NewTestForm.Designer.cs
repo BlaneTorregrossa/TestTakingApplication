@@ -79,7 +79,6 @@
             this.AnotherQuestionButton = new System.Windows.Forms.Button();
             this.ReviewButton = new System.Windows.Forms.Button();
             this.QuitButton = new System.Windows.Forms.Button();
-            this.ConsoleReadDebugButton = new System.Windows.Forms.Button();
             this.QuestionTypeGroupBox.SuspendLayout();
             this.TrueFalseGroupBox.SuspendLayout();
             this.FillInTheBlankAnswerGroupBox.SuspendLayout();
@@ -154,6 +153,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(1424, 126);
             this.textBox1.TabIndex = 5;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // TrueFalseGroupBox
             // 
@@ -228,14 +228,39 @@
             // AnswersNeededNumericUpDown
             // 
             this.AnswersNeededNumericUpDown.Location = new System.Drawing.Point(356, 17);
+            this.AnswersNeededNumericUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.AnswersNeededNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.AnswersNeededNumericUpDown.Name = "AnswersNeededNumericUpDown";
             this.AnswersNeededNumericUpDown.Size = new System.Drawing.Size(94, 20);
             this.AnswersNeededNumericUpDown.TabIndex = 26;
+            this.AnswersNeededNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.AnswersNeededNumericUpDown.ValueChanged += new System.EventHandler(this.AnswersNeededNumericUpDown_ValueChanged);
             // 
             // AvalibleAnswersNumericUpDown
             // 
             this.AvalibleAnswersNumericUpDown.Location = new System.Drawing.Point(142, 17);
+            this.AvalibleAnswersNumericUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.AvalibleAnswersNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.AvalibleAnswersNumericUpDown.Name = "AvalibleAnswersNumericUpDown";
             this.AvalibleAnswersNumericUpDown.Size = new System.Drawing.Size(46, 20);
             this.AvalibleAnswersNumericUpDown.TabIndex = 25;
@@ -617,22 +642,11 @@
             this.QuitButton.UseVisualStyleBackColor = true;
             this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
             // 
-            // ConsoleReadDebugButton
-            // 
-            this.ConsoleReadDebugButton.Location = new System.Drawing.Point(1110, 392);
-            this.ConsoleReadDebugButton.Name = "ConsoleReadDebugButton";
-            this.ConsoleReadDebugButton.Size = new System.Drawing.Size(381, 63);
-            this.ConsoleReadDebugButton.TabIndex = 28;
-            this.ConsoleReadDebugButton.Text = "Console Read Debug";
-            this.ConsoleReadDebugButton.UseVisualStyleBackColor = true;
-            this.ConsoleReadDebugButton.Click += new System.EventHandler(this.ConsoleReadDebugButton_Click);
-            // 
             // NewTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1503, 613);
-            this.Controls.Add(this.ConsoleReadDebugButton);
             this.Controls.Add(this.QuitButton);
             this.Controls.Add(this.ReviewButton);
             this.Controls.Add(this.AnotherQuestionButton);
@@ -714,6 +728,5 @@
         private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.NumericUpDown AvalibleAnswersNumericUpDown;
         private System.Windows.Forms.NumericUpDown AnswersNeededNumericUpDown;
-        private System.Windows.Forms.Button ConsoleReadDebugButton;
     }
 }

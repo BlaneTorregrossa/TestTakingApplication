@@ -18,6 +18,7 @@ namespace TestApp
     {
         public QuestionType questionType;
         public string Question;
+        public int QuestionNum;
         public bool TFAnswer;
         public int AnswersAvalible;
         public string[] FITBAnswers = new string[10];

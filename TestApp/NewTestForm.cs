@@ -47,92 +47,92 @@ namespace TestApp
 
         private void QuestionOneTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            QBInstance.FITBAnswers[0] = QuestionOneTextBox.Text;
         }
 
         private void QuestionTwoTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            QBInstance.FITBAnswers[1] = QuestionTwoTextBox.Text;
         }
 
         private void QuestionThreeTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            QBInstance.FITBAnswers[2] = QuestionThreeTextBox.Text;
         }
 
         private void QuestionFourTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            QBInstance.FITBAnswers[3] = QuestionFourTextBox.Text;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-
+            QBInstance.FITBAnswers[4] = textBox2.Text;
         }
 
         private void QuestionSixTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            QBInstance.FITBAnswers[5] = QuestionSixTextBox.Text;
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-
+            QBInstance.FITBAnswers[6] = textBox3.Text;
         }
 
         private void QuestionEightTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            QBInstance.FITBAnswers[7] = QuestionEightTextBox.Text;
         }
 
         private void QuestionNineTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            QBInstance.FITBAnswers[8] = QuestionNineTextBox.Text;
         }
 
         private void QuestionTenTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            QBInstance.FITBAnswers[9] = QuestionTenTextBox.Text;
         }
 
         private void ChoiceATextBox_TextChanged(object sender, EventArgs e)
         {
-
+            QBInstance.MCChoices[0] = ChoiceATextBox.Text;
         }
 
         private void ChoiceBTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            QBInstance.MCChoices[1] = ChoiceBTextBox.Text;
         }
 
         private void ChoiceCTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            QBInstance.MCChoices[2] = ChoiceCTextBox.Text;
         }
 
         private void ChoiceDTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            QBInstance.MCChoices[3] = ChoiceDTextBox.Text;
         }
 
         private void RadioButtonMultipleChoiceA_CheckedChanged(object sender, EventArgs e)
         {
-
+            QBInstance.MCAnswer = 0;
         }
 
         private void RadioButtonMultipleChoiceB_CheckedChanged(object sender, EventArgs e)
         {
-
+            QBInstance.MCAnswer = 1;
         }
 
         private void RadioButtonMultipleChoiceC_CheckedChanged(object sender, EventArgs e)
         {
-
+            QBInstance.MCAnswer = 2;
         }
 
         private void RadioButtonMultipleChoiceD_CheckedChanged(object sender, EventArgs e)
         {
-
+            QBInstance.MCAnswer = 3;
         }
 
         private void QuestionTypeGroupBox_Enter(object sender, EventArgs e)
@@ -157,7 +157,7 @@ namespace TestApp
 
         private void AnotherQuestionButton_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void ReviewButton_Click(object sender, EventArgs e)
@@ -167,7 +167,12 @@ namespace TestApp
 
         private void QuitButton_Click(object sender, EventArgs e)
         {
-
+            Form frm = new Form1();
+             frm.Location = this.Location;
+            frm.StartPosition = FormStartPosition.Manual;
+            this.Hide();
+            frm.FormClosed += (s, args) => this.Close();
+            frm.Show();
         }
 
         private void AvalibleAnswersNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -190,14 +195,15 @@ namespace TestApp
             QBInstance.FITBRequirment = Convert.ToInt32(AnswersNeededNumericUpDown.Value);
         }
 
-        private void ConsoleReadDebugButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void NewTestForm_Load(object sender, EventArgs e)
         {
+            if (QBInstance.QuestionNum == null)
+                QBInstance.QuestionNum = 0;
+        }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            QBInstance.Question = textBox1.Text;
         }
     }
 }
