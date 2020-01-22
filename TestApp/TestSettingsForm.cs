@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,75 +37,15 @@ namespace TestApp
 
         private void ContinueButton_Click(object sender, EventArgs e)
         {
-            if (TBInstance.QuestionSize < 1)
+            if (TBInstance.QuestionSize < 1 || TBInstance.QuestionSize > 99 ||
+                TBInstance.MaxTime < 0 || TBInstance.TestTitle == null)
             {
                 var frm = new PopupForm();
-                frm.WarningTitle = "Caution!";
-                frm.WarningText = "You have not met the minimum question requirment. Please set amount of questions before proceeding.";
-                frm.PrevForm = this;
-                frm.Location = this.Location;
-                frm.StartPosition = FormStartPosition.Manual;
-                this.Hide();
-                frm.FormClosed += (s, args) => this.Close();
-                frm.Show();
-            }
-            else if (TBInstance.QuestionSize > 99)
-            {
-                var frm = new PopupForm();
-                frm.WarningTitle = "Caution!";
-                frm.WarningText = "You have exceeded the maximum question limit. Please set a lower amount of questions before proceeding.";
-                frm.PrevForm = this;
-                frm.Location = this.Location;
-                frm.StartPosition = FormStartPosition.Manual;
-                this.Hide();
-                frm.FormClosed += (s, args) => this.Close();
-                frm.Show();
-            }
-
-            else if (TBInstance.RemainingTime < 0)
-            {
-                var frm = new PopupForm();
-                frm.WarningTitle = "Caution!";
-                frm.WarningText = "You have not met the minimum time requirment. Please set the time limit before proceeding.";
-                frm.PrevForm = this;
-                frm.Location = this.Location;
-                frm.StartPosition = FormStartPosition.Manual;
-                this.Hide();
-                frm.FormClosed += (s, args) => this.Close();
-                frm.Show();
-            }
-
-            else if (TBInstance.TestTitle == null)
-            {
-                var frm = new PopupForm();
-                frm.WarningTitle = "Caution!";
-                frm.WarningText = "You have not given the test a proper title. Please give a title for the test before proceeding.";
-                frm.PrevForm = this;
-                frm.Location = this.Location;
-                frm.StartPosition = FormStartPosition.Manual;
-                this.Hide();
-                frm.FormClosed += (s, args) => this.Close();
-                frm.Show();
+                TBInstance.MissingInfoPopUp(frm, this, null);
             }
 
             else
-            {
-                TBInstance.TestPath = "Tests/" + TBInstance.TestTitle + ".txt";
-                using (FileStream fs = File.Create(TBInstance.TestPath))
-                {
-                    byte[] info = new UTF8Encoding(true).GetBytes(
-                        "[*TESTINFO*] \n \nTITLE = " + TBInstance.TestTitle +
-                        "\nTIMELIMIT = " + TBInstance.MaxTime + "\nQUESTIONS = " +
-                        TBInstance.QuestionSize + "\n \n");
-                    fs.Write(info, 0, info.Length);
-                }
-                var frm = new NewTestForm();
-                frm.Location = this.Location;
-                frm.StartPosition = FormStartPosition.Manual;
-                this.Hide();
-                frm.FormClosed += (s, args) => this.Close();
-                frm.Show();
-            }
+                TBInstance.OpenQuestionEditor(this);
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
