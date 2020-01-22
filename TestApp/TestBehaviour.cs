@@ -80,5 +80,28 @@ namespace TestApp
             frm.Show();
         }
 
+        public void Exit(TestSettingsForm tsf, NewTestForm qf)
+        {
+            var frm = new Form1();
+
+            if (qf != null && tsf != null)
+            {
+                tsf.Location = qf.Location;
+                qf.Hide();
+                tsf.FormClosed += (s, args) => qf.Close();
+            }
+
+            else if (tsf != null && qf == null)
+            {
+                frm.Location = tsf.Location;
+                tsf.Hide();
+                frm.FormClosed += (s, args) => tsf.Close();
+            }
+
+            frm.StartPosition = FormStartPosition.Manual;
+            frm.Show();
+
+        }
+
     }
 }

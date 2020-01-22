@@ -37,6 +37,7 @@ namespace TestApp
 
         private void ContinueButton_Click(object sender, EventArgs e)
         {
+            //  If Missing required information open a popup window
             if (TBInstance.QuestionSize < 1 || TBInstance.QuestionSize > 99 ||
                 TBInstance.MaxTime < 0 || TBInstance.TestTitle == null)
             {
@@ -44,18 +45,16 @@ namespace TestApp
                 TBInstance.MissingInfoPopUp(frm, this, null);
             }
 
+            //  If there is no missing required information 
+            //  then continue to the question creation window
             else
                 TBInstance.OpenQuestionEditor(this);
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            var frm = new Form1();
-            frm.Location = this.Location;
-            frm.StartPosition = FormStartPosition.Manual;
-            this.Hide();
-            frm.FormClosed += (s, args) => this.Close();
-            frm.Show();
+            //  Exit back to previous window
+            TBInstance.Exit(this, null);
         }
     }
 }
