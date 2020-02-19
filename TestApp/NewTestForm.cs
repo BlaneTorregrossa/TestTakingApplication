@@ -14,26 +14,35 @@ namespace TestApp
     public partial class NewTestForm : Form
     {
         public QuestionBehaviour QBInstance = new QuestionBehaviour();
+        public TestBehaviour TBInstance;
 
         public NewTestForm()
         {
             InitializeComponent();
-            QBInstance.questionType = QuestionType.None;
         }
 
         private void TrueFalseRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             QBInstance.questionType = QuestionType.TrueFalse;
+            TrueFalseGroupBox.Enabled = true;
+            FillInTheBlankAnswerGroupBox.Enabled = false;
+            MultipleChoiceGroupBox.Enabled = false;
         }
 
         private void FillInTheBlankRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             QBInstance.questionType = QuestionType.FillInTheBlank;
+            TrueFalseGroupBox.Enabled = false;
+            FillInTheBlankAnswerGroupBox.Enabled = true;
+            MultipleChoiceGroupBox.Enabled = false;
         }
 
         private void MultipleChoiceRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             QBInstance.questionType = QuestionType.MultipleChoice;
+            TrueFalseGroupBox.Enabled = false;
+            FillInTheBlankAnswerGroupBox.Enabled = false;
+            MultipleChoiceGroupBox.Enabled = true;
         }
 
         private void TrueRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -158,7 +167,45 @@ namespace TestApp
 
         private void AnotherQuestionButton_Click(object sender, EventArgs e)
         {
-            
+            QBInstance.CreateQuestion(TBInstance.QuestionSize);
+            QBInstance.QuestionNum++;
+            textBox1.Text = null;
+            TrueFalseRadioButton.Checked = false;
+            FillInTheBlankRadioButton.Checked = false;
+            MultipleChoiceRadioButton.Checked = false;
+            TrueRadioButton.Checked = false;
+            FalseRadioButton.Checked = false;
+            AvalibleAnswersNumericUpDown.Value = 1;
+            AnswersNeededNumericUpDown.Value = 1;
+            QuestionOneTextBox.Text = null;
+            QuestionTwoTextBox.Text = null;
+            QuestionThreeTextBox.Text = null;
+            QuestionFourTextBox.Text = null;
+            textBox2.Text = null;
+            QuestionSixTextBox.Text = null;
+            textBox3.Text = null;
+            QuestionEightTextBox.Text = null;
+            QuestionNineTextBox.Text = null;
+            QuestionTenTextBox.Text = null;
+            ChoiceATextBox.Text = null;
+            ChoiceBTextBox.Text = null;
+            ChoiceCTextBox.Text = null;
+            ChoiceDTextBox.Text = null;
+            RadioButtonMultipleChoiceA.Checked = false;
+            RadioButtonMultipleChoiceB.Checked = false;
+            RadioButtonMultipleChoiceC.Checked = false;
+            RadioButtonMultipleChoiceD.Checked = false;
+
+            if (QBInstance.QuestionNum >= TBInstance.QuestionSize)
+            {
+                AnotherQuestionButton.Enabled = false;
+                textBox1.Enabled = false;
+                QuestionTypeGroupBox.Enabled = false;
+                TrueFalseGroupBox.Enabled = false;
+                FillInTheBlankAnswerGroupBox.Enabled = false;
+                MultipleChoiceGroupBox.Enabled = false;
+            }
+
         }
 
         private void ReviewButton_Click(object sender, EventArgs e)
@@ -169,11 +216,12 @@ namespace TestApp
         private void QuitButton_Click(object sender, EventArgs e)
         {
             Form frm = new Form1();
-             frm.Location = this.Location;
-            frm.StartPosition = FormStartPosition.Manual;
             this.Hide();
-            frm.FormClosed += (s, args) => this.Close();
-            frm.Show();
+            frm.Location = this.Location;
+            frm.StartPosition = FormStartPosition.Manual;
+            frm.ShowDialog();
+            frm.Activate();
+            this.Close();
         }
 
         private void AvalibleAnswersNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -198,14 +246,24 @@ namespace TestApp
 
         private void NewTestForm_Load(object sender, EventArgs e)
         {
-            if (QBInstance.QuestionNum == null)
-                QBInstance.QuestionNum = 0;
+            TrueFalseGroupBox.Enabled = false;
+            FillInTheBlankAnswerGroupBox.Enabled = false;
+            MultipleChoiceGroupBox.Enabled = false;
 
+            //  Cause Popup to inform that the file has not encountered required information
+            if (QBInstance.CheckTestReq() == false)
+            {
+                string Title = "Caution!";
+                string Text = "Missing required information in test file being used. " +
+                    "Please check the file to see what is missing.";
+                PopupForm frm = new PopupForm();
+                QBInstance.MissingInfoPopUp(frm, this, Title, Text, true);
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            QBInstance.Question = textBox1.Text;
+            QBInstance.QuestionText = textBox1.Text;
         }
     }
 }

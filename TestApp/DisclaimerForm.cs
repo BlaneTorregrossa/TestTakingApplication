@@ -24,12 +24,13 @@ namespace TestApp
 
         private void ReturnButton_Click(object sender, EventArgs e)
         {
+            this.Hide();
             var frm = new Form1();
             frm.Location = this.Location;
             frm.StartPosition = FormStartPosition.Manual;
-            this.Hide();
-            frm.FormClosed += (s, args) => this.Close();
-            frm.Show();
+            frm.ShowDialog();
+            frm.Activate();
+            this.Close();
         }
 
         private void DisclaimerForm_Load(object sender, EventArgs e)

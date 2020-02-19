@@ -31,12 +31,13 @@ namespace TestApp
         //  Displays disclamer window in the same position as this window and hides this form window.
         private void DisclaimerButton_Click(object sender, EventArgs e)
         {
+            this.Hide();
             var frm = new DisclaimerForm();
             frm.Location = this.Location;
             frm.StartPosition = FormStartPosition.Manual;
-            this.Hide();
-            frm.FormClosed += (s, args) => this.Close();
-            frm.Show();
+            frm.ShowDialog();
+            frm.Activate();
+            this.Close();
         }
 
         private void SelectedTestComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -56,12 +57,13 @@ namespace TestApp
 
         private void CreateTestButton_Click(object sender, EventArgs e)
         {
+            this.Hide();
             var frm = new TestSettingsForm();
             frm.Location = this.Location;
             frm.StartPosition = FormStartPosition.Manual;
-            this.Hide();
-            frm.FormClosed += (s, args) => this.Close();
-            frm.Show();
+            frm.ShowDialog();
+            frm.Activate();
+            this.Close();
         }
     }
 }
