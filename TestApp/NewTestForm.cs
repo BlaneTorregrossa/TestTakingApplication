@@ -167,6 +167,47 @@ namespace TestApp
 
         private void AnotherQuestionButton_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text == null || textBox1.Text == "")
+            {
+                string title = "Caution!";
+                string text = "Missing question in textbox for question. Please fill this textbox" +
+                    "before continuing!";
+                PopupForm frm = new PopupForm();
+                QBInstance.MissingInfoPopUp(frm, this, title, text, false);
+            }
+            else if (TrueFalseRadioButton.Checked = true &&
+                TrueRadioButton.Checked == false &&
+                FalseRadioButton.Checked == false)
+            {
+                string title = "Caution!";
+                string text = "Missing answer for given True/False question. Please give an answer" +
+                    " before continuing.";
+                PopupForm frm = new PopupForm();
+                QBInstance.MissingInfoPopUp(frm, this, title, text, false);
+            }
+            else if (TrueFalseRadioButton.Checked == false &&
+                FillInTheBlankRadioButton.Checked == false &&
+                MultipleChoiceRadioButton.Checked == false)
+            {
+                string title = "Caution!";
+                string text = "Missing given Question type for question. Please select the question " +
+                    "type before continuing.";
+                PopupForm frm = new PopupForm();
+                QBInstance.MissingInfoPopUp(frm, this, title, text, false);
+            }
+            else if (MultipleChoiceRadioButton.Checked == true &&
+                RadioButtonMultipleChoiceA.Checked == false &&
+                RadioButtonMultipleChoiceB.Checked == false &&
+                RadioButtonMultipleChoiceC.Checked == false &&
+                RadioButtonMultipleChoiceD.Checked == false)
+            {
+                string title = "Caution!";
+                string text = "Missing given anwser for multiple choice question. Please select the " +
+                    "question's asnwer before continuing.";
+                PopupForm frm = new PopupForm();
+                QBInstance.MissingInfoPopUp(frm, this, title, text, false);
+            }
+
             QBInstance.CreateQuestion(TBInstance.QuestionSize);
             QBInstance.QuestionNum++;
             textBox1.Text = null;
