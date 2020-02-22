@@ -108,5 +108,10 @@ namespace TestApp
         {
 
         }
+
+        private void TestSettingsForm_Load(object sender, EventArgs e)
+        {
+            this.Tag = "Test";
+        }
     }
 }

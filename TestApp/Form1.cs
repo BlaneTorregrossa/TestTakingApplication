@@ -19,7 +19,7 @@ namespace TestApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.Tag = "Start";
         }
 
         //  Have a confirmation box appear with this.
@@ -28,7 +28,7 @@ namespace TestApp
             Application.Exit();
         }
 
-        //  Displays disclamer window in the same position as this window and hides this form window.
+        //  Displays disclaimer window in the same position as this window and hides this form window.
         private void DisclaimerButton_Click(object sender, EventArgs e)
         {
             this.Hide();

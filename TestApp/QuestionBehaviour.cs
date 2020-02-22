@@ -38,6 +38,8 @@ namespace TestApp
                 puf.PrevForm = ntf;
                 puf.Location = ntf.Location;
                 puf.StartPosition = FormStartPosition.CenterScreen;
+                puf.WarningTitle = title;
+                puf.WarningText = text;
                 puf.ShowDialog();
                 puf.Activate();
                 ntf.Close();

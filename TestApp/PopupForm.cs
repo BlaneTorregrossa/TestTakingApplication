@@ -21,14 +21,23 @@ namespace TestApp
             InitializeComponent();
         }
 
+        //  **  Do a Check if a tag doesn't match listed one + minor rework
         private void ReturnButton_Click(object sender, EventArgs e)
         {
-            var frm = PrevForm;
-            frm.Location = this.Location;
-            frm.StartPosition = FormStartPosition.Manual;
             this.Hide();
-            frm.FormClosed += (s, args) => this.Close();
-            frm.Show();
+            if (PrevForm.Tag == "Question")
+            {
+                PrevForm = new NewTestForm();
+            }
+            if (PrevForm.Tag == "Test")
+            {
+                PrevForm = new TestSettingsForm();
+            }
+            PrevForm.Location = this.Location;
+            PrevForm.StartPosition = FormStartPosition.Manual;
+            PrevForm.ShowDialog();
+            PrevForm.Activate();
+            this.Close();
         }
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
@@ -43,6 +52,7 @@ namespace TestApp
 
         private void PopupForm_Load(object sender, EventArgs e)
         {
+            this.Tag = "PopUp";
             WarningLabel.Text = WarningTitle;
             DescriptionTextBox.Text = WarningText;
         }

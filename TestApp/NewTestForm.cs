@@ -287,6 +287,7 @@ namespace TestApp
 
         private void NewTestForm_Load(object sender, EventArgs e)
         {
+            this.Tag = "Question";
             TrueFalseGroupBox.Enabled = false;
             FillInTheBlankAnswerGroupBox.Enabled = false;
             MultipleChoiceGroupBox.Enabled = false;

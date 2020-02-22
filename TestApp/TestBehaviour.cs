@@ -26,6 +26,8 @@ namespace TestApp
                 puf.PrevForm = tsf;
                 puf.Location = tsf.Location;
                 puf.StartPosition = FormStartPosition.CenterScreen;
+                puf.WarningTitle = title;
+                puf.WarningText = text;
                 puf.ShowDialog();
                 puf.Activate();
                 tsf.Close();

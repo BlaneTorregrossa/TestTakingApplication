@@ -12,6 +12,7 @@ namespace TestApp
 {
     public partial class DisclaimerForm : Form
     {
+
         public DisclaimerForm()
         {
             InitializeComponent();
@@ -35,7 +36,7 @@ namespace TestApp
 
         private void DisclaimerForm_Load(object sender, EventArgs e)
         {
-
+            this.Tag = "Disclaimer";
         }
     }
 }

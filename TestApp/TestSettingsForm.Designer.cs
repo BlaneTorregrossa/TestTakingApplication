@@ -170,6 +170,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "TestSettingsForm";
             this.Text = "TestSettingsForm";
+            this.Load += new System.EventHandler(this.TestSettingsForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuestionsNumericUpDown)).EndInit();
