@@ -100,8 +100,13 @@ namespace TestApp
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            //  Exit back to previous window
-            TBInstance.Exit(this, null);
+            Form frm = new Form1();
+            this.Hide();
+            frm.Location = this.Location;
+            frm.StartPosition = FormStartPosition.Manual;
+            frm.ShowDialog();
+            frm.Activate();
+            this.Close();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)

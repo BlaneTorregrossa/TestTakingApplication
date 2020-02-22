@@ -59,28 +59,5 @@ namespace TestApp
             frm.Close();
         }
 
-        public void Exit(TestSettingsForm tsf, NewTestForm qf)
-        {
-            var frm = new Form1();
-
-            frm.StartPosition = FormStartPosition.Manual;
-            frm.Activate();
-            frm.ShowDialog();
-
-            if (qf != null && tsf == null)
-            {
-                qf.Hide();
-                frm.Location = qf.Location;
-                qf.Close();
-            }
-
-            else if (tsf != null && qf == null)
-            {
-                tsf.Hide();
-                frm.Location = tsf.Location;
-                tsf.Close();
-            }
-        }
-
     }
 }
