@@ -175,7 +175,7 @@ namespace TestApp
                 PopupForm frm = new PopupForm();
                 QBInstance.MissingInfoPopUp(frm, this, title, text, false);
             }
-            else if (TrueFalseRadioButton.Checked = true &&
+            else if (QBInstance.questionType == QuestionType.TrueFalse &&
                 TrueRadioButton.Checked == false &&
                 FalseRadioButton.Checked == false)
             {
@@ -185,9 +185,7 @@ namespace TestApp
                 PopupForm frm = new PopupForm();
                 QBInstance.MissingInfoPopUp(frm, this, title, text, false);
             }
-            else if (TrueFalseRadioButton.Checked == false &&
-                FillInTheBlankRadioButton.Checked == false &&
-                MultipleChoiceRadioButton.Checked == false)
+            else if (QBInstance.questionType == QuestionType.None)
             {
                 string title = "Caution!";
                 string text = "Missing given Question type for question. Please select the question " +
@@ -195,7 +193,7 @@ namespace TestApp
                 PopupForm frm = new PopupForm();
                 QBInstance.MissingInfoPopUp(frm, this, title, text, false);
             }
-            else if (MultipleChoiceRadioButton.Checked == true &&
+            else if (QBInstance.questionType == QuestionType.MultipleChoice &&
                 RadioButtonMultipleChoiceA.Checked == false &&
                 RadioButtonMultipleChoiceB.Checked == false &&
                 RadioButtonMultipleChoiceC.Checked == false &&
