@@ -205,51 +205,49 @@ namespace TestApp
                 PopupForm frm = new PopupForm();
                 QBInstance.MissingInfoPopUp(frm, this, title, text, false);
             }
-
-            QBInstance.CreateQuestion(TBInstance.QuestionSize);
-            QBInstance.QuestionNum++;
-            textBox1.Text = null;
-            TrueFalseRadioButton.Checked = false;
-            FillInTheBlankRadioButton.Checked = false;
-            MultipleChoiceRadioButton.Checked = false;
-            TrueRadioButton.Checked = false;
-            FalseRadioButton.Checked = false;
-            AvalibleAnswersNumericUpDown.Value = 1;
-            AnswersNeededNumericUpDown.Value = 1;
-            QuestionOneTextBox.Text = null;
-            QuestionTwoTextBox.Text = null;
-            QuestionThreeTextBox.Text = null;
-            QuestionFourTextBox.Text = null;
-            textBox2.Text = null;
-            QuestionSixTextBox.Text = null;
-            textBox3.Text = null;
-            QuestionEightTextBox.Text = null;
-            QuestionNineTextBox.Text = null;
-            QuestionTenTextBox.Text = null;
-            ChoiceATextBox.Text = null;
-            ChoiceBTextBox.Text = null;
-            ChoiceCTextBox.Text = null;
-            ChoiceDTextBox.Text = null;
-            RadioButtonMultipleChoiceA.Checked = false;
-            RadioButtonMultipleChoiceB.Checked = false;
-            RadioButtonMultipleChoiceC.Checked = false;
-            RadioButtonMultipleChoiceD.Checked = false;
-
-            if (QBInstance.QuestionNum >= TBInstance.QuestionSize)
+            else
             {
-                AnotherQuestionButton.Enabled = false;
-                textBox1.Enabled = false;
-                QuestionTypeGroupBox.Enabled = false;
-                TrueFalseGroupBox.Enabled = false;
-                FillInTheBlankAnswerGroupBox.Enabled = false;
-                MultipleChoiceGroupBox.Enabled = false;
+                //QBInstance.AddQuestion(TBInstance.QuestionSize);
+                TBInstance.Questions[QBInstance.QuestionNum] = QBInstance;
+                QBInstance.QuestionNum++;
+                textBox1.Text = null;
+                TrueFalseRadioButton.Checked = false;
+                FillInTheBlankRadioButton.Checked = false;
+                MultipleChoiceRadioButton.Checked = false;
+                TrueRadioButton.Checked = false;
+                FalseRadioButton.Checked = false;
+                AvalibleAnswersNumericUpDown.Value = 1;
+                AnswersNeededNumericUpDown.Value = 1;
+                QuestionOneTextBox.Text = null;
+                QuestionTwoTextBox.Text = null;
+                QuestionThreeTextBox.Text = null;
+                QuestionFourTextBox.Text = null;
+                textBox2.Text = null;
+                QuestionSixTextBox.Text = null;
+                textBox3.Text = null;
+                QuestionEightTextBox.Text = null;
+                QuestionNineTextBox.Text = null;
+                QuestionTenTextBox.Text = null;
+                ChoiceATextBox.Text = null;
+                ChoiceBTextBox.Text = null;
+                ChoiceCTextBox.Text = null;
+                ChoiceDTextBox.Text = null;
+                RadioButtonMultipleChoiceA.Checked = false;
+                RadioButtonMultipleChoiceB.Checked = false;
+                RadioButtonMultipleChoiceC.Checked = false;
+                RadioButtonMultipleChoiceD.Checked = false;
+
+                if (QBInstance.QuestionNum > TBInstance.QuestionSize)
+                {
+                    ReviewButton.Enabled = true;
+                    AnotherQuestionButton.Enabled = false;
+                    textBox1.Enabled = false;
+                    QuestionTypeGroupBox.Enabled = false;
+                    TrueFalseGroupBox.Enabled = false;
+                    FillInTheBlankAnswerGroupBox.Enabled = false;
+                    MultipleChoiceGroupBox.Enabled = false;
+                }
             }
-
-        }
-
-        private void ReviewButton_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void QuitButton_Click(object sender, EventArgs e)
@@ -290,15 +288,18 @@ namespace TestApp
             FillInTheBlankAnswerGroupBox.Enabled = false;
             MultipleChoiceGroupBox.Enabled = false;
 
-            //  Cause Popup to inform that the file has not encountered required information
-            if (QBInstance.CheckTestReq() == false)
-            {
-                string Title = "Caution!";
-                string Text = "Missing required information in test file being used. " +
-                    "Please check the file to see what is missing.";
-                PopupForm frm = new PopupForm();
-                QBInstance.MissingInfoPopUp(frm, this, Title, Text, true);
-            }
+            if (TBInstance.Questions[QBInstance.QuestionNum].QuestionNum <= TBInstance.QuestionSize)
+                ReviewButton.Enabled = false;
+
+            ////  Cause Popup to inform that the file has not encountered required information
+            //if (QBInstance.CheckTestReq() == false)
+            //{
+            //    string Title = "Caution!";
+            //    string Text = "Missing required information in test file being used. " +
+            //        "Please check the file to see what is missing.";
+            //    PopupForm frm = new PopupForm();
+            //    QBInstance.MissingInfoPopUp(frm, this, Title, Text, true);
+            //}
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

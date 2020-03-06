@@ -42,7 +42,7 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(738, 236);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Write needed information about program.";
+            this.textBox1.Text = "This program is a work in progress. Nothing is currently final.";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // ReturnButton

@@ -34,7 +34,6 @@ namespace TestApp
             //  Popup window
             if (ntf != null)
             {
-                ntf.Hide(); ;
                 puf.PrevForm = ntf;
                 puf.Location = ntf.Location;
                 puf.StartPosition = FormStartPosition.CenterScreen;
@@ -42,7 +41,6 @@ namespace TestApp
                 puf.WarningText = text;
                 puf.ShowDialog();
                 puf.Activate();
-                ntf.Close();
             }
 
             return;
@@ -71,7 +69,7 @@ namespace TestApp
             return false;
         }
 
-        public void CreateQuestion(int ql)
+        public void AddQuestion(int ql)
         {
             using (StreamWriter sw = File.AppendText(TestPath))
             {

@@ -21,21 +21,9 @@ namespace TestApp
             InitializeComponent();
         }
 
-        //  **  Do a Check if a tag doesn't match listed one + minor rework
         private void ReturnButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            if (PrevForm.Tag == "Question")
-            {
-                PrevForm = new NewTestForm();
-            }
-            if (PrevForm.Tag == "Test")
-            {
-                PrevForm = new TestSettingsForm();
-            }
-            PrevForm.Location = this.Location;
-            PrevForm.StartPosition = FormStartPosition.Manual;
-            PrevForm.ShowDialog();
             PrevForm.Activate();
             this.Close();
         }

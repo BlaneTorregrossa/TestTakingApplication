@@ -624,6 +624,7 @@
             // 
             // ReviewButton
             // 
+            this.ReviewButton.Enabled = false;
             this.ReviewButton.Location = new System.Drawing.Point(1215, 218);
             this.ReviewButton.Name = "ReviewButton";
             this.ReviewButton.Size = new System.Drawing.Size(135, 23);

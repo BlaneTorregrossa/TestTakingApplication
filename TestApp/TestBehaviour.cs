@@ -22,7 +22,6 @@ namespace TestApp
             //  Popup window
             if (tsf != null)
             {
-                tsf.Hide();
                 puf.PrevForm = tsf;
                 puf.Location = tsf.Location;
                 puf.StartPosition = FormStartPosition.CenterScreen;
@@ -30,7 +29,6 @@ namespace TestApp
                 puf.WarningText = text;
                 puf.ShowDialog();
                 puf.Activate();
-                tsf.Close();
             }
 
             return;
@@ -39,14 +37,14 @@ namespace TestApp
         public void OpenQuestionEditor(TestSettingsForm tsf)
         {
             TestPath = "Tests/" + TestTitle + ".txt";
-            using (FileStream fs = File.Create(TestPath))
-            {
-                byte[] info = new UTF8Encoding(true).GetBytes(
-                    "[*TESTINFO*] \n \nTITLE = " + TestTitle +
-                    "\nTIMELIMIT = " + MaxTime + "\nMAXQUESTIONS = " +
-                    QuestionSize + "\n \n");
-                fs.Write(info, 0, info.Length);
-            }
+            //using (FileStream fs = File.Create(TestPath))
+            //{
+            //    byte[] info = new UTF8Encoding(true).GetBytes(
+            //        "[*TESTINFO*] \n \nTITLE = " + TestTitle +
+            //        "\nTIMELIMIT = " + MaxTime + "\nMAXQUESTIONS = " +
+            //        QuestionSize + "\n \n");
+            //    fs.Write(info, 0, info.Length);
+            //}
 
             tsf.Hide();
             var frm = new NewTestForm();
@@ -56,7 +54,9 @@ namespace TestApp
             frm.StartPosition = FormStartPosition.Manual;
             frm.ShowDialog();
             frm.Activate();
-            frm.Close();
+            tsf.Close();
+
+            return;
         }
 
     }
