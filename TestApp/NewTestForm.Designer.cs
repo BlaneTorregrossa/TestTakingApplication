@@ -28,12 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.TrueFalseRadioButton = new System.Windows.Forms.RadioButton();
-            this.FillInTheBlankRadioButton = new System.Windows.Forms.RadioButton();
-            this.MultipleChoiceRadioButton = new System.Windows.Forms.RadioButton();
-            this.QuestionTypeGroupBox = new System.Windows.Forms.GroupBox();
-            this.QuestionLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.TrueFalseGroupBox = new System.Windows.Forms.GroupBox();
             this.FalseRadioButton = new System.Windows.Forms.RadioButton();
             this.TrueRadioButton = new System.Windows.Forms.RadioButton();
@@ -76,90 +70,31 @@
             this.RadioButtonMultipleChoiceC = new System.Windows.Forms.RadioButton();
             this.RadioButtonMultipleChoiceB = new System.Windows.Forms.RadioButton();
             this.RadioButtonMultipleChoiceA = new System.Windows.Forms.RadioButton();
-            this.AnotherQuestionButton = new System.Windows.Forms.Button();
-            this.ReviewButton = new System.Windows.Forms.Button();
             this.QuitButton = new System.Windows.Forms.Button();
-            this.QuestionTypeGroupBox.SuspendLayout();
+            this.AnswersGroupBox = new System.Windows.Forms.GroupBox();
+            this.QuestionNumberLabel = new System.Windows.Forms.Label();
+            this.QuestionNumberNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.QuestionTypeLabel = new System.Windows.Forms.Label();
+            this.QuestionTypeDomainUpDown = new System.Windows.Forms.DomainUpDown();
+            this.QuestionTextLabel = new System.Windows.Forms.Label();
+            this.QuestionTextTextBox = new System.Windows.Forms.TextBox();
+            this.FinishButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.TrueFalseGroupBox.SuspendLayout();
             this.FillInTheBlankAnswerGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AnswersNeededNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AvalibleAnswersNumericUpDown)).BeginInit();
             this.MultipleChoiceGroupBox.SuspendLayout();
             this.CorrectAnswerGroupBox.SuspendLayout();
+            this.AnswersGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.QuestionNumberNumericUpDown)).BeginInit();
             this.SuspendLayout();
-            // 
-            // TrueFalseRadioButton
-            // 
-            this.TrueFalseRadioButton.AutoSize = true;
-            this.TrueFalseRadioButton.Location = new System.Drawing.Point(6, 21);
-            this.TrueFalseRadioButton.Name = "TrueFalseRadioButton";
-            this.TrueFalseRadioButton.Size = new System.Drawing.Size(77, 17);
-            this.TrueFalseRadioButton.TabIndex = 1;
-            this.TrueFalseRadioButton.TabStop = true;
-            this.TrueFalseRadioButton.Text = "True/False";
-            this.TrueFalseRadioButton.UseVisualStyleBackColor = true;
-            this.TrueFalseRadioButton.CheckedChanged += new System.EventHandler(this.TrueFalseRadioButton_CheckedChanged);
-            // 
-            // FillInTheBlankRadioButton
-            // 
-            this.FillInTheBlankRadioButton.AutoSize = true;
-            this.FillInTheBlankRadioButton.Location = new System.Drawing.Point(6, 42);
-            this.FillInTheBlankRadioButton.Name = "FillInTheBlankRadioButton";
-            this.FillInTheBlankRadioButton.Size = new System.Drawing.Size(96, 17);
-            this.FillInTheBlankRadioButton.TabIndex = 2;
-            this.FillInTheBlankRadioButton.TabStop = true;
-            this.FillInTheBlankRadioButton.Text = "Fill in the Blank";
-            this.FillInTheBlankRadioButton.UseVisualStyleBackColor = true;
-            this.FillInTheBlankRadioButton.CheckedChanged += new System.EventHandler(this.FillInTheBlankRadioButton_CheckedChanged);
-            // 
-            // MultipleChoiceRadioButton
-            // 
-            this.MultipleChoiceRadioButton.AutoSize = true;
-            this.MultipleChoiceRadioButton.Location = new System.Drawing.Point(6, 65);
-            this.MultipleChoiceRadioButton.Name = "MultipleChoiceRadioButton";
-            this.MultipleChoiceRadioButton.Size = new System.Drawing.Size(97, 17);
-            this.MultipleChoiceRadioButton.TabIndex = 3;
-            this.MultipleChoiceRadioButton.TabStop = true;
-            this.MultipleChoiceRadioButton.Text = "Multiple Choice";
-            this.MultipleChoiceRadioButton.UseVisualStyleBackColor = true;
-            this.MultipleChoiceRadioButton.CheckedChanged += new System.EventHandler(this.MultipleChoiceRadioButton_CheckedChanged);
-            // 
-            // QuestionTypeGroupBox
-            // 
-            this.QuestionTypeGroupBox.Controls.Add(this.FillInTheBlankRadioButton);
-            this.QuestionTypeGroupBox.Controls.Add(this.TrueFalseRadioButton);
-            this.QuestionTypeGroupBox.Controls.Add(this.MultipleChoiceRadioButton);
-            this.QuestionTypeGroupBox.Location = new System.Drawing.Point(15, 141);
-            this.QuestionTypeGroupBox.Name = "QuestionTypeGroupBox";
-            this.QuestionTypeGroupBox.Size = new System.Drawing.Size(121, 100);
-            this.QuestionTypeGroupBox.TabIndex = 4;
-            this.QuestionTypeGroupBox.TabStop = false;
-            this.QuestionTypeGroupBox.Text = "Question Type";
-            this.QuestionTypeGroupBox.Enter += new System.EventHandler(this.QuestionTypeGroupBox_Enter);
-            // 
-            // QuestionLabel
-            // 
-            this.QuestionLabel.AutoSize = true;
-            this.QuestionLabel.Location = new System.Drawing.Point(12, 9);
-            this.QuestionLabel.Name = "QuestionLabel";
-            this.QuestionLabel.Size = new System.Drawing.Size(49, 13);
-            this.QuestionLabel.TabIndex = 4;
-            this.QuestionLabel.Text = "Question";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(67, 9);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1424, 126);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // TrueFalseGroupBox
             // 
             this.TrueFalseGroupBox.Controls.Add(this.FalseRadioButton);
             this.TrueFalseGroupBox.Controls.Add(this.TrueRadioButton);
-            this.TrueFalseGroupBox.Location = new System.Drawing.Point(15, 247);
+            this.TrueFalseGroupBox.Location = new System.Drawing.Point(6, 19);
             this.TrueFalseGroupBox.Name = "TrueFalseGroupBox";
             this.TrueFalseGroupBox.Size = new System.Drawing.Size(121, 68);
             this.TrueFalseGroupBox.TabIndex = 6;
@@ -217,7 +152,7 @@
             this.FillInTheBlankAnswerGroupBox.Controls.Add(this.Question2Label);
             this.FillInTheBlankAnswerGroupBox.Controls.Add(this.Question1Label);
             this.FillInTheBlankAnswerGroupBox.Controls.Add(this.label1);
-            this.FillInTheBlankAnswerGroupBox.Location = new System.Drawing.Point(15, 321);
+            this.FillInTheBlankAnswerGroupBox.Location = new System.Drawing.Point(6, 93);
             this.FillInTheBlankAnswerGroupBox.Name = "FillInTheBlankAnswerGroupBox";
             this.FillInTheBlankAnswerGroupBox.Size = new System.Drawing.Size(456, 280);
             this.FillInTheBlankAnswerGroupBox.TabIndex = 2;
@@ -471,9 +406,9 @@
             this.MultipleChoiceGroupBox.Controls.Add(this.ChoiceBLabel);
             this.MultipleChoiceGroupBox.Controls.Add(this.ChoiceALabel);
             this.MultipleChoiceGroupBox.Controls.Add(this.CorrectAnswerGroupBox);
-            this.MultipleChoiceGroupBox.Location = new System.Drawing.Point(553, 141);
+            this.MultipleChoiceGroupBox.Location = new System.Drawing.Point(467, 19);
             this.MultipleChoiceGroupBox.Name = "MultipleChoiceGroupBox";
-            this.MultipleChoiceGroupBox.Size = new System.Drawing.Size(551, 447);
+            this.MultipleChoiceGroupBox.Size = new System.Drawing.Size(551, 412);
             this.MultipleChoiceGroupBox.TabIndex = 25;
             this.MultipleChoiceGroupBox.TabStop = false;
             this.MultipleChoiceGroupBox.Text = "Multiple Choice";
@@ -557,7 +492,7 @@
             this.CorrectAnswerGroupBox.Controls.Add(this.RadioButtonMultipleChoiceC);
             this.CorrectAnswerGroupBox.Controls.Add(this.RadioButtonMultipleChoiceB);
             this.CorrectAnswerGroupBox.Controls.Add(this.RadioButtonMultipleChoiceA);
-            this.CorrectAnswerGroupBox.Location = new System.Drawing.Point(0, 320);
+            this.CorrectAnswerGroupBox.Location = new System.Drawing.Point(0, 284);
             this.CorrectAnswerGroupBox.Name = "CorrectAnswerGroupBox";
             this.CorrectAnswerGroupBox.Size = new System.Drawing.Size(551, 121);
             this.CorrectAnswerGroupBox.TabIndex = 0;
@@ -612,56 +547,137 @@
             this.RadioButtonMultipleChoiceA.UseVisualStyleBackColor = true;
             this.RadioButtonMultipleChoiceA.CheckedChanged += new System.EventHandler(this.RadioButtonMultipleChoiceA_CheckedChanged);
             // 
-            // AnotherQuestionButton
-            // 
-            this.AnotherQuestionButton.Location = new System.Drawing.Point(1215, 177);
-            this.AnotherQuestionButton.Name = "AnotherQuestionButton";
-            this.AnotherQuestionButton.Size = new System.Drawing.Size(135, 23);
-            this.AnotherQuestionButton.TabIndex = 12;
-            this.AnotherQuestionButton.Text = "Another Question";
-            this.AnotherQuestionButton.UseVisualStyleBackColor = true;
-            this.AnotherQuestionButton.Click += new System.EventHandler(this.AnotherQuestionButton_Click);
-            // 
-            // ReviewButton
-            // 
-            this.ReviewButton.Enabled = false;
-            this.ReviewButton.Location = new System.Drawing.Point(1215, 218);
-            this.ReviewButton.Name = "ReviewButton";
-            this.ReviewButton.Size = new System.Drawing.Size(135, 23);
-            this.ReviewButton.TabIndex = 26;
-            this.ReviewButton.Text = "Review";
-            this.ReviewButton.UseVisualStyleBackColor = true;
-            this.ReviewButton.Click += new System.EventHandler(this.ReviewButton_Click);
-            // 
             // QuitButton
             // 
-            this.QuitButton.Location = new System.Drawing.Point(1215, 260);
+            this.QuitButton.Location = new System.Drawing.Point(1150, 256);
             this.QuitButton.Name = "QuitButton";
-            this.QuitButton.Size = new System.Drawing.Size(135, 23);
+            this.QuitButton.Size = new System.Drawing.Size(74, 23);
             this.QuitButton.TabIndex = 27;
             this.QuitButton.Text = "Quit";
             this.QuitButton.UseVisualStyleBackColor = true;
             this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
             // 
+            // AnswersGroupBox
+            // 
+            this.AnswersGroupBox.Controls.Add(this.TrueFalseGroupBox);
+            this.AnswersGroupBox.Controls.Add(this.FillInTheBlankAnswerGroupBox);
+            this.AnswersGroupBox.Controls.Add(this.MultipleChoiceGroupBox);
+            this.AnswersGroupBox.Location = new System.Drawing.Point(12, 163);
+            this.AnswersGroupBox.Name = "AnswersGroupBox";
+            this.AnswersGroupBox.Size = new System.Drawing.Size(1024, 438);
+            this.AnswersGroupBox.TabIndex = 28;
+            this.AnswersGroupBox.TabStop = false;
+            this.AnswersGroupBox.Text = "Answer(s)";
+            // 
+            // QuestionNumberLabel
+            // 
+            this.QuestionNumberLabel.AutoSize = true;
+            this.QuestionNumberLabel.Location = new System.Drawing.Point(12, 9);
+            this.QuestionNumberLabel.Name = "QuestionNumberLabel";
+            this.QuestionNumberLabel.Size = new System.Drawing.Size(89, 13);
+            this.QuestionNumberLabel.TabIndex = 26;
+            this.QuestionNumberLabel.Text = "Question Number";
+            // 
+            // QuestionNumberNumericUpDown
+            // 
+            this.QuestionNumberNumericUpDown.Location = new System.Drawing.Point(12, 25);
+            this.QuestionNumberNumericUpDown.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.QuestionNumberNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.QuestionNumberNumericUpDown.Name = "QuestionNumberNumericUpDown";
+            this.QuestionNumberNumericUpDown.Size = new System.Drawing.Size(62, 20);
+            this.QuestionNumberNumericUpDown.TabIndex = 29;
+            this.QuestionNumberNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.QuestionNumberNumericUpDown.ValueChanged += new System.EventHandler(this.QuestionNumberNumericUpDown_ValueChanged);
+            // 
+            // QuestionTypeLabel
+            // 
+            this.QuestionTypeLabel.AutoSize = true;
+            this.QuestionTypeLabel.Location = new System.Drawing.Point(12, 59);
+            this.QuestionTypeLabel.Name = "QuestionTypeLabel";
+            this.QuestionTypeLabel.Size = new System.Drawing.Size(76, 13);
+            this.QuestionTypeLabel.TabIndex = 30;
+            this.QuestionTypeLabel.Text = "Question Type";
+            // 
+            // QuestionTypeDomainUpDown
+            // 
+            this.QuestionTypeDomainUpDown.Items.Add("TrueFalse");
+            this.QuestionTypeDomainUpDown.Items.Add("FillInTheBlank");
+            this.QuestionTypeDomainUpDown.Items.Add("MultipleChoice");
+            this.QuestionTypeDomainUpDown.Location = new System.Drawing.Point(12, 75);
+            this.QuestionTypeDomainUpDown.Name = "QuestionTypeDomainUpDown";
+            this.QuestionTypeDomainUpDown.ReadOnly = true;
+            this.QuestionTypeDomainUpDown.Size = new System.Drawing.Size(120, 20);
+            this.QuestionTypeDomainUpDown.TabIndex = 31;
+            this.QuestionTypeDomainUpDown.SelectedItemChanged += new System.EventHandler(this.QuestionTypeDomainUpDown_SelectedItemChanged);
+            // 
+            // QuestionTextLabel
+            // 
+            this.QuestionTextLabel.AutoSize = true;
+            this.QuestionTextLabel.Location = new System.Drawing.Point(258, 9);
+            this.QuestionTextLabel.Name = "QuestionTextLabel";
+            this.QuestionTextLabel.Size = new System.Drawing.Size(73, 13);
+            this.QuestionTextLabel.TabIndex = 32;
+            this.QuestionTextLabel.Text = "Question Text";
+            // 
+            // QuestionTextTextBox
+            // 
+            this.QuestionTextTextBox.Location = new System.Drawing.Point(261, 25);
+            this.QuestionTextTextBox.Multiline = true;
+            this.QuestionTextTextBox.Name = "QuestionTextTextBox";
+            this.QuestionTextTextBox.Size = new System.Drawing.Size(775, 119);
+            this.QuestionTextTextBox.TabIndex = 33;
+            this.QuestionTextTextBox.TextChanged += new System.EventHandler(this.QuestionTextTextBox_TextChanged);
+            // 
+            // FinishButton
+            // 
+            this.FinishButton.Location = new System.Drawing.Point(1149, 227);
+            this.FinishButton.Name = "FinishButton";
+            this.FinishButton.Size = new System.Drawing.Size(75, 23);
+            this.FinishButton.TabIndex = 34;
+            this.FinishButton.Text = "Finish";
+            this.FinishButton.UseVisualStyleBackColor = true;
+            this.FinishButton.Click += new System.EventHandler(this.FinishButton_Click);
+            // 
+            // SaveButton
+            // 
+            this.SaveButton.Location = new System.Drawing.Point(1149, 198);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.TabIndex = 35;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
             // NewTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1503, 613);
+            this.ClientSize = new System.Drawing.Size(1368, 613);
+            this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.FinishButton);
+            this.Controls.Add(this.QuestionTextTextBox);
+            this.Controls.Add(this.QuestionTextLabel);
+            this.Controls.Add(this.QuestionTypeDomainUpDown);
+            this.Controls.Add(this.QuestionTypeLabel);
+            this.Controls.Add(this.QuestionNumberNumericUpDown);
+            this.Controls.Add(this.QuestionNumberLabel);
+            this.Controls.Add(this.AnswersGroupBox);
             this.Controls.Add(this.QuitButton);
-            this.Controls.Add(this.ReviewButton);
-            this.Controls.Add(this.AnotherQuestionButton);
-            this.Controls.Add(this.MultipleChoiceGroupBox);
-            this.Controls.Add(this.FillInTheBlankAnswerGroupBox);
-            this.Controls.Add(this.TrueFalseGroupBox);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.QuestionLabel);
-            this.Controls.Add(this.QuestionTypeGroupBox);
             this.Name = "NewTestForm";
             this.Text = "NewTestForm";
             this.Load += new System.EventHandler(this.NewTestForm_Load);
-            this.QuestionTypeGroupBox.ResumeLayout(false);
-            this.QuestionTypeGroupBox.PerformLayout();
             this.TrueFalseGroupBox.ResumeLayout(false);
             this.TrueFalseGroupBox.PerformLayout();
             this.FillInTheBlankAnswerGroupBox.ResumeLayout(false);
@@ -672,18 +688,14 @@
             this.MultipleChoiceGroupBox.PerformLayout();
             this.CorrectAnswerGroupBox.ResumeLayout(false);
             this.CorrectAnswerGroupBox.PerformLayout();
+            this.AnswersGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.QuestionNumberNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.RadioButton TrueFalseRadioButton;
-        private System.Windows.Forms.RadioButton FillInTheBlankRadioButton;
-        private System.Windows.Forms.RadioButton MultipleChoiceRadioButton;
-        private System.Windows.Forms.GroupBox QuestionTypeGroupBox;
-        private System.Windows.Forms.Label QuestionLabel;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox TrueFalseGroupBox;
         private System.Windows.Forms.RadioButton FalseRadioButton;
         private System.Windows.Forms.RadioButton TrueRadioButton;
@@ -724,10 +736,17 @@
         private System.Windows.Forms.RadioButton RadioButtonMultipleChoiceC;
         private System.Windows.Forms.RadioButton RadioButtonMultipleChoiceB;
         private System.Windows.Forms.RadioButton RadioButtonMultipleChoiceA;
-        private System.Windows.Forms.Button AnotherQuestionButton;
-        private System.Windows.Forms.Button ReviewButton;
         private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.NumericUpDown AvalibleAnswersNumericUpDown;
         private System.Windows.Forms.NumericUpDown AnswersNeededNumericUpDown;
+        private System.Windows.Forms.GroupBox AnswersGroupBox;
+        private System.Windows.Forms.Label QuestionNumberLabel;
+        private System.Windows.Forms.NumericUpDown QuestionNumberNumericUpDown;
+        private System.Windows.Forms.Label QuestionTypeLabel;
+        private System.Windows.Forms.DomainUpDown QuestionTypeDomainUpDown;
+        private System.Windows.Forms.Label QuestionTextLabel;
+        private System.Windows.Forms.TextBox QuestionTextTextBox;
+        private System.Windows.Forms.Button FinishButton;
+        private System.Windows.Forms.Button SaveButton;
     }
 }

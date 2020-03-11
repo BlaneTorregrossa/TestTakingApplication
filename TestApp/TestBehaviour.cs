@@ -17,6 +17,14 @@ namespace TestApp
         public int QuestionSize;
         public QuestionBehaviour[] Questions = new QuestionBehaviour[99];
 
+        public TestBehaviour()
+        {
+            for (int i = 0; i < 99; i++)
+            {
+                Questions[i] = new QuestionBehaviour();
+            }
+        }
+
         public void MissingInfoPopUp(PopupForm puf, TestSettingsForm tsf, string title, string text)
         {
             //  Popup window
