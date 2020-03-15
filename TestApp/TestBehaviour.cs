@@ -32,12 +32,12 @@ namespace TestApp
             {
                 puf.PrevForm = tsf;
                 puf.Location = tsf.Location;
-                puf.StartPosition = FormStartPosition.CenterScreen;
-                puf.WarningTitle = title;
-                puf.WarningText = text;
-                puf.ShowDialog();
-                puf.Activate();
             }
+            puf.StartPosition = FormStartPosition.CenterScreen;
+            puf.WarningTitle = title;
+            puf.WarningText = text;
+            puf.ShowDialog();
+            puf.Activate();
 
             return;
         }
@@ -61,10 +61,14 @@ namespace TestApp
 
         public bool QuestionCheck()
         {
+            var frm = new PopupForm();
             for (int i = 0; i < QuestionSize; i++)
             {
                 if (Questions[i] == null)
+                {
+                    MissingInfoPopUp(frm, null, "Caution", "There is an issue with question " + Questions[i].QuestionNum + " . Please Go back and fix this issue before continuing.");
                     return false;
+                }
                 else if (Questions[i].questionType != QuestionType.None && Questions[i].QuestionText != null)
                 {
                     if (Questions[i].questionType == QuestionType.TrueFalse && Questions[i].TFAnswer != null && Questions[i].QuestionNum == QuestionSize - 1)
@@ -74,7 +78,10 @@ namespace TestApp
                         for (int j = 0; j < Questions[i].AnswersAvalible; j++)
                         {
                             if (Questions[i].FITBAnswers[j] == null)
+                            {
+                                MissingInfoPopUp(frm, null, "Caution", "There is an issue with question " + Questions[i].QuestionNum + " . Please Go back and fix this issue before continuing.");
                                 return false;
+                            }
                         }
                         if (Questions[i].QuestionNum == QuestionSize - 1)
                             return true;
@@ -84,13 +91,17 @@ namespace TestApp
                         for (int k = 0; k < 4; k++)
                         {
                             if (Questions[i].MCChoices[k] == "" || Questions[i].MCChoices[k] == null)
+                            {
+                                MissingInfoPopUp(frm, null, "Caution", "There is an issue with question " + Questions[i].QuestionNum + " . Please Go back and fix this issue before continuing.");
                                 return false;
+                            }
                         }
                         if (Questions[i].QuestionNum == QuestionSize - 1)
                             return true;
                     }
                 }
             }
+            MissingInfoPopUp(frm, null, "Caution", "There is an issue with question one of the questions in the test. We could not determine which specific question. Please go back and fix this issue before continuing.");
             return false;
         }
 
@@ -111,6 +122,21 @@ namespace TestApp
                 return true;
             else
                 return false;
+        }
+
+        public bool QuestionChangeCheck(QuestionBehaviour qb)
+        {
+            if (qb.questionType == QuestionType.TrueFalse && qb.TFAnswer == null)
+                return false;
+            else if (qb.questionType == QuestionType.FillInTheBlank && qb.FITBAnswers == null ||
+                qb.questionType == QuestionType.FillInTheBlank && qb.FITBRequirment == null)
+                return false;
+            else if (qb.questionType == QuestionType.MultipleChoice && qb.MCAnswer == null ||
+                qb.questionType == QuestionType.MultipleChoice && qb.MCChoices == null)
+                return false;
+            else if (qb.questionType == QuestionType.None)
+                return false;
+            return true;
         }
     }
 }

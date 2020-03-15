@@ -237,6 +237,8 @@ namespace TestApp
 
         private void QuestionTypeDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
         {
+            if (TBInstance.QuestionChangeCheck(QBInstance) == false)
+                QBInstance.Entered = false;
             if (QuestionTypeDomainUpDown.Text == "TrueFalse")
             {
                 QBInstance.questionType = QuestionType.TrueFalse;
