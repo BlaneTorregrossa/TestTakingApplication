@@ -45,14 +45,6 @@ namespace TestApp
         public void OpenQuestionEditor(TestSettingsForm tsf)
         {
             TestPath = "Tests/" + TestTitle + ".txt";
-            //using (FileStream fs = File.Create(TestPath))
-            //{
-            //    byte[] info = new UTF8Encoding(true).GetBytes(
-            //        "[*TESTINFO*] \n \nTITLE = " + TestTitle +
-            //        "\nTIMELIMIT = " + MaxTime + "\nMAXQUESTIONS = " +
-            //        QuestionSize + "\n \n");
-            //    fs.Write(info, 0, info.Length);
-            //}
 
             tsf.Hide();
             var frm = new NewTestForm();
@@ -67,5 +59,58 @@ namespace TestApp
             return;
         }
 
+        public bool QuestionCheck()
+        {
+            for (int i = 0; i < QuestionSize; i++)
+            {
+                if (Questions[i] == null)
+                    return false;
+                else if (Questions[i].questionType != QuestionType.None && Questions[i].QuestionText != null)
+                {
+                    if (Questions[i].questionType == QuestionType.TrueFalse && Questions[i].TFAnswer != null && Questions[i].QuestionNum == QuestionSize - 1)
+                        return true;
+                    else if (Questions[i].questionType == QuestionType.FillInTheBlank)
+                    {
+                        for (int j = 0; j < Questions[i].AnswersAvalible; j++)
+                        {
+                            if (Questions[i].FITBAnswers[j] == null)
+                                return false;
+                        }
+                        if (Questions[i].QuestionNum == QuestionSize - 1)
+                            return true;
+                    }
+                    else if (Questions[i].questionType == QuestionType.MultipleChoice && Questions[i].MCAnswer != null)
+                    {
+                        for (int k = 0; k < 4; k++)
+                        {
+                            if (Questions[i].MCChoices[k] == "" || Questions[i].MCChoices[k] == null)
+                                return false;
+                        }
+                        if (Questions[i].QuestionNum == QuestionSize - 1)
+                            return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool CheckTestReq()
+        {
+            bool titleSpotted = false,
+                timeLimitSpotted = false,
+                maxQuestionsSpotted = false;
+
+            if (TestTitle != null)
+                titleSpotted = true;
+            if (MaxTime != null)
+                timeLimitSpotted = true;
+            if (QuestionSize != null)
+                maxQuestionsSpotted = true;
+
+            if (titleSpotted == true && timeLimitSpotted == true && maxQuestionsSpotted == true)
+                return true;
+            else
+                return false;
+        }
     }
 }

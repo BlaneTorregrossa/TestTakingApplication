@@ -67,6 +67,7 @@
     <Compile Include="DisclaimerForm.Designer.cs">
       <DependentUpon>DisclaimerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileWriter.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

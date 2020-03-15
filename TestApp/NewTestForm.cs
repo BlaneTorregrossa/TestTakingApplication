@@ -187,19 +187,8 @@ namespace TestApp
             TrueFalseGroupBox.Enabled = false;
             FillInTheBlankAnswerGroupBox.Enabled = false;
             MultipleChoiceGroupBox.Enabled = false;
-
-            ////  Cause Popup to inform that the file has not encountered required information
-            //if (QBInstance.CheckTestReq() == false)
-            //{
-            //    string Title = "Caution!";
-            //    string Text = "Missing required information in test file being used. " +
-            //        "Please check the file to see what is missing.";
-            //    PopupForm frm = new PopupForm();
-            //    QBInstance.MissingInfoPopUp(frm, this, Title, Text, true);
-            //}
         }
 
-        //  *****   Change this
         private void QuestionNumberNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (QuestionNumberNumericUpDown.Value > TBInstance.QuestionSize)
@@ -236,23 +225,13 @@ namespace TestApp
             ChoiceCTextBox.Text = TBInstance.Questions[QBInstance.QuestionNum].MCChoices[2];
             ChoiceDTextBox.Text = TBInstance.Questions[QBInstance.QuestionNum].MCChoices[3];
             if (TBInstance.Questions[QBInstance.QuestionNum].MCAnswer == 0)
-            {
                 RadioButtonMultipleChoiceA.Checked = true;
-
-            }
             else if (TBInstance.Questions[QBInstance.QuestionNum].MCAnswer == 1)
-            {
                 RadioButtonMultipleChoiceB.Checked = true;
-            }
             else if (TBInstance.Questions[QBInstance.QuestionNum].MCAnswer == 2)
-            {
                 RadioButtonMultipleChoiceC.Checked = true;
-
-            }
             else if (TBInstance.Questions[QBInstance.QuestionNum].MCAnswer == 3)
-            {
                 RadioButtonMultipleChoiceD.Checked = true;
-            }
 
         }
 
@@ -289,13 +268,33 @@ namespace TestApp
 
         private void FinishButton_Click(object sender, EventArgs e)
         {
-
+            if (TBInstance.QuestionCheck() == true && TBInstance.CheckTestReq() == true)
+            {
+                //  Add additional checks before passing
+                FileWriter fw = new FileWriter();
+                fw.CreateTestFile(TBInstance);
+                for (int i = 0; i < TBInstance.QuestionSize; i++)
+                {
+                    fw.AddQuestionInfo(TBInstance.Questions[i], TBInstance.QuestionSize);
+                }
+            }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            QBInstance.Entered = true;
             TBInstance.Questions[QBInstance.QuestionNum] = QBInstance;
             QBInstance = new QuestionBehaviour();
+
+            for (int i = 0; i < TBInstance.QuestionSize; i++)
+            {
+                if (TBInstance.Questions[i].Entered != true)
+                {
+                    FinishButton.Enabled = false;
+                    return;
+                }
+            }
+            FinishButton.Enabled = true;
         }
     }
 }
