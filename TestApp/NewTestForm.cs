@@ -285,8 +285,10 @@ namespace TestApp
         private void SaveButton_Click(object sender, EventArgs e)
         {
             QBInstance.Entered = true;
+            QBInstance.TestPath = TBInstance.TestPath;
             TBInstance.Questions[QBInstance.QuestionNum] = QBInstance;
             QBInstance = new QuestionBehaviour();
+
 
             for (int i = 0; i < TBInstance.QuestionSize; i++)
             {
