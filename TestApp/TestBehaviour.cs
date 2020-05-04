@@ -25,13 +25,13 @@ namespace TestApp
             }
         }
 
-        public void MissingInfoPopUp(PopupForm puf, TestSettingsForm tsf, string title, string text)
+        public void MissingInfoPopUp(PopupForm puf, Form pf, string title, string text)
         {
             //  Popup window
-            if (tsf != null)
+            if (pf != null)
             {
-                puf.PrevForm = tsf;
-                puf.Location = tsf.Location;
+                puf.PrevForm = pf;
+                puf.Location = pf.Location;
             }
             puf.StartPosition = FormStartPosition.CenterScreen;
             puf.WarningTitle = title;
@@ -59,14 +59,14 @@ namespace TestApp
             return;
         }
 
-        public bool QuestionCheck()
+        public bool QuestionCheck(Form pf)
         {
             var frm = new PopupForm();
             for (int i = 0; i < QuestionSize; i++)
             {
                 if (Questions[i] == null)
                 {
-                    MissingInfoPopUp(frm, null, "Caution", "There is an issue with question " + Questions[i].QuestionNum + " . Please Go back and fix this issue before continuing.");
+                    MissingInfoPopUp(frm, pf, "Caution", "There is an issue with question " + Questions[i].QuestionNum + " . Please Go back and fix this issue before continuing.");
                     return false;
                 }
                 else if (Questions[i].questionType != QuestionType.None && Questions[i].QuestionText != null)
@@ -79,7 +79,7 @@ namespace TestApp
                         {
                             if (Questions[i].FITBAnswers[j] == null)
                             {
-                                MissingInfoPopUp(frm, null, "Caution", "There is an issue with question " + Questions[i].QuestionNum + " . Please Go back and fix this issue before continuing.");
+                                MissingInfoPopUp(frm, pf, "Caution", "There is an issue with question " + Questions[i].QuestionNum + " . Please Go back and fix this issue before continuing.");
                                 return false;
                             }
                         }
@@ -92,7 +92,7 @@ namespace TestApp
                         {
                             if (Questions[i].MCChoices[k] == "" || Questions[i].MCChoices[k] == null)
                             {
-                                MissingInfoPopUp(frm, null, "Caution", "There is an issue with question " + Questions[i].QuestionNum + " . Please Go back and fix this issue before continuing.");
+                                MissingInfoPopUp(frm, pf, "Caution", "There is an issue with question " + Questions[i].QuestionNum + " . Please Go back and fix this issue before continuing.");
                                 return false;
                             }
                         }
@@ -101,7 +101,7 @@ namespace TestApp
                     }
                 }
             }
-            MissingInfoPopUp(frm, null, "Caution", "There is an issue with question one of the questions in the test. We could not determine which specific question. Please go back and fix this issue before continuing.");
+            MissingInfoPopUp(frm, pf, "Caution", "There is an issue with one of the questions in the test. We could not determine which specific question. Please go back and fix this issue before continuing.");
             return false;
         }
 

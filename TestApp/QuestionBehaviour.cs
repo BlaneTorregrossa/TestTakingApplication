@@ -35,13 +35,14 @@ namespace TestApp
             Entered = false;
         }
 
-        public void MissingInfoPopUp(PopupForm puf, NewTestForm ntf, string title, string text, bool close)
+        //  *** TODO:   Change this. What does it do that the other similar function cannot?
+        public void MissingInfoPopUp(PopupForm puf, Form pf, string title, string text, bool close)
         {
             //  Popup window
-            if (ntf != null)
+            if (pf != null)
             {
-                puf.PrevForm = ntf;
-                puf.Location = ntf.Location;
+                puf.PrevForm = pf;
+                puf.Location = pf.Location;
             }
             puf.StartPosition = FormStartPosition.CenterScreen;
             puf.WarningTitle = title;

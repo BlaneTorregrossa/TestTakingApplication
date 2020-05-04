@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace TestApp
 {
@@ -19,7 +20,10 @@ namespace TestApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            string[] fileNames = null;
             this.Tag = "Start";
+            fileNames = Directory.GetFiles("Tests");
+            SelectedTestComboBox.Items.AddRange(fileNames);
         }
 
         //  Have a confirmation box appear with this.

@@ -270,7 +270,7 @@ namespace TestApp
 
         private void FinishButton_Click(object sender, EventArgs e)
         {
-            if (TBInstance.QuestionCheck() == true && TBInstance.CheckTestReq() == true)
+            if (TBInstance.QuestionCheck(this) == true && TBInstance.CheckTestReq() == true)
             {
                 //  Add additional checks before passing
                 FileWriter fw = new FileWriter();
@@ -279,7 +279,16 @@ namespace TestApp
                 {
                     fw.AddQuestionInfo(TBInstance.Questions[i], TBInstance.QuestionSize);
                 }
+
+                Form frm = new Form1();
+                this.Hide();
+                frm.Location = this.Location;
+                frm.StartPosition = FormStartPosition.Manual;
+                frm.ShowDialog();
+                frm.Activate();
+                this.Close();
             }
+            
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
