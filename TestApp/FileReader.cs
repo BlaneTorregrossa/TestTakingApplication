@@ -12,6 +12,28 @@ namespace TestApp
         public List<FileInfo> testFiles;
         public DirectoryInfo currentDirectory;
 
+        private bool testInfoCheck = false;
+        private bool titleCheck = false;
+        private bool timeCheck = false;
+        private bool questionAmountCheck = false;
+        private int maxQuestionAmount = -1;
+
+        //  And I hate this...
+        private bool questionsStartCheck = false;
+        private string questionType = "NULL";
+
+        //  And this...
+        private int questionNum = 1;
+        private int answersAvalible = 0;
+        private int answersRequired = 0;
+        private int correctChoice = -1;
+
+        //  Really hate this...
+        private bool questionNumCheck = false;
+        private bool questionTypeCheck = false;
+        private bool questionStatementCheck = false;
+        private bool questionAnswerCheck = false;
+
         public FileReader()
         {
             testFiles = new List<FileInfo>();
@@ -49,11 +71,6 @@ namespace TestApp
 
         public int TestInfoCheck(string filePath)
         {
-            bool testInfoCheck = false;
-            bool titleCheck = false;
-            bool timeCheck = false;
-            bool questionAmountCheck = false;
-            int maxQuestionAmount = -1;
 
             using (StreamReader sr = new StreamReader(filePath))
             {
@@ -78,24 +95,90 @@ namespace TestApp
             return -1;
         }
 
-        public bool QuestionCheck(string filePath)
+        public bool TrueFalseCheck(string line)
         {
-            //  And I hate this...
-            bool questionsStartCheck = false;
-            string questionType = "NULL";
+            if (line.Contains("Answer = True") || line.Contains("Answer = False"))
+            {
+                questionAnswerCheck = true;
+                if (line.Contains("[*ENDQUESTION*]") &&
+                    questionNumCheck == true && questionTypeCheck == true &&
+                    questionStatementCheck == true && questionAnswerCheck == true)
+                {
+                    questionNumCheck = false;
+                    questionTypeCheck = false;
+                    questionStatementCheck = false;
+                    questionAnswerCheck = false;
+                    questionType = "";
 
-            //  And this...
-            int questionNum = 1;
-            int answersAvalible = 0;
-            int answersRequired = 0;
-            int correctChoice = -1;
+                    return true;
+                }
+            }
 
-            //  Really hate this...
-            bool questionNumCheck = false;
-            bool questionTypeCheck = false;
-            bool questionStatementCheck = false;
-            bool questionAnswerCheck = false;
+            return false;
+        }
 
+        public bool FillInTheBlankCheck(string line)
+        {
+            if (questionType == "FillInTheBlanks")
+            {
+                if (line.Contains("AnswersAvalible = " + Enumerable.Range(1, 9)))
+                    int.TryParse(line, out answersAvalible);
+                if (line.Contains("AnswersRequired = " + Enumerable.Range(1, 9)))
+                    int.TryParse(line, out answersRequired);
+
+                if (answersAvalible > 0 && answersRequired > 0 && line.Contains("Answers = "))
+                {
+                    string output = line.Split('[', ']')[0];
+                    if (output != null)
+                    {
+                        Console.WriteLine("Fill in the blanks answers." + output);
+
+                        answersAvalible = 0;
+                        answersRequired = 0;
+                        questionNumCheck = false;
+                        questionTypeCheck = false;
+                        questionStatementCheck = false;
+                        questionAnswerCheck = false;
+                        questionType = "";
+
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public bool MultipleChoiceCheck(string line)
+        {
+            if (questionType == "MultipleChoice")
+            {
+                if (line.Contains("CorrectChoice = " + Enumerable.Range(0, 3)))
+                    int.TryParse(line, out correctChoice);
+
+                if (correctChoice >= 0 && correctChoice <= 3 && line.Contains("Answers = "))
+                {
+                    string output = line.Split('[', ']')[0];
+                    if (output != null)
+                    {
+                        correctChoice = -1;
+                        questionNumCheck = false;
+                        questionTypeCheck = false;
+                        questionStatementCheck = false;
+                        questionAnswerCheck = false;
+                        questionType = "";
+
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        //  TODO:   Change parameters so you can continue the function where you left off on the file
+        public void QuestionCheck(string filePath)
+        {
             using (StreamReader sr = new StreamReader(filePath))
             {
                 if (sr.ReadLine().Contains("[*QUESTIONS*]"))
@@ -129,39 +212,28 @@ namespace TestApp
                     {
                         //  Function for specific question checking
                         //  Left off here
+                        if (questionType == "TrueFalse")
+                            TrueFalseCheck(sr.ReadLine());
+
+                        if (questionType == "FillInTheBlank")
+                        {
+                            FillInTheBlankCheck(sr.ReadLine());
+                        }
+
+                        if (questionType == "MultipleChoice")
+                        {
+                            MultipleChoiceCheck(sr.ReadLine());
+                        }
                     }
                 }
-                    
+
             }
-            return false;
+            return;
         }
 
         //  TODO:   Reformat this
         public bool CheckTestFile(string filePath)
         {
-
-            //  I hate this...
-            List<bool> questionConditions = new List<bool>();
-            for (int i = 0; i < 99; i++)
-                questionConditions.Add(new bool());
-
-            //  And I hate this...
-            int maxQuestionAmount = -1;
-            bool questionsStartCheck = false;
-            string questionType = "NULL";
-
-            //  And this...
-            int questionNum = 1;
-            int answersAvalible = 0;
-            int answersRequired = 0;
-            int correctChoice = -1;
-
-            //  Really hate this...
-            bool questionNumCheck = false;
-            bool questionTypeCheck = false;
-            bool questionStatementCheck = false;
-            bool questionAnswerCheck = false;
-
             maxQuestionAmount = TestInfoCheck(filePath);
 
             using (StreamReader sr = new StreamReader(filePath))
@@ -203,72 +275,8 @@ namespace TestApp
                         if (questionTypeCheck == true)
                         {
 
-                            #region True False
-                            if (questionType == "TrueFalse")
-                            {
-                                if (sr.ReadLine().Contains("Answer = True") ||
-                                        sr.ReadLine().Contains("Answer = False"))
-                                {
-                                    questionAnswerCheck = true;
-                                    if (sr.ReadLine().Contains("[*ENDQUESTION*]") &&
-                                        questionNumCheck == true && questionTypeCheck == true &&
-                                        questionStatementCheck == true && questionAnswerCheck == true)
-                                    {
-                                        questionNumCheck = false;
-                                        questionTypeCheck = false;
-                                        questionStatementCheck = false;
-                                        questionAnswerCheck = false;
-                                    }
-                                }
-                            }
-                            #endregion
+                            QuestionCheck(filePath);
 
-                            #region FillInTheBlanks
-                            if (questionType == "FillInTheBlanks")
-                            {
-                                if (sr.ReadLine().Contains("AnswersAvalible = " + Enumerable.Range(1, 9)))
-                                    int.TryParse(sr.ReadLine(), out answersAvalible);
-                                if (sr.ReadLine().Contains("AnswersRequired = " + Enumerable.Range(1, 9)))
-                                    int.TryParse(sr.ReadLine(), out answersRequired);
-
-                                if (answersAvalible > 0 && answersRequired > 0 && sr.ReadLine().Contains("Answers = "))
-                                {
-                                    string output = sr.ReadLine().Split('[', ']')[0];
-                                    if (output != null)
-                                    {
-                                        Console.WriteLine("Fill in the blanks answers." + output);
-
-                                        answersAvalible = 0;
-                                        answersRequired = 0;
-                                        questionNumCheck = false;
-                                        questionTypeCheck = false;
-                                        questionStatementCheck = false;
-                                        questionAnswerCheck = false;
-                                    }
-                                }
-                            }
-                            #endregion
-
-                            #region MultipleChoice
-                            if (questionType == "MultipleChoice")
-                            {
-                                if (sr.ReadLine().Contains("CorrectChoice = " + Enumerable.Range(0, 3)))
-                                    int.TryParse(sr.ReadLine(), out correctChoice);
-
-                                if (correctChoice >= 0 && correctChoice <= 3 && sr.ReadLine().Contains("Answers = "))
-                                {
-                                    string output = sr.ReadLine().Split('[', ']')[0];
-                                    if (output != null)
-                                    {
-                                        correctChoice = -1;
-                                        questionNumCheck = false;
-                                        questionTypeCheck = false;
-                                        questionStatementCheck = false;
-                                        questionAnswerCheck = false;
-                                    }
-                                }
-                            }
-                            #endregion
                         }
 
                         if (questionNum >= maxQuestionAmount && sr.ReadLine().Contains("[*ENDTEST*]"))
