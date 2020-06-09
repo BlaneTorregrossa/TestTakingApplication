@@ -13,6 +13,8 @@ namespace TestApp
 {
     public partial class Form1 : Form
     {
+        FileReader StartingFileReader;
+
         public Form1()
         {
             InitializeComponent();
@@ -20,10 +22,12 @@ namespace TestApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            StartingFileReader = new FileReader();
             string[] fileNames = null;
             this.Tag = "Start";
             fileNames = Directory.GetFiles("Tests");
-            SelectedTestComboBox.Items.AddRange(fileNames);
+            //SelectedTestComboBox.Items.AddRange(fileNames);
+            StartingFileReader.ReadTestsDropDown("Tests", SelectedTestComboBox);  //  Not right
         }
 
         //  Have a confirmation box appear with this.
