@@ -82,6 +82,7 @@ namespace TestApp
                 while (!sr.EndOfStream)
                 {
                     string currentLine = sr.ReadLine();
+                    string answersAvalible = "", answersRequired = "", answers = "";
 
                     if (maxQuestionAmount > 0)
                     {
@@ -118,7 +119,7 @@ namespace TestApp
                             }
 
                             if (questionTypeCheck == true && questionType == "TrueFalse" &&
-                                currentLine.Contains("Answer"))
+                                currentLine.Contains("Answer ="))
                             {
                                 if (TrueFalseCheck(currentLine) == false)
                                 {
@@ -127,9 +128,22 @@ namespace TestApp
                                 }
                             }
                             //  *** TODO:   Left off here Need to make a check for multiple choice and fill in the blank questions
-                            else if ()
+                            //  Not tested yet
+                            else if (questionTypeCheck == true && questionType == "FillInTheBlank")
                             {
+                                if (currentLine.Contains("AnswersAvalible ="))
+                                    answersAvalible = currentLine;
+                                if (currentLine.Contains("AnswersRequired ="))
+                                    answersRequired = currentLine;
+                                if (currentLine.Contains("Answers ="))
+                                    answers = currentLine;
 
+                                if (answersAvalible != "" && answersRequired != "" && answers != "")
+                                    if (FillInTheBlankCheck(answersAvalible, answersAvalible, answers) == false)
+                                    {
+                                        Console.WriteLine("Error with trying to read question. Please check the test file: " + filePath);
+                                        Application.Exit();
+                                    }
                             }
 
                             if (questionNum >= maxQuestionAmount && currentLine.Contains("[*ENDTEST*]"))
@@ -216,18 +230,18 @@ namespace TestApp
             return false;
         }
 
-        public bool FillInTheBlankCheck(string line)
+        public bool FillInTheBlankCheck(string answersAvalibleLine, string answersRequiredLine, string answersLine)
         {
             if (questionType == "FillInTheBlanks")
             {
-                if (line.Contains("AnswersAvalible = " + Enumerable.Range(1, 9)))
-                    int.TryParse(line, out answersAvalible);
-                if (line.Contains("AnswersRequired = " + Enumerable.Range(1, 9)))
-                    int.TryParse(line, out answersRequired);
+                if (answersAvalibleLine.Contains("AnswersAvalible = " + Enumerable.Range(1, 9)))
+                    int.TryParse(answersAvalibleLine, out answersAvalible);
+                if (answersRequiredLine.Contains("AnswersRequired = " + Enumerable.Range(1, 9)))
+                    int.TryParse(answersRequiredLine, out answersRequired);
 
-                if (answersAvalible > 0 && answersRequired > 0 && line.Contains("Answers = "))
+                if (answersAvalible > 0 && answersRequired > 0 && answersLine.Contains("Answers = "))
                 {
-                    string output = line.Split('[', ']')[0];
+                    string output = answersLine.Split('[', ']')[0];
                     if (output != null)
                     {
                         Console.WriteLine("Fill in the blanks answers." + output);
