@@ -55,7 +55,7 @@ namespace TestApp
                     //  2 call
                     if (CheckTestFile(file.DirectoryName + "/" + file.Name) == true)
                     {
-                        dropdown.Items.Add(file.DirectoryName);
+                        dropdown.Items.Add(file.DirectoryName + "/" + file.Name);
                     }
                     else
                     {
@@ -79,7 +79,6 @@ namespace TestApp
             using (StreamReader sr = new StreamReader(filePath))
             {
                 string answersAvalible = "", answersRequired = "", answers = "";
-                int correctChoice = -1;
 
                 while (!sr.EndOfStream)
                 {
