@@ -76,13 +76,14 @@ namespace TestApp
             //  3 call
             maxQuestionAmount = TestInformationCheck(filePath);
 
-            //  *** Stopped Here
             using (StreamReader sr = new StreamReader(filePath))
             {
+                string answersAvalible = "", answersRequired = "", answers = "";
+                int correctChoice = -1;
+
                 while (!sr.EndOfStream)
                 {
                     string currentLine = sr.ReadLine();
-                    string answersAvalible = "", answersRequired = "", answers = "";
 
                     if (maxQuestionAmount > 0)
                     {
@@ -127,8 +128,8 @@ namespace TestApp
                                     Application.Exit();
                                 }
                             }
+
                             //  *** TODO:   Left off here Need to make a check for multiple choice and fill in the blank questions
-                            //  Not tested yet
                             else if (questionTypeCheck == true && questionType == "FillInTheBlank")
                             {
                                 if (currentLine.Contains("AnswersAvalible ="))
@@ -139,11 +140,46 @@ namespace TestApp
                                     answers = currentLine;
 
                                 if (answersAvalible != "" && answersRequired != "" && answers != "")
-                                    if (FillInTheBlankCheck(answersAvalible, answersAvalible, answers) == false)
+                                {
+                                    if (FillInTheBlankCheck(answersAvalible, answersRequired, answers) == false)
                                     {
                                         Console.WriteLine("Error with trying to read question. Please check the test file: " + filePath);
                                         Application.Exit();
                                     }
+                                    else
+                                    {
+                                        answersAvalible = "";
+                                        answersRequired = "";
+                                        answers = "";
+                                    }
+                                }
+                            }
+
+                            else if (questionTypeCheck == true && questionType == "MultipleChoice")
+                            {
+                                if (currentLine.Contains("Answers ="))
+                                    answers = currentLine;
+                                if (currentLine.Contains("CorrectChoice ="))
+                                {
+                                    //  the use of this never ends
+                                    char[] t = new char[] { 'C', 'o', 'r', 'r', 'e', 't', 'C', 'h', 'o', 'i', 'c', 'e', ' ', '=', ' ' };
+                                    currentLine = currentLine.Trim(t);
+                                    int.TryParse(currentLine, out correctChoice);
+                                }
+
+                                if (answers != "" && correctChoice > -1)
+                                {
+                                    if (MultipleChoiceCheck(answers, correctChoice) == false)
+                                    {
+                                        Console.WriteLine("Error with trying to read question. Please check the thest file: " + filePath);
+                                        Application.Exit();
+                                    }
+                                    else
+                                    {
+                                        answers = "";
+                                    }
+                                }
+
                             }
 
                             if (questionNum >= maxQuestionAmount && currentLine.Contains("[*ENDTEST*]"))
@@ -153,12 +189,6 @@ namespace TestApp
                     else if (maxQuestionAmount <= 0)
                     {
                         Console.WriteLine("Errors with counting the max questions");
-                        return false;
-                    }
-
-                    if (currentLine.Contains("[*ENDQUESTION*]"))
-                    {
-                        Console.WriteLine("Error finding question. Check to see if test file format is correct or if this file is misplaced.");
                         return false;
                     }
                 }
@@ -232,17 +262,35 @@ namespace TestApp
 
         public bool FillInTheBlankCheck(string answersAvalibleLine, string answersRequiredLine, string answersLine)
         {
-            if (questionType == "FillInTheBlanks")
+            if (questionType == "FillInTheBlank")
             {
-                if (answersAvalibleLine.Contains("AnswersAvalible = " + Enumerable.Range(1, 9)))
+                if (answersAvalibleLine.Contains("AnswersAvalible = "))
+                {
+                    //  The return of what I hate
+                    char[] t = new char[] { 'A', 'n', 's', 'w', 'e', 'r', 's', 'A', 'v', 'a', 'l', 'i', 'b', 'l', 'e', ' ', '=', ' ' };
+                    answersAvalibleLine = answersAvalibleLine.Trim(t);
                     int.TryParse(answersAvalibleLine, out answersAvalible);
-                if (answersRequiredLine.Contains("AnswersRequired = " + Enumerable.Range(1, 9)))
+                }
+                if (answersRequiredLine.Contains("AnswersRequired = "))
+                {
+                    //  The return of what I hate... again
+                    char[] t = new char[] { 'A', 'n', 's', 'w', 'e', 'r', 's', 'R', 'e', 'q', 'u', 'i', 'r', 'e', 'd', ' ', '=', ' ' };
+                    answersRequiredLine = answersRequiredLine.Trim(t);
                     int.TryParse(answersRequiredLine, out answersRequired);
+                }
 
                 if (answersAvalible > 0 && answersRequired > 0 && answersLine.Contains("Answers = "))
                 {
-                    string output = answersLine.Split('[', ']')[0];
-                    if (output != null)
+                    string output = null;
+                    int passCounter = 0;
+                    for (int i = 1; i < (answersAvalible * 2) + 1; i++)
+                    {
+                        output = answersLine.Split('[', ']')[i];
+                        if (output != " " && output != "")
+                            passCounter++;
+                    }
+
+                    if (answersAvalible == passCounter)
                     {
                         Console.WriteLine("Fill in the blanks answers." + output);
 
@@ -262,17 +310,22 @@ namespace TestApp
             return false;
         }
 
-        public bool MultipleChoiceCheck(string line)
+        public bool MultipleChoiceCheck(string answersLine, int correctChoiceInt)
         {
             if (questionType == "MultipleChoice")
             {
-                if (line.Contains("CorrectChoice = " + Enumerable.Range(0, 3)))
-                    int.TryParse(line, out correctChoice);
-
-                if (correctChoice >= 0 && correctChoice <= 3 && line.Contains("Answers = "))
+                if (correctChoiceInt >= 0 && correctChoiceInt <= 3 && answersLine.Contains("Answers = "))
                 {
-                    string output = line.Split('[', ']')[0];
-                    if (output != null)
+                    string output = null;
+                    int passCounter = 0;
+                    for (int i = 1; i < 9; i++)
+                    {
+                        output = answersLine.Split('[', ']')[i];
+                        if (output != " " && output != "")
+                            passCounter++;
+                    }
+
+                    if (passCounter == 4)
                     {
                         correctChoice = -1;
                         questionNumCheck = false;
