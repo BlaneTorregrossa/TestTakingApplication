@@ -26,8 +26,7 @@ namespace TestApp
             string[] fileNames = null;
             this.Tag = "Start";
             fileNames = Directory.GetFiles("Tests");
-            //SelectedTestComboBox.Items.AddRange(fileNames);
-            StartingFileReader.ReadTestsDropDown("Tests", SelectedTestComboBox);  //  Not right
+            StartingFileReader.ReadTestsDropDown("Tests", SelectedTestComboBox);
         }
 
         //  Have a confirmation box appear with this.

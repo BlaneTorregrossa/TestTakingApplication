@@ -12,6 +12,7 @@ namespace TestApp
     {
         public List<FileInfo> testFiles;
         public DirectoryInfo currentDirectory;
+        public TestBehaviour testInfo;
 
         private bool testInfoCheck = false;
         private bool titleCheck = false;
@@ -37,7 +38,6 @@ namespace TestApp
             testFiles = new List<FileInfo>();
         }
 
-        //  1 start
         public void ReadTestsDropDown(string folderPath, ComboBox dropdown)
         {
             currentDirectory = new DirectoryInfo(folderPath);
@@ -52,28 +52,18 @@ namespace TestApp
                 string extension = file.Extension;
                 if (extension == ".txt")
                 {
-                    //  2 call
                     if (CheckTestFile(file.DirectoryName + "/" + file.Name) == true)
-                    {
                         dropdown.Items.Add(file.DirectoryName + "/" + file.Name);
-                    }
                     else
-                    {
                         Console.Write("File does not meet requirements to be added to test list. Please check what the issue can be and then recreate your test.");
-                    }
                 }
                 else
-                {
                     Console.WriteLine("File " + file.Name + " is not of correct file type for tests. Please remove this file.");
-                }
             }
         }
 
-        //  TODO:   Reformat this
-        //  2 
         public bool CheckTestFile(string filePath)
         {
-            //  3 call
             maxQuestionAmount = TestInformationCheck(filePath);
 
             using (StreamReader sr = new StreamReader(filePath))
@@ -95,40 +85,51 @@ namespace TestApp
                             if (currentLine.Contains("QuestionNum = " + questionNum))
                             {
                                 questionNumCheck = true;
-                                questionNum++;
+                                //  question is in here four times...
+                                testInfo.Questions[questionNum].QuestionNum = questionNum;
                             }
                             if (currentLine.Contains("Question = "))
+                            {
                                 questionStatementCheck = true;
+                                char[] t = new char[] { 'Q', 'u', 'e', 's', 't', 'i', 'o', 'n', ' ', '=', ' ' };
+                                testInfo.Questions[questionNum].QuestionText = currentLine.Trim(t);
+                            }
 
                             if (currentLine.Contains("Type = TrueFalse"))
                             {
                                 questionTypeCheck = true;
                                 questionType = "TrueFalse";
+                                testInfo.Questions[questionNum].questionType = QuestionType.TrueFalse;
                             }
 
                             if (currentLine.Contains("Type = FillInTheBlank"))
                             {
                                 questionTypeCheck = true;
                                 questionType = "FillInTheBlank";
+                                testInfo.Questions[questionNum].questionType = QuestionType.FillInTheBlank;
                             }
 
                             if (currentLine.Contains("Type = MultipleChoice"))
                             {
                                 questionTypeCheck = true;
                                 questionType = "MultipleChoice";
+                                testInfo.Questions[questionNum].questionType = QuestionType.MultipleChoice;
                             }
 
                             if (questionTypeCheck == true && questionType == "TrueFalse" &&
                                 currentLine.Contains("Answer ="))
                             {
-                                if (TrueFalseCheck(currentLine) == false)
+                                if (TrueFalseCheck(currentLine, testInfo, questionNum) == false)
                                 {
                                     Console.WriteLine("Error with trying to read question. Please check the test file: " + filePath);
                                     Application.Exit();
                                 }
+                                else
+                                {
+                                    questionNum++;
+                                }
                             }
 
-                            //  *** TODO:   Left off here Need to make a check for multiple choice and fill in the blank questions
                             else if (questionTypeCheck == true && questionType == "FillInTheBlank")
                             {
                                 if (currentLine.Contains("AnswersAvalible ="))
@@ -140,7 +141,7 @@ namespace TestApp
 
                                 if (answersAvalible != "" && answersRequired != "" && answers != "")
                                 {
-                                    if (FillInTheBlankCheck(answersAvalible, answersRequired, answers) == false)
+                                    if (FillInTheBlankCheck(answersAvalible, answersRequired, answers, testInfo, questionNum) == false)
                                     {
                                         Console.WriteLine("Error with trying to read question. Please check the test file: " + filePath);
                                         Application.Exit();
@@ -150,6 +151,7 @@ namespace TestApp
                                         answersAvalible = "";
                                         answersRequired = "";
                                         answers = "";
+                                        questionNum++;
                                     }
                                 }
                             }
@@ -164,11 +166,12 @@ namespace TestApp
                                     char[] t = new char[] { 'C', 'o', 'r', 'r', 'e', 't', 'C', 'h', 'o', 'i', 'c', 'e', ' ', '=', ' ' };
                                     currentLine = currentLine.Trim(t);
                                     int.TryParse(currentLine, out correctChoice);
+                                    testInfo.Questions[questionNum].MCAnswer = correctChoice;
                                 }
 
                                 if (answers != "" && correctChoice > -1)
                                 {
-                                    if (MultipleChoiceCheck(answers, correctChoice) == false)
+                                    if (MultipleChoiceCheck(answers, correctChoice, testInfo, questionNum) == false)
                                     {
                                         Console.WriteLine("Error with trying to read question. Please check the thest file: " + filePath);
                                         Application.Exit();
@@ -176,9 +179,9 @@ namespace TestApp
                                     else
                                     {
                                         answers = "";
+                                        questionNum++;
                                     }
                                 }
-
                             }
 
                             if (questionNum >= maxQuestionAmount && currentLine.Contains("[*ENDTEST*]"))
@@ -196,7 +199,6 @@ namespace TestApp
             return false;
         }
 
-        //  3
         public int TestInformationCheck(string filePath)
         {
             using (StreamReader sr = new StreamReader(filePath))
@@ -210,9 +212,18 @@ namespace TestApp
                     if (testInfoCheck == true)
                     {
                         if (currentLine.Contains("TITLE = "))
+                        {
                             titleCheck = true;
+                            char[] t = new char[] { 'T', 'I', 'T', 'L', 'E', ' ', '=', ' ' };
+                            testInfo.TestTitle = currentLine.Trim(t);
+                        }
                         if (currentLine.Contains("TIMELIMIT = "))
+                        {
                             timeCheck = true;
+                            char[] t = new char[] { 'T', 'I', 'M', 'E', 'L', 'I', 'M', 'I', 'T', ' ', '=', ' ' };
+                            currentLine = currentLine.Trim(t);
+                            int.TryParse(currentLine, out testInfo.MaxTime);
+                        }
                         if (currentLine.Contains("MAXQUESTIONS = "))
                         {
                             //  This is awful
@@ -220,6 +231,7 @@ namespace TestApp
                             currentLine = currentLine.Trim(t);
                             questionAmountCheck = true;
                             int.TryParse(currentLine, out maxQuestionAmount);
+                            int.TryParse(currentLine, out testInfo.QuestionSize);
                         }
                         if (titleCheck == true && timeCheck == true && questionAmountCheck == true)
                         {
@@ -238,7 +250,7 @@ namespace TestApp
             return -1;
         }
 
-        public bool TrueFalseCheck(string line)
+        public bool TrueFalseCheck(string line, TestBehaviour ti, int questionNum)
         {
             if (line.Contains("Answer = True") || line.Contains("Answer = False"))
             {
@@ -246,6 +258,12 @@ namespace TestApp
                 if (questionNumCheck == true && questionTypeCheck == true &&
                     questionStatementCheck == true && questionAnswerCheck == true)
                 {
+                    char[] t = new char[] { 'A', 'n', 's', 'w', 'e', 'r', ' ', '=', ' ' };
+                    if (line.Trim(t) == "False")
+                        ti.Questions[questionNum].TFAnswer = false;
+                    else if (line.Trim(t) == "True")
+                        ti.Questions[questionNum].TFAnswer = true;
+
                     questionNumCheck = false;
                     questionTypeCheck = false;
                     questionStatementCheck = false;
@@ -255,11 +273,10 @@ namespace TestApp
                     return true;
                 }
             }
-
             return false;
         }
 
-        public bool FillInTheBlankCheck(string answersAvalibleLine, string answersRequiredLine, string answersLine)
+        public bool FillInTheBlankCheck(string answersAvalibleLine, string answersRequiredLine, string answersLine, TestBehaviour ti, int questionNum)
         {
             if (questionType == "FillInTheBlank")
             {
@@ -276,6 +293,7 @@ namespace TestApp
                     char[] t = new char[] { 'A', 'n', 's', 'w', 'e', 'r', 's', 'R', 'e', 'q', 'u', 'i', 'r', 'e', 'd', ' ', '=', ' ' };
                     answersRequiredLine = answersRequiredLine.Trim(t);
                     int.TryParse(answersRequiredLine, out answersRequired);
+                    ti.Questions[questionNum].FITBRequirment = answersRequired;
                 }
 
                 if (answersAvalible > 0 && answersRequired > 0 && answersLine.Contains("Answers = "))
@@ -286,7 +304,10 @@ namespace TestApp
                     {
                         output = answersLine.Split('[', ']')[i];
                         if (output != " " && output != "")
+                        {
+                            ti.Questions[questionNum].FITBAnswers[passCounter] = output;
                             passCounter++;
+                        }
                     }
 
                     if (answersAvalible == passCounter)
@@ -305,11 +326,10 @@ namespace TestApp
                     }
                 }
             }
-
             return false;
         }
 
-        public bool MultipleChoiceCheck(string answersLine, int correctChoiceInt)
+        public bool MultipleChoiceCheck(string answersLine, int correctChoiceInt, TestBehaviour ti, int questionNum)
         {
             if (questionType == "MultipleChoice")
             {
@@ -321,7 +341,10 @@ namespace TestApp
                     {
                         output = answersLine.Split('[', ']')[i];
                         if (output != " " && output != "")
+                        {
+                            ti.Questions[questionNum].MCChoices[passCounter] = output;
                             passCounter++;
+                        }
                     }
 
                     if (passCounter == 4)
@@ -337,8 +360,29 @@ namespace TestApp
                     }
                 }
             }
-
             return false;
+        }
+
+        public TestBehaviour SaveInformation(string testPath)
+        {
+            currentDirectory = new DirectoryInfo(testPath);
+            if (!currentDirectory.Exists)
+            {
+                Console.WriteLine("This test does not exist.");
+                return testInfo;
+            }
+            string extension = currentDirectory.Extension;
+            if (extension == ".txt")
+            {
+                if (CheckTestFile(testPath) == true)
+                    return testInfo;
+                else
+                    Console.Write("File does not meet requirements to be used as a test. Please check what the issue can be and then recreate your test.");
+            }
+            else
+                Console.WriteLine("File " + testPath + " is not of correct file type for tests. Please remove this file.");
+
+            return testInfo;
         }
 
     }
