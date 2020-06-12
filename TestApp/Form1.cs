@@ -54,12 +54,22 @@ namespace TestApp
 
         private void DeleteTestButton_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void StartTestButton_Click(object sender, EventArgs e)
         {
-
+            if (SelectedTestComboBox.Text != "")
+            {
+                this.Hide();
+                var frm = new TestTakingForm();
+                frm.CurrentTestInformation.TestPath = SelectedTestComboBox.Text;
+                frm.Location = this.Location;
+                frm.StartPosition = FormStartPosition.Manual;
+                frm.ShowDialog();
+                frm.Activate();
+                this.Close();
+            }
         }
 
         private void CreateTestButton_Click(object sender, EventArgs e)

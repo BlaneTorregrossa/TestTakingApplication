@@ -12,8 +12,9 @@ namespace TestApp
 {
     public partial class TestTakingForm : Form
     {
-        TestBehaviour CurrentTestInformation;
-        FileReader FileReaderInstance;
+        public TestBehaviour CurrentTestInformation;
+
+        private FileReader FileReaderInstance;
 
         public TestTakingForm()
         {
@@ -22,7 +23,7 @@ namespace TestApp
 
         private void TestTakingForm_Load(object sender, EventArgs e)
         {
-            FileReaderInstance.SaveInformation(CurrentTestInformation.TestPath);
+            CurrentTestInformation = FileReaderInstance.SaveInformation(CurrentTestInformation.TestPath);
         }
     }
 }
