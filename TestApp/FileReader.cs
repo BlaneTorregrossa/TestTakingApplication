@@ -36,6 +36,7 @@ namespace TestApp
         public FileReader()
         {
             testFiles = new List<FileInfo>();
+            testInfo = new TestBehaviour();
         }
 
         public void ReadTestsDropDown(string folderPath, ComboBox dropdown)
@@ -49,11 +50,19 @@ namespace TestApp
 
             foreach (FileInfo file in currentDirectory.GetFiles())
             {
+                testInfo = new TestBehaviour();
                 string extension = file.Extension;
                 if (extension == ".txt")
                 {
                     if (CheckTestFile(file.DirectoryName + "/" + file.Name) == true)
+                    {
                         dropdown.Items.Add(file.DirectoryName + "/" + file.Name);
+                        maxQuestionAmount = -1;
+                        questionNum = 0;
+                        testInfoCheck = false;
+                        timeCheck = false;
+                        titleCheck = false;
+                    }
                     else
                         Console.Write("File does not meet requirements to be added to test list. Please check what the issue can be and then recreate your test.");
                 }
@@ -65,6 +74,7 @@ namespace TestApp
         public bool CheckTestFile(string filePath)
         {
             maxQuestionAmount = TestInformationCheck(filePath);
+            questionAmountCheck = false;
 
             using (StreamReader sr = new StreamReader(filePath))
             {
@@ -85,14 +95,12 @@ namespace TestApp
                             if (currentLine.Contains("QuestionNum = " + questionNum))
                             {
                                 questionNumCheck = true;
-                                //  question is in here four times...
                                 testInfo.Questions[questionNum].QuestionNum = questionNum;
                             }
                             if (currentLine.Contains("Question = "))
                             {
                                 questionStatementCheck = true;
-                                char[] t = new char[] { 'Q', 'u', 'e', 's', 't', 'i', 'o', 'n', ' ', '=', ' ' };
-                                testInfo.Questions[questionNum].QuestionText = currentLine.Trim(t);
+                                testInfo.Questions[questionNum].QuestionText = currentLine.Remove(0, 11);
                             }
 
                             if (currentLine.Contains("Type = TrueFalse"))
@@ -162,9 +170,7 @@ namespace TestApp
                                     answers = currentLine;
                                 if (currentLine.Contains("CorrectChoice ="))
                                 {
-                                    //  the use of this never ends
-                                    char[] t = new char[] { 'C', 'o', 'r', 'r', 'e', 't', 'C', 'h', 'o', 'i', 'c', 'e', ' ', '=', ' ' };
-                                    currentLine = currentLine.Trim(t);
+                                    currentLine = currentLine.Remove(0, 15);
                                     int.TryParse(currentLine, out correctChoice);
                                     testInfo.Questions[questionNum].MCAnswer = correctChoice;
                                 }
@@ -214,21 +220,17 @@ namespace TestApp
                         if (currentLine.Contains("TITLE = "))
                         {
                             titleCheck = true;
-                            char[] t = new char[] { 'T', 'I', 'T', 'L', 'E', ' ', '=', ' ' };
-                            testInfo.TestTitle = currentLine.Trim(t);
+                            testInfo.TestTitle = currentLine.Remove(0, 8);
                         }
                         if (currentLine.Contains("TIMELIMIT = "))
                         {
                             timeCheck = true;
-                            char[] t = new char[] { 'T', 'I', 'M', 'E', 'L', 'I', 'M', 'I', 'T', ' ', '=', ' ' };
-                            currentLine = currentLine.Trim(t);
+                            currentLine = currentLine.Remove(0, 12);
                             int.TryParse(currentLine, out testInfo.MaxTime);
                         }
                         if (currentLine.Contains("MAXQUESTIONS = "))
                         {
-                            //  This is awful
-                            char[] t = new char[] { 'M', 'A', 'X', 'Q', 'U', 'E', 'S', 'T', 'I', 'O', 'N', 'S', ' ', '=', ' ' };
-                            currentLine = currentLine.Trim(t);
+                            currentLine = currentLine.Remove(0, 15);
                             questionAmountCheck = true;
                             int.TryParse(currentLine, out maxQuestionAmount);
                             int.TryParse(currentLine, out testInfo.QuestionSize);
@@ -258,10 +260,9 @@ namespace TestApp
                 if (questionNumCheck == true && questionTypeCheck == true &&
                     questionStatementCheck == true && questionAnswerCheck == true)
                 {
-                    char[] t = new char[] { 'A', 'n', 's', 'w', 'e', 'r', ' ', '=', ' ' };
-                    if (line.Trim(t) == "False")
+                    if (line.Remove(0, 9) == "False")
                         ti.Questions[questionNum].TFAnswer = false;
-                    else if (line.Trim(t) == "True")
+                    else if (line.Remove(0, 9) == "True")
                         ti.Questions[questionNum].TFAnswer = true;
 
                     questionNumCheck = false;
@@ -282,16 +283,12 @@ namespace TestApp
             {
                 if (answersAvalibleLine.Contains("AnswersAvalible = "))
                 {
-                    //  The return of what I hate
-                    char[] t = new char[] { 'A', 'n', 's', 'w', 'e', 'r', 's', 'A', 'v', 'a', 'l', 'i', 'b', 'l', 'e', ' ', '=', ' ' };
-                    answersAvalibleLine = answersAvalibleLine.Trim(t);
+                    answersAvalibleLine = answersAvalibleLine.Remove(0, 18);
                     int.TryParse(answersAvalibleLine, out answersAvalible);
                 }
                 if (answersRequiredLine.Contains("AnswersRequired = "))
                 {
-                    //  The return of what I hate... again
-                    char[] t = new char[] { 'A', 'n', 's', 'w', 'e', 'r', 's', 'R', 'e', 'q', 'u', 'i', 'r', 'e', 'd', ' ', '=', ' ' };
-                    answersRequiredLine = answersRequiredLine.Trim(t);
+                    answersRequiredLine = answersRequiredLine.Remove(0, 18);
                     int.TryParse(answersRequiredLine, out answersRequired);
                     ti.Questions[questionNum].FITBRequirment = answersRequired;
                 }
