@@ -39,9 +39,11 @@ namespace TestApp
         private void DisclaimerButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var frm = new DisclaimerForm();
-            frm.Location = this.Location;
-            frm.StartPosition = FormStartPosition.Manual;
+            var frm = new DisclaimerForm
+            {
+                Location = this.Location,
+                StartPosition = FormStartPosition.Manual
+            };
             frm.ShowDialog();
             frm.Activate();
             this.Close();
@@ -75,9 +77,11 @@ namespace TestApp
         private void CreateTestButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var frm = new TestSettingsForm();
-            frm.Location = this.Location;
-            frm.StartPosition = FormStartPosition.Manual;
+            var frm = new TestSettingsForm
+            {
+                Location = this.Location,
+                StartPosition = FormStartPosition.Manual
+            };
             frm.ShowDialog();
             frm.Activate();
             this.Close();

@@ -71,7 +71,7 @@ namespace TestApp
                 }
                 else if (Questions[i].questionType != QuestionType.None && Questions[i].QuestionText != null)
                 {
-                    if (Questions[i].questionType == QuestionType.TrueFalse && Questions[i].TFAnswer != null && Questions[i].QuestionNum == QuestionSize - 1)
+                    if (Questions[i].questionType == QuestionType.TrueFalse && Questions[i].QuestionNum == QuestionSize - 1)
                         return true;
                     else if (Questions[i].questionType == QuestionType.FillInTheBlank)
                     {
@@ -86,7 +86,7 @@ namespace TestApp
                         if (Questions[i].QuestionNum == QuestionSize - 1)
                             return true;
                     }
-                    else if (Questions[i].questionType == QuestionType.MultipleChoice && Questions[i].MCAnswer != null)
+                    else if (Questions[i].questionType == QuestionType.MultipleChoice && Questions[i].MCAnswer > -1)
                     {
                         for (int k = 0; k < 4; k++)
                         {
@@ -113,9 +113,9 @@ namespace TestApp
 
             if (TestTitle != null)
                 titleSpotted = true;
-            if (MaxTime != null)
+            if (MaxTime > 0)
                 timeLimitSpotted = true;
-            if (QuestionSize != null)
+            if (QuestionSize > 0)
                 maxQuestionsSpotted = true;
 
             if (titleSpotted == true && timeLimitSpotted == true && maxQuestionsSpotted == true)
@@ -126,12 +126,13 @@ namespace TestApp
 
         public bool QuestionChangeCheck(QuestionBehaviour qb)
         {
-            if (qb.questionType == QuestionType.TrueFalse && qb.TFAnswer == null)
+            if (qb.questionType == QuestionType.TrueFalse && qb.TFAnswer != true || 
+                qb.questionType == QuestionType.TrueFalse && qb.TFAnswer == false)
                 return false;
             else if (qb.questionType == QuestionType.FillInTheBlank && qb.FITBAnswers == null ||
-                qb.questionType == QuestionType.FillInTheBlank && qb.FITBRequirment == null)
+                qb.questionType == QuestionType.FillInTheBlank && qb.FITBRequirment > 0)
                 return false;
-            else if (qb.questionType == QuestionType.MultipleChoice && qb.MCAnswer == null ||
+            else if (qb.questionType == QuestionType.MultipleChoice && qb.MCAnswer > -1 ||
                 qb.questionType == QuestionType.MultipleChoice && qb.MCChoices == null)
                 return false;
             else if (qb.questionType == QuestionType.None)
