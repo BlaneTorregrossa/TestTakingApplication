@@ -64,7 +64,10 @@ namespace TestApp
             if (SelectedTestComboBox.Text != "")
             {
                 this.Hide();
-                var frm = new TestTakingForm();
+                var frm = new TestTakingForm
+                {
+                    CurrentTestInformation = new TestBehaviour()
+                };
                 frm.CurrentTestInformation.TestPath = SelectedTestComboBox.Text;
                 frm.Location = this.Location;
                 frm.StartPosition = FormStartPosition.Manual;

@@ -55,7 +55,7 @@ namespace TestApp
                 QBInstance.FITBAnswers[3] = QuestionFourTextBox.Text;
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void TextBox2_TextChanged(object sender, EventArgs e)
         {
             if (textBox2.Text != "")
                 QBInstance.FITBAnswers[4] = textBox2.Text;
@@ -67,7 +67,7 @@ namespace TestApp
                 QBInstance.FITBAnswers[5] = QuestionSixTextBox.Text;
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void TextBox3_TextChanged(object sender, EventArgs e)
         {
             if (textBox3.Text != "")
                 QBInstance.FITBAnswers[6] = textBox3.Text;

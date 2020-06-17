@@ -32,6 +32,7 @@ namespace TestApp
         private bool questionTypeCheck = false;
         private bool questionStatementCheck = false;
         private bool questionAnswerCheck = false;
+        private bool saveInfo = false;
 
         public FileReader()
         {
@@ -129,7 +130,7 @@ namespace TestApp
                             {
                                 if (TrueFalseCheck(currentLine, testInfo, questionNum) == false)
                                 {
-                                    Console.WriteLine("Error with trying to read question. Please check the test file: " + filePath);
+                                    Console.WriteLine("Error with trying to read True/False question. Please check the test file: " + filePath);
                                     Application.Exit();
                                 }
                                 else
@@ -151,7 +152,7 @@ namespace TestApp
                                 {
                                     if (FillInTheBlankCheck(answersAvalible, answersRequired, answers, testInfo, questionNum) == false)
                                     {
-                                        Console.WriteLine("Error with trying to read question. Please check the test file: " + filePath);
+                                        Console.WriteLine("Error with trying to read Fill in the Blank question. Please check the test file: " + filePath);
                                         Application.Exit();
                                     }
                                     else
@@ -179,7 +180,7 @@ namespace TestApp
                                 {
                                     if (MultipleChoiceCheck(answers, correctChoice, testInfo, questionNum) == false)
                                     {
-                                        Console.WriteLine("Error with trying to read question. Please check the thest file: " + filePath);
+                                        Console.WriteLine("Error with trying to read Multiple Choice question. Please check the thest file: " + filePath);
                                         Application.Exit();
                                     }
                                     else
@@ -201,7 +202,6 @@ namespace TestApp
                     }
                 }
             }
-
             return false;
         }
 
@@ -217,18 +217,18 @@ namespace TestApp
                         testInfoCheck = true;
                     if (testInfoCheck == true)
                     {
-                        if (currentLine.Contains("TITLE = "))
+                        if (currentLine.Contains("Title = "))
                         {
                             titleCheck = true;
                             testInfo.TestTitle = currentLine.Remove(0, 8);
                         }
-                        if (currentLine.Contains("TIMELIMIT = "))
+                        if (currentLine.Contains("TimeLimit = "))
                         {
                             timeCheck = true;
                             currentLine = currentLine.Remove(0, 12);
                             int.TryParse(currentLine, out testInfo.MaxTime);
                         }
-                        if (currentLine.Contains("MAXQUESTIONS = "))
+                        if (currentLine.Contains("MaxQuestions = "))
                         {
                             currentLine = currentLine.Remove(0, 15);
                             questionAmountCheck = true;
@@ -363,16 +363,15 @@ namespace TestApp
         public TestBehaviour SaveInformation(string testPath)
         {
             currentDirectory = new DirectoryInfo(testPath);
-            if (!currentDirectory.Exists)
-            {
-                Console.WriteLine("This test does not exist.");
-                return testInfo;
-            }
             string extension = currentDirectory.Extension;
             if (extension == ".txt")
             {
+                saveInfo = true;
                 if (CheckTestFile(testPath) == true)
+                {
+                    saveInfo = false;
                     return testInfo;
+                }
                 else
                     Console.Write("File does not meet requirements to be used as a test. Please check what the issue can be and then recreate your test.");
             }
