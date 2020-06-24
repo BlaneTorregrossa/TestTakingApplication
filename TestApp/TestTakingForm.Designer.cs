@@ -94,11 +94,13 @@
             // 
             // QuestionTextBox
             // 
-            this.QuestionTextBox.Location = new System.Drawing.Point(200, 38);
+            this.QuestionTextBox.Location = new System.Drawing.Point(267, 38);
             this.QuestionTextBox.Multiline = true;
             this.QuestionTextBox.Name = "QuestionTextBox";
-            this.QuestionTextBox.Size = new System.Drawing.Size(897, 67);
+            this.QuestionTextBox.ReadOnly = true;
+            this.QuestionTextBox.Size = new System.Drawing.Size(830, 67);
             this.QuestionTextBox.TabIndex = 5;
+            this.QuestionTextBox.Text = "Question goes here!";
             // 
             // QuestionTestInfoGroupBox
             // 
@@ -133,6 +135,7 @@
             this.PreviousButton.TabIndex = 11;
             this.PreviousButton.Text = "Previous";
             this.PreviousButton.UseVisualStyleBackColor = true;
+            this.PreviousButton.Click += new System.EventHandler(this.PreviousButton_Click);
             // 
             // NextButton
             // 
@@ -142,6 +145,7 @@
             this.NextButton.TabIndex = 10;
             this.NextButton.Text = "Next";
             this.NextButton.UseVisualStyleBackColor = true;
+            this.NextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
             // TrueFalseGroupBox
             // 
@@ -164,6 +168,7 @@
             this.FalseRadioButton.TabStop = true;
             this.FalseRadioButton.Text = "False";
             this.FalseRadioButton.UseVisualStyleBackColor = true;
+            this.FalseRadioButton.CheckedChanged += new System.EventHandler(this.FalseRadioButton_CheckedChanged);
             // 
             // TrueRadioButton
             // 
@@ -175,6 +180,7 @@
             this.TrueRadioButton.TabStop = true;
             this.TrueRadioButton.Text = "True";
             this.TrueRadioButton.UseVisualStyleBackColor = true;
+            this.TrueRadioButton.CheckedChanged += new System.EventHandler(this.TrueRadioButton_CheckedChanged);
             // 
             // MultipleChoiceGroupBox
             // 
@@ -199,6 +205,7 @@
             this.DRadioButton.TabStop = true;
             this.DRadioButton.Text = "D";
             this.DRadioButton.UseVisualStyleBackColor = true;
+            this.DRadioButton.CheckedChanged += new System.EventHandler(this.DRadioButton_CheckedChanged);
             // 
             // CRadioButton
             // 
@@ -210,6 +217,7 @@
             this.CRadioButton.TabStop = true;
             this.CRadioButton.Text = "C";
             this.CRadioButton.UseVisualStyleBackColor = true;
+            this.CRadioButton.CheckedChanged += new System.EventHandler(this.CRadioButton_CheckedChanged);
             // 
             // BRadioButton
             // 
@@ -221,6 +229,7 @@
             this.BRadioButton.TabStop = true;
             this.BRadioButton.Text = "B";
             this.BRadioButton.UseVisualStyleBackColor = true;
+            this.BRadioButton.CheckedChanged += new System.EventHandler(this.BRadioButton_CheckedChanged);
             // 
             // ARadioButton
             // 
@@ -232,6 +241,7 @@
             this.ARadioButton.TabStop = true;
             this.ARadioButton.Text = "A";
             this.ARadioButton.UseVisualStyleBackColor = true;
+            this.ARadioButton.CheckedChanged += new System.EventHandler(this.ARadioButton_CheckedChanged);
             // 
             // FillInTheBlankGroupBox
             // 
@@ -258,6 +268,7 @@
             this.FITBTextBox10.Name = "FITBTextBox10";
             this.FITBTextBox10.Size = new System.Drawing.Size(650, 20);
             this.FITBTextBox10.TabIndex = 9;
+            this.FITBTextBox10.TextChanged += new System.EventHandler(this.FITBTextBox10_TextChanged);
             // 
             // FITBTextBox9
             // 
@@ -265,6 +276,7 @@
             this.FITBTextBox9.Name = "FITBTextBox9";
             this.FITBTextBox9.Size = new System.Drawing.Size(650, 20);
             this.FITBTextBox9.TabIndex = 8;
+            this.FITBTextBox9.TextChanged += new System.EventHandler(this.FITBTextBox9_TextChanged);
             // 
             // FITBTextBox8
             // 
@@ -272,6 +284,7 @@
             this.FITBTextBox8.Name = "FITBTextBox8";
             this.FITBTextBox8.Size = new System.Drawing.Size(650, 20);
             this.FITBTextBox8.TabIndex = 7;
+            this.FITBTextBox8.TextChanged += new System.EventHandler(this.FITBTextBox8_TextChanged);
             // 
             // FITBTextBox7
             // 
@@ -279,6 +292,7 @@
             this.FITBTextBox7.Name = "FITBTextBox7";
             this.FITBTextBox7.Size = new System.Drawing.Size(650, 20);
             this.FITBTextBox7.TabIndex = 6;
+            this.FITBTextBox7.TextChanged += new System.EventHandler(this.FITBTextBox7_TextChanged);
             // 
             // FITBTextBox6
             // 
@@ -286,6 +300,7 @@
             this.FITBTextBox6.Name = "FITBTextBox6";
             this.FITBTextBox6.Size = new System.Drawing.Size(650, 20);
             this.FITBTextBox6.TabIndex = 5;
+            this.FITBTextBox6.TextChanged += new System.EventHandler(this.FITBTextBox6_TextChanged);
             // 
             // FITBTextBox5
             // 
@@ -293,6 +308,7 @@
             this.FITBTextBox5.Name = "FITBTextBox5";
             this.FITBTextBox5.Size = new System.Drawing.Size(650, 20);
             this.FITBTextBox5.TabIndex = 4;
+            this.FITBTextBox5.TextChanged += new System.EventHandler(this.FITBTextBox5_TextChanged);
             // 
             // FITBTextBox4
             // 
@@ -300,6 +316,7 @@
             this.FITBTextBox4.Name = "FITBTextBox4";
             this.FITBTextBox4.Size = new System.Drawing.Size(650, 20);
             this.FITBTextBox4.TabIndex = 3;
+            this.FITBTextBox4.TextChanged += new System.EventHandler(this.FITBTextBox4_TextChanged);
             // 
             // FITBTextBox3
             // 
@@ -307,6 +324,7 @@
             this.FITBTextBox3.Name = "FITBTextBox3";
             this.FITBTextBox3.Size = new System.Drawing.Size(650, 20);
             this.FITBTextBox3.TabIndex = 2;
+            this.FITBTextBox3.TextChanged += new System.EventHandler(this.FITBTextBox3_TextChanged);
             // 
             // FITBTextBox2
             // 
@@ -314,6 +332,7 @@
             this.FITBTextBox2.Name = "FITBTextBox2";
             this.FITBTextBox2.Size = new System.Drawing.Size(650, 20);
             this.FITBTextBox2.TabIndex = 1;
+            this.FITBTextBox2.TextChanged += new System.EventHandler(this.FITBTextBox2_TextChanged);
             // 
             // FITBTextBox1
             // 
@@ -321,6 +340,7 @@
             this.FITBTextBox1.Name = "FITBTextBox1";
             this.FITBTextBox1.Size = new System.Drawing.Size(650, 20);
             this.FITBTextBox1.TabIndex = 0;
+            this.FITBTextBox1.TextChanged += new System.EventHandler(this.FITBTextBox1_TextChanged);
             // 
             // Timer
             // 

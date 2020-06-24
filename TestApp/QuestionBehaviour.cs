@@ -23,16 +23,24 @@ namespace TestApp
         public string QuestionText;
         public int QuestionNum;
         public bool TFAnswer;
+        public bool TFUserChoice;
         public int AnswersAvalible;
         public string[] FITBAnswers = new string[10];
         public int FITBRequirment;
+        public string[] FITBUserChoices = new string[10];
         public string[] MCChoices = new string[4];
         public int MCAnswer;
+        public int MCUserChoice;
         public bool Entered;
 
         public QuestionBehaviour()
         {
             Entered = false;
+            MCUserChoice = -1;
+            for (int i = 0; i < 9; i++)
+            {
+                FITBUserChoices[i] = null;
+            }
         }
 
         //  *** TODO:   Change this. What does it do that the other similar function cannot?
