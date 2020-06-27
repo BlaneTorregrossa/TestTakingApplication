@@ -272,7 +272,6 @@ namespace TestApp
         {
             if (TBInstance.QuestionCheck(this) == true && TBInstance.CheckTestReq() == true)
             {
-                //  Add additional checks before passing
                 FileWriter fw = new FileWriter();
                 fw.CreateTestFile(TBInstance);
                 for (int i = 0; i < TBInstance.QuestionSize; i++)

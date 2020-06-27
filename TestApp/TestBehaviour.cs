@@ -15,6 +15,8 @@ namespace TestApp
         public int MaxTime;
         public int RemainingTime;
         public int QuestionSize;
+        public bool InReview;
+        public float TestScore;
         public QuestionBehaviour[] Questions = new QuestionBehaviour[99];
 
         public TestBehaviour()
@@ -126,7 +128,7 @@ namespace TestApp
 
         public bool QuestionChangeCheck(QuestionBehaviour qb)
         {
-            if (qb.questionType == QuestionType.TrueFalse && qb.TFAnswer != true || 
+            if (qb.questionType == QuestionType.TrueFalse && qb.TFAnswer != true ||
                 qb.questionType == QuestionType.TrueFalse && qb.TFAnswer == false)
                 return false;
             else if (qb.questionType == QuestionType.FillInTheBlank && qb.FITBAnswers == null ||
@@ -138,6 +140,66 @@ namespace TestApp
             else if (qb.questionType == QuestionType.None)
                 return false;
             return true;
+        }
+
+        public void TestReview()
+        {
+            if (InReview == true)
+            {
+                for (int i = 0; i < QuestionSize; i++)
+                {
+                    if (Questions[i].questionType == QuestionType.TrueFalse)
+                        TrueFalseReview(Questions[i]);
+                    if (Questions[i].questionType == QuestionType.FillInTheBlank)
+                        FillInTheBlankReview(Questions[i]);
+                    if (Questions[i].questionType == QuestionType.MultipleChoice)
+                        MultipleChoiceReview(Questions[i]);
+
+                    TestScore += Questions[i].Score / QuestionSize;
+                }
+            }
+            return;
+        }
+
+        public void TrueFalseReview(QuestionBehaviour q)
+        {
+            if (q.TFUserChoice == q.TFAnswer)
+                q.Score = 1;    //  100 percent of the question is correct
+            else
+                q.Score = 0;    //  0 percent of the question is correct
+        }
+
+        public void FillInTheBlankReview(QuestionBehaviour q)
+        {
+            int count = 0;  //  Count for answers given by user that aren't blank or null
+
+            for (int i = 0; i < q.FITBUserChoices.Length; i++)
+            {
+                if (q.FITBUserChoices[i] != null)
+                    count++;
+            }
+
+            for (int j = 0; j < count; j++)
+            {
+                for (int k = 0; k < count; k++)
+                {
+                    if (q.FITBUserChoices[j] == q.FITBAnswers[k] && q.FITBUserChoices[j] != null)
+                    {
+                        q.Score += 1 / (float)q.FITBRequirment;    //  Score added is a percent based on the amount of answers required (ex: 1 / 4 = 0.25f)
+                    }
+                }
+            }
+
+            if (q.Score > 1)
+                q.Score = 1;
+        }
+
+        public void MultipleChoiceReview(QuestionBehaviour q)
+        {
+            if (q.MCUserChoice == q.MCAnswer)
+                q.Score = 1;    //  100 percent of the question is correct
+            else
+                q.Score = 0;    //  0 percent of the question is correct
         }
     }
 }

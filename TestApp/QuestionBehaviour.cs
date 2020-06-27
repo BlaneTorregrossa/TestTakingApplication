@@ -32,10 +32,12 @@ namespace TestApp
         public int MCAnswer;
         public int MCUserChoice;
         public bool Entered;
+        public float Score;
 
         public QuestionBehaviour()
         {
             Entered = false;
+            Score = 0;
             MCUserChoice = -1;
             for (int i = 0; i < 9; i++)
             {
@@ -43,7 +45,6 @@ namespace TestApp
             }
         }
 
-        //  *** TODO:   Change this. What does it do that the other similar function cannot?
         public void MissingInfoPopUp(PopupForm puf, Form pf, string title, string text, bool close)
         {
             //  Popup window

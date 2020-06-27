@@ -26,6 +26,7 @@ namespace TestApp
         private void TestTakingForm_Load(object sender, EventArgs e)
 
         {
+            CurrentTestInformation.InReview = false;
             TrueFalseGroupBox.Enabled = false;
             FillInTheBlankGroupBox.Enabled = false;
             MultipleChoiceGroupBox.Enabled = false;
@@ -49,7 +50,6 @@ namespace TestApp
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            //  TODO:   Save chosen answers on each tick
             if (timeLeft > 0)
             {
                 int hours, min, sec;
@@ -66,7 +66,11 @@ namespace TestApp
             else
             {
                 Timer.Stop();
-                //  TODO:   Block out all buttons besides the submit button
+                NextButton.Enabled = false;
+                PreviousButton.Enabled = false;
+                TrueFalseGroupBox.Enabled = false;
+                MultipleChoiceGroupBox.Enabled = false;
+                FillInTheBlankGroupBox.Enabled = false;
             }
         }
 
@@ -82,6 +86,22 @@ namespace TestApp
             CurrentQuestion = CurrentTestInformation.Questions[CurrentQuestion.QuestionNum - 1];
             UpdateTestInformation();
             RefreshAnswerElements();
+        }
+
+        private void SubmitButton_Click(object sender, EventArgs e)
+        {
+            CurrentTestInformation.InReview = true;
+            CurrentTestInformation.TestReview();
+            this.Hide();
+            var frm = new TestReviewForm
+            {
+                Location = this.Location,
+                StartPosition = FormStartPosition.Manual
+            };
+            frm.CurrentTest = CurrentTestInformation;
+            frm.ShowDialog();
+            frm.Activate();
+            this.Close();
         }
 
         private void TrueRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -333,5 +353,6 @@ namespace TestApp
                 QuestionTextBox.Text = CurrentQuestion.QuestionText;
             }
         }
+
     }
 }
