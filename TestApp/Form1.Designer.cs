@@ -32,7 +32,6 @@
             this.ExitButton = new System.Windows.Forms.Button();
             this.DisclaimerButton = new System.Windows.Forms.Button();
             this.SelectedTestComboBox = new System.Windows.Forms.ComboBox();
-            this.DeleteTestButton = new System.Windows.Forms.Button();
             this.StartTestButton = new System.Windows.Forms.Button();
             this.CreateTestButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -75,16 +74,6 @@
             this.SelectedTestComboBox.TabIndex = 9;
             this.SelectedTestComboBox.SelectedIndexChanged += new System.EventHandler(this.SelectedTestComboBox_SelectedIndexChanged);
             // 
-            // DeleteTestButton
-            // 
-            this.DeleteTestButton.Location = new System.Drawing.Point(73, 160);
-            this.DeleteTestButton.Name = "DeleteTestButton";
-            this.DeleteTestButton.Size = new System.Drawing.Size(237, 23);
-            this.DeleteTestButton.TabIndex = 10;
-            this.DeleteTestButton.Text = "DeleteSelectedTest";
-            this.DeleteTestButton.UseVisualStyleBackColor = true;
-            this.DeleteTestButton.Click += new System.EventHandler(this.DeleteTestButton_Click);
-            // 
             // StartTestButton
             // 
             this.StartTestButton.Location = new System.Drawing.Point(73, 98);
@@ -109,10 +98,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(375, 189);
+            this.ClientSize = new System.Drawing.Size(375, 162);
             this.Controls.Add(this.CreateTestButton);
             this.Controls.Add(this.StartTestButton);
-            this.Controls.Add(this.DeleteTestButton);
             this.Controls.Add(this.SelectedTestComboBox);
             this.Controls.Add(this.DisclaimerButton);
             this.Controls.Add(this.ExitButton);
@@ -131,7 +119,6 @@
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Button DisclaimerButton;
         private System.Windows.Forms.ComboBox SelectedTestComboBox;
-        private System.Windows.Forms.Button DeleteTestButton;
         private System.Windows.Forms.Button StartTestButton;
         private System.Windows.Forms.Button CreateTestButton;
     }

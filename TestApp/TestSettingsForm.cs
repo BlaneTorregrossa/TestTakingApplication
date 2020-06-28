@@ -21,24 +21,27 @@ namespace TestApp
             InitializeComponent();
         }
 
+        //  Update test title
         private void TestTitleTextBox_TextChanged(object sender, EventArgs e)
         {
             TBInstance.TestTitle = TestTitleTextBox.Text;
         }
 
+        //  Update Max time for test
         private void TimeLimitNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             TBInstance.MaxTime = Convert.ToInt32(TimeLimitNumericUpDown.Value);
         }
 
+        //  Update question count for test
         private void QuestionsNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             TBInstance.QuestionSize = Convert.ToInt32(QuestionsNumericUpDown.Value);
         }
 
+        //  Continue onto next form for making questions if there are no issues with entered information for the test
         private void ContinueButton_Click(object sender, EventArgs e)
         {
-            //  This is really messy    *
             //  If Missing required information open a popup window
             if (TBInstance.QuestionSize < 1)
             {
@@ -98,12 +101,15 @@ namespace TestApp
                 TBInstance.OpenQuestionEditor(this);
         }
 
+        //  Exit back to starting form
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            Form frm = new Form1();
             this.Hide();
-            frm.Location = this.Location;
-            frm.StartPosition = FormStartPosition.Manual;
+            var frm = new Form1()
+            {
+                Location = this.Location,
+                StartPosition = FormStartPosition.Manual
+            };
             frm.ShowDialog();
             frm.Activate();
             this.Close();
@@ -116,6 +122,7 @@ namespace TestApp
 
         private void TestSettingsForm_Load(object sender, EventArgs e)
         {
+            this.Text = "Test Creation";
             this.Tag = "Test";
         }
     }

@@ -10,14 +10,14 @@ namespace TestApp
 {
     public class TestBehaviour
     {
-        public string TestPath;
-        public string TestTitle;
-        public int MaxTime;
-        public int RemainingTime;
-        public int QuestionSize;
-        public bool InReview;
-        public float TestScore;
-        public QuestionBehaviour[] Questions = new QuestionBehaviour[99];
+        public string TestPath; //  Path to test file
+        public string TestTitle;    //  Test title
+        public int MaxTime; //  Max Test Time
+        public int RemainingTime;   //  Remaining test time
+        public int QuestionSize;    //  Amount of questions in test
+        public bool InReview;   //  If test is being reviewed
+        public float TestScore; //  Score for the whole test
+        public QuestionBehaviour[] Questions = new QuestionBehaviour[99];   //  Questions in test
 
         public TestBehaviour()
         {
@@ -27,6 +27,7 @@ namespace TestApp
             }
         }
 
+        //  If information is missing then popup window appears
         public void MissingInfoPopUp(PopupForm puf, Form pf, string title, string text)
         {
             //  Popup window
@@ -44,16 +45,19 @@ namespace TestApp
             return;
         }
 
+        //  Opens Question Editing form
         public void OpenQuestionEditor(TestSettingsForm tsf)
         {
             TestPath = "Tests/" + TestTitle + ".txt";
 
             tsf.Hide();
-            var frm = new NewTestForm();
+            var frm = new NewTestForm()
+            {
+                TBInstance = this,
+                Location = tsf.Location,
+                StartPosition = FormStartPosition.Manual
+            };
             frm.QBInstance.TestPath = TestPath;
-            frm.TBInstance = this;
-            frm.Location = tsf.Location;
-            frm.StartPosition = FormStartPosition.Manual;
             frm.ShowDialog();
             frm.Activate();
             tsf.Close();
@@ -61,6 +65,7 @@ namespace TestApp
             return;
         }
 
+        //  Checks for questions in test
         public bool QuestionCheck(Form pf)
         {
             var frm = new PopupForm();
@@ -107,6 +112,7 @@ namespace TestApp
             return false;
         }
 
+        //  Check for test requirments
         public bool CheckTestReq()
         {
             bool titleSpotted = false,
@@ -142,6 +148,7 @@ namespace TestApp
             return true;
         }
 
+        //  Calculating score after taking test
         public void TestReview()
         {
             if (InReview == true)
@@ -161,6 +168,7 @@ namespace TestApp
             return;
         }
 
+        //  getting score for True/False question
         public void TrueFalseReview(QuestionBehaviour q)
         {
             if (q.TFUserChoice == q.TFAnswer)
@@ -169,6 +177,7 @@ namespace TestApp
                 q.Score = 0;    //  0 percent of the question is correct
         }
 
+        //  getting score for Fill in the Blank question
         public void FillInTheBlankReview(QuestionBehaviour q)
         {
             int count = 0;  //  Count for answers given by user that aren't blank or null
@@ -194,6 +203,7 @@ namespace TestApp
                 q.Score = 1;
         }
 
+        //  getting score for Multiple Choice question
         public void MultipleChoiceReview(QuestionBehaviour q)
         {
             if (q.MCUserChoice == q.MCAnswer)

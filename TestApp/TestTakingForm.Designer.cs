@@ -117,6 +117,7 @@
             this.QuestionTestInfoGroupBox.TabIndex = 6;
             this.QuestionTestInfoGroupBox.TabStop = false;
             this.QuestionTestInfoGroupBox.Text = "Question/Test Info";
+            this.QuestionTestInfoGroupBox.Enter += new System.EventHandler(this.QuestionTestInfoGroupBox_Enter);
             // 
             // SubmitButton
             // 

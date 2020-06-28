@@ -20,12 +20,15 @@ namespace TestApp
             InitializeComponent();
         }
 
+        //  Loading of test review form and showing score and related information for the first question of the test being graded
         private void TestReviewForm_Load(object sender, EventArgs e)
         {
+            this.Text = "Review";
             CurrentQuestion = CurrentTest.Questions[0];
             UpdateInformation();
         }
 
+        //  Move from current question to the next one
         private void NextButton_Click(object sender, EventArgs e)
         {
             CorrectAnswerTextBox.Text = "";
@@ -34,6 +37,7 @@ namespace TestApp
             UpdateInformation();
         }
 
+        //  Move from current question to the previous one
         private void PreviousButton_Click(object sender, EventArgs e)
         {
             CorrectAnswerTextBox.Text = "";
@@ -42,6 +46,7 @@ namespace TestApp
             UpdateInformation();
         }
 
+        //  Return to the starting form
         private void ReturnButton_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -55,6 +60,7 @@ namespace TestApp
             this.Close();
         }
 
+        //  Update form to present information of current selected question
         private void UpdateInformation()
         {
             QuestionNumberLabel.Text = "Question # " + (CurrentQuestion.QuestionNum + 1);

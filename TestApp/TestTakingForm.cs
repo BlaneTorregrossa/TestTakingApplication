@@ -23,9 +23,12 @@ namespace TestApp
             InitializeComponent();
         }
 
+        //  Setting what is enabled and disabled on load + 
+        //  Setting current question to be the first in array +
+        //  Starting timer
         private void TestTakingForm_Load(object sender, EventArgs e)
-
         {
+            this.Text = CurrentTestInformation.TestTitle;
             CurrentTestInformation.InReview = false;
             TrueFalseGroupBox.Enabled = false;
             FillInTheBlankGroupBox.Enabled = false;
@@ -48,6 +51,8 @@ namespace TestApp
 
         }
 
+        //  Timer updates and divides time by hours, minutes and seconds + Updates form on each tick
+        //  If time remaining is <= 0 then disable everything except for the submit button
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (timeLeft > 0)
@@ -74,6 +79,7 @@ namespace TestApp
             }
         }
 
+        //  Change current question to the next question and update the form
         private void NextButton_Click(object sender, EventArgs e)
         {
             CurrentQuestion = CurrentTestInformation.Questions[CurrentQuestion.QuestionNum + 1];
@@ -81,6 +87,7 @@ namespace TestApp
             RefreshAnswerElements();
         }
 
+        //  Change current question to the previous question and update the form
         private void PreviousButton_Click(object sender, EventArgs e)
         {
             CurrentQuestion = CurrentTestInformation.Questions[CurrentQuestion.QuestionNum - 1];
@@ -88,6 +95,7 @@ namespace TestApp
             RefreshAnswerElements();
         }
 
+        //  Submit the test to be graded and then open the review form for the test
         private void SubmitButton_Click(object sender, EventArgs e)
         {
             CurrentTestInformation.InReview = true;
@@ -96,110 +104,127 @@ namespace TestApp
             var frm = new TestReviewForm
             {
                 Location = this.Location,
-                StartPosition = FormStartPosition.Manual
+                StartPosition = FormStartPosition.Manual,
+                CurrentTest = CurrentTestInformation
             };
-            frm.CurrentTest = CurrentTestInformation;
             frm.ShowDialog();
             frm.Activate();
             this.Close();
         }
 
+        //  Select true for true false question
         private void TrueRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             CurrentQuestion.TFUserChoice = true;
             CurrentQuestion.Entered = true;
         }
 
+        //  Select false for true false question
         private void FalseRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             CurrentQuestion.TFUserChoice = false;
             CurrentQuestion.Entered = true;
         }
 
+        //  Select A for Multiple choice question
         private void ARadioButton_CheckedChanged(object sender, EventArgs e)
         {
             CurrentQuestion.MCUserChoice = 0;
             CurrentQuestion.Entered = true;
         }
 
+        //  Select B for Multiple choice question
         private void BRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             CurrentQuestion.MCUserChoice = 1;
             CurrentQuestion.Entered = true;
         }
 
+        //  Select C for Multiple choice question
         private void CRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             CurrentQuestion.MCUserChoice = 2;
             CurrentQuestion.Entered = true;
         }
 
+        //  Select D for Multiple choice question
         private void DRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             CurrentQuestion.MCUserChoice = 3;
             CurrentQuestion.Entered = true;
         }
 
-        private void FITBTextBox1_TextChanged(object sender, EventArgs e)
+        //  One of ten answers for Fill in the blank questions
+         private void FITBTextBox1_TextChanged(object sender, EventArgs e)
         {
             CurrentQuestion.FITBUserChoices[0] = FITBTextBox1.Text;
             CurrentQuestion.Entered = true;
         }
 
+        //  One of ten answers for Fill in the blank questions
         private void FITBTextBox2_TextChanged(object sender, EventArgs e)
         {
             CurrentQuestion.FITBUserChoices[1] = FITBTextBox2.Text;
             CurrentQuestion.Entered = true;
         }
 
+        //  One of ten answers for Fill in the blank questions
         private void FITBTextBox3_TextChanged(object sender, EventArgs e)
         {
             CurrentQuestion.FITBUserChoices[2] = FITBTextBox3.Text;
             CurrentQuestion.Entered = true;
         }
 
+        //  One of ten answers for Fill in the blank questions
         private void FITBTextBox4_TextChanged(object sender, EventArgs e)
         {
             CurrentQuestion.FITBUserChoices[3] = FITBTextBox4.Text;
             CurrentQuestion.Entered = true;
         }
 
+        //  One of ten answers for Fill in the blank questions
         private void FITBTextBox5_TextChanged(object sender, EventArgs e)
         {
             CurrentQuestion.FITBUserChoices[4] = FITBTextBox5.Text;
             CurrentQuestion.Entered = true;
         }
 
+        //  One of ten answers for Fill in the blank questions
         private void FITBTextBox6_TextChanged(object sender, EventArgs e)
         {
             CurrentQuestion.FITBUserChoices[5] = FITBTextBox6.Text;
             CurrentQuestion.Entered = true;
         }
 
+        //  One of ten answers for Fill in the blank questions
         private void FITBTextBox7_TextChanged(object sender, EventArgs e)
         {
             CurrentQuestion.FITBUserChoices[6] = FITBTextBox7.Text;
             CurrentQuestion.Entered = true;
         }
 
+        //  One of ten answers for Fill in the blank questions
         private void FITBTextBox8_TextChanged(object sender, EventArgs e)
         {
             CurrentQuestion.FITBUserChoices[7] = FITBTextBox8.Text;
             CurrentQuestion.Entered = true;
         }
 
+        //  One of ten answers for Fill in the blank questions
         private void FITBTextBox9_TextChanged(object sender, EventArgs e)
         {
             CurrentQuestion.FITBUserChoices[8] = FITBTextBox9.Text;
             CurrentQuestion.Entered = true;
         }
 
+        //  One of ten answers for Fill in the blank questions
         private void FITBTextBox10_TextChanged(object sender, EventArgs e)
         {
             CurrentQuestion.FITBUserChoices[9] = FITBTextBox10.Text;
             CurrentQuestion.Entered = true;
         }
 
+        //  Updates form to match current question
         private void RefreshAnswerElements()
         {
             if (CurrentQuestion.Entered == false &&
@@ -264,7 +289,6 @@ namespace TestApp
                 DRadioButton.Checked = true;
             }
 
-            //  Stopped here
             if (CurrentQuestion.Entered == false && CurrentQuestion.questionType == QuestionType.FillInTheBlank ||
                 CurrentQuestion.questionType != QuestionType.FillInTheBlank)
             {
@@ -296,6 +320,7 @@ namespace TestApp
             }
         }
 
+        //  Update test information based on current question
         private void UpdateTestInformation()
         {
             CurrentTestInformation.Questions[CurrentQuestion.QuestionNum].TFAnswer = CurrentQuestion.TFAnswer;
@@ -354,5 +379,9 @@ namespace TestApp
             }
         }
 
+        private void QuestionTestInfoGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

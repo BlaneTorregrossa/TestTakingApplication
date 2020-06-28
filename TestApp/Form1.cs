@@ -22,14 +22,15 @@ namespace TestApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Text = "Simple Test Taker";
             StartingFileReader = new FileReader();
             string[] fileNames = null;
             this.Tag = "Start";
             fileNames = Directory.GetFiles("Tests");
-            StartingFileReader.ReadTestsDropDown("Tests", SelectedTestComboBox);
+            StartingFileReader.ReadTestsDropDown("Tests", SelectedTestComboBox);    //  Populate Combo Box with valid tests after passing checks to see if tests are valid
         }
 
-        //  Have a confirmation box appear with this.
+        //  Exit application when clicked
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -54,11 +55,7 @@ namespace TestApp
 
         }
 
-        private void DeleteTestButton_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+        //  Open Test Taking Form on button click when Combo Box has a valid selected test
         private void StartTestButton_Click(object sender, EventArgs e)
         {
             if (SelectedTestComboBox.Text != "")
@@ -66,17 +63,18 @@ namespace TestApp
                 this.Hide();
                 var frm = new TestTakingForm
                 {
-                    CurrentTestInformation = new TestBehaviour()
+                    CurrentTestInformation = new TestBehaviour(),
+                    Location = this.Location,
+                    StartPosition = FormStartPosition.Manual
                 };
                 frm.CurrentTestInformation.TestPath = SelectedTestComboBox.Text;
-                frm.Location = this.Location;
-                frm.StartPosition = FormStartPosition.Manual;
                 frm.ShowDialog();
                 frm.Activate();
                 this.Close();
             }
         }
 
+        //  Open Form for Test Settings to start creating a new test
         private void CreateTestButton_Click(object sender, EventArgs e)
         {
             this.Hide();

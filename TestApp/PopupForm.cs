@@ -21,6 +21,7 @@ namespace TestApp
             InitializeComponent();
         }
 
+        //  Return to the previous form
         private void ReturnButton_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -38,8 +39,10 @@ namespace TestApp
 
         }
 
+        //  Form information set on load
         private void PopupForm_Load(object sender, EventArgs e)
         {
+            this.Text = "Something went wrong!";
             this.Tag = "PopUp";
             WarningLabel.Text = WarningTitle;
             DescriptionTextBox.Text = WarningText;

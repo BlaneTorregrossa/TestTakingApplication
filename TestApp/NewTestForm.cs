@@ -21,111 +21,130 @@ namespace TestApp
             InitializeComponent();
         }
 
+        //  Set True False answer for question to be true when clicked
         private void TrueRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             QBInstance.TFAnswer = true;
         }
-
+        //  Set True False answer for question to be false when clicked
         private void FalseRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             QBInstance.TFAnswer = false;
         }
 
+        //  Set one of the avalible answers to what is in the text box
         private void QuestionOneTextBox_TextChanged(object sender, EventArgs e)
         {
             if (QuestionOneTextBox.Text != "")
                 QBInstance.FITBAnswers[0] = QuestionOneTextBox.Text;
         }
 
+        //  Set one of the avalible answers to what is in the text box
         private void QuestionTwoTextBox_TextChanged(object sender, EventArgs e)
         {
             if (QuestionTwoTextBox.Text != "")
                 QBInstance.FITBAnswers[1] = QuestionTwoTextBox.Text;
         }
 
+        //  Set one of the avalible answers to what is in the text box
         private void QuestionThreeTextBox_TextChanged(object sender, EventArgs e)
         {
             if (QuestionThreeTextBox.Text != "")
                 QBInstance.FITBAnswers[2] = QuestionThreeTextBox.Text;
         }
 
+        //  Set one of the avalible answers to what is in the text box
         private void QuestionFourTextBox_TextChanged(object sender, EventArgs e)
         {
             if (QuestionFourTextBox.Text != "")
                 QBInstance.FITBAnswers[3] = QuestionFourTextBox.Text;
         }
 
+        //  Set one of the avalible answers to what is in the text box
         private void TextBox2_TextChanged(object sender, EventArgs e)
         {
             if (textBox2.Text != "")
                 QBInstance.FITBAnswers[4] = textBox2.Text;
         }
 
+        //  Set one of the avalible answers to what is in the text box
         private void QuestionSixTextBox_TextChanged(object sender, EventArgs e)
         {
             if (QuestionSixTextBox.Text != "")
                 QBInstance.FITBAnswers[5] = QuestionSixTextBox.Text;
         }
 
+        //  Set one of the avalible answers to what is in the text box
         private void TextBox3_TextChanged(object sender, EventArgs e)
         {
             if (textBox3.Text != "")
                 QBInstance.FITBAnswers[6] = textBox3.Text;
         }
 
+        //  Set one of the avalible answers to what is in the text box
         private void QuestionEightTextBox_TextChanged(object sender, EventArgs e)
         {
             if (QuestionEightTextBox.Text != "")
                 QBInstance.FITBAnswers[7] = QuestionEightTextBox.Text;
         }
 
+        //  Set one of the avalible answers to what is in the text box
         private void QuestionNineTextBox_TextChanged(object sender, EventArgs e)
         {
             if (QuestionNineTextBox.Text != "")
                 QBInstance.FITBAnswers[8] = QuestionNineTextBox.Text;
         }
 
+        //  Set one of the avalible answers to what is in the text box
         private void QuestionTenTextBox_TextChanged(object sender, EventArgs e)
         {
             if (QuestionTenTextBox.Text != "")
                 QBInstance.FITBAnswers[9] = QuestionTenTextBox.Text;
         }
 
+        //  Set one of the multiple choice answers text to be what is in the text box
         private void ChoiceATextBox_TextChanged(object sender, EventArgs e)
         {
             QBInstance.MCChoices[0] = ChoiceATextBox.Text;
         }
 
+        //  Set one of the multiple choice answers text to be what is in the text box
         private void ChoiceBTextBox_TextChanged(object sender, EventArgs e)
         {
             QBInstance.MCChoices[1] = ChoiceBTextBox.Text;
         }
 
+        //  Set one of the multiple choice answers text to be what is in the text box
         private void ChoiceCTextBox_TextChanged(object sender, EventArgs e)
         {
             QBInstance.MCChoices[2] = ChoiceCTextBox.Text;
         }
 
+        //  Set one of the multiple choice answers text to be what is in the text box
         private void ChoiceDTextBox_TextChanged(object sender, EventArgs e)
         {
             QBInstance.MCChoices[3] = ChoiceDTextBox.Text;
         }
 
+        //  Set the correct answer to be A for the multiple choice question
         private void RadioButtonMultipleChoiceA_CheckedChanged(object sender, EventArgs e)
         {
             QBInstance.MCAnswer = 0;
         }
 
+        //  Set the correct answer to be B for the multiple choice question
         private void RadioButtonMultipleChoiceB_CheckedChanged(object sender, EventArgs e)
         {
             QBInstance.MCAnswer = 1;
         }
 
+        //  Set the correct answer to be C for the multiple choice question
         private void RadioButtonMultipleChoiceC_CheckedChanged(object sender, EventArgs e)
         {
             QBInstance.MCAnswer = 2;
         }
 
+        //  Set the correct answer to be D for the multiple choice question
         private void RadioButtonMultipleChoiceD_CheckedChanged(object sender, EventArgs e)
         {
             QBInstance.MCAnswer = 3;
@@ -146,17 +165,21 @@ namespace TestApp
 
         }
 
+        //  Return back to Form1 on button click
         private void QuitButton_Click(object sender, EventArgs e)
         {
-            Form frm = new Form1();
             this.Hide();
-            frm.Location = this.Location;
-            frm.StartPosition = FormStartPosition.Manual;
+            var frm = new Form1
+            {
+                Location = this.Location,
+                StartPosition = FormStartPosition.Manual
+            };
             frm.ShowDialog();
             frm.Activate();
             this.Close();
         }
 
+        //  Change Avalible Answers for Fill in the blank question from 1 - 10
         private void AvalibleAnswersNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (AvalibleAnswersNumericUpDown.Value < 1)
@@ -167,6 +190,7 @@ namespace TestApp
             QBInstance.AnswersAvalible = Convert.ToInt32(AvalibleAnswersNumericUpDown.Value);
         }
 
+        //  Change Answers Required for Fill in the blank question from 1 - Answers Avalible Value
         private void AnswersNeededNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (AnswersNeededNumericUpDown.Value < 0)
@@ -178,8 +202,10 @@ namespace TestApp
                 QBInstance.FITBRequirment = Convert.ToInt32(AnswersNeededNumericUpDown.Value);
         }
 
+        //  Setting defaults for when this form Loads
         private void NewTestForm_Load(object sender, EventArgs e)
         {
+            this.Text = "Question Creation";
             this.Tag = "Question";
             QuestionNumberNumericUpDown.Value = 1;
             QuestionTextTextBox.Text = null;
@@ -189,6 +215,8 @@ namespace TestApp
             MultipleChoiceGroupBox.Enabled = false;
         }
 
+        //  Refresh current form elements' presentation to represent saved information for question current on Numeric Up Down each time Numeric Up Down is changed
+        //  Numeric Up Down value cannot be higher than the Question Size given and no lower than 1
         private void QuestionNumberNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             if (QuestionNumberNumericUpDown.Value > TBInstance.QuestionSize)
@@ -204,12 +232,14 @@ namespace TestApp
                 TrueRadioButton.Checked = true;
             else if (TBInstance.Questions[QBInstance.QuestionNum].TFAnswer == false)
                 TrueRadioButton.Checked = true;
+
             if (TBInstance.Questions[QBInstance.QuestionNum].AnswersAvalible < 1)
                 TBInstance.Questions[QBInstance.QuestionNum].AnswersAvalible = 1;
             AvalibleAnswersNumericUpDown.Value = TBInstance.Questions[QBInstance.QuestionNum].AnswersAvalible;
             if (TBInstance.Questions[QBInstance.QuestionNum].FITBRequirment < 1)
                 TBInstance.Questions[QBInstance.QuestionNum].FITBRequirment = 1;
             AnswersNeededNumericUpDown.Value = TBInstance.Questions[QBInstance.QuestionNum].FITBRequirment;
+
             QuestionOneTextBox.Text = TBInstance.Questions[QBInstance.QuestionNum].FITBAnswers[0];
             QuestionTwoTextBox.Text = TBInstance.Questions[QBInstance.QuestionNum].FITBAnswers[1];
             QuestionThreeTextBox.Text = TBInstance.Questions[QBInstance.QuestionNum].FITBAnswers[2];
@@ -220,10 +250,12 @@ namespace TestApp
             QuestionEightTextBox.Text = TBInstance.Questions[QBInstance.QuestionNum].FITBAnswers[7];
             QuestionNineTextBox.Text = TBInstance.Questions[QBInstance.QuestionNum].FITBAnswers[8];
             QuestionTenTextBox.Text = TBInstance.Questions[QBInstance.QuestionNum].FITBAnswers[9];
+
             ChoiceATextBox.Text = TBInstance.Questions[QBInstance.QuestionNum].MCChoices[0];
             ChoiceBTextBox.Text = TBInstance.Questions[QBInstance.QuestionNum].MCChoices[1];
             ChoiceCTextBox.Text = TBInstance.Questions[QBInstance.QuestionNum].MCChoices[2];
             ChoiceDTextBox.Text = TBInstance.Questions[QBInstance.QuestionNum].MCChoices[3];
+
             if (TBInstance.Questions[QBInstance.QuestionNum].MCAnswer == 0)
                 RadioButtonMultipleChoiceA.Checked = true;
             else if (TBInstance.Questions[QBInstance.QuestionNum].MCAnswer == 1)
@@ -235,6 +267,7 @@ namespace TestApp
 
         }
 
+        //  Change Question Type from True False/Fill In The Blank/Multiple Choice and enable the proper form elements for that question type
         private void QuestionTypeDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
         {
             if (TBInstance.QuestionChangeCheck(QBInstance) == false)
@@ -262,27 +295,33 @@ namespace TestApp
             }
         }
 
+        //  Update Question Text information each time the text changes
         private void QuestionTextTextBox_TextChanged(object sender, EventArgs e)
         {
             if (QuestionTextTextBox.Text != "")
                 QBInstance.QuestionText = QuestionTextTextBox.Text;
         }
 
+        //  When button is clicked take the newly created test and questions through checks before creating test files and adding the proper data to test file
         private void FinishButton_Click(object sender, EventArgs e)
         {
+            //  Checks for questions and test
             if (TBInstance.QuestionCheck(this) == true && TBInstance.CheckTestReq() == true)
             {
                 FileWriter fw = new FileWriter();
-                fw.CreateTestFile(TBInstance);
+                fw.CreateTestFile(TBInstance);  //  Create Test file based on given test information
                 for (int i = 0; i < TBInstance.QuestionSize; i++)
                 {
-                    fw.AddQuestionInfo(TBInstance.Questions[i], TBInstance.QuestionSize);
+                    fw.AddQuestionInfo(TBInstance.Questions[i], TBInstance.QuestionSize);   //  Add question to test file based on given question information
                 }
 
-                Form frm = new Form1();
+                //  Open Form1 after test information is saved to file
                 this.Hide();
-                frm.Location = this.Location;
-                frm.StartPosition = FormStartPosition.Manual;
+                var frm = new Form1
+                {
+                    Location = this.Location,
+                    StartPosition = FormStartPosition.Manual
+                };
                 frm.ShowDialog();
                 frm.Activate();
                 this.Close();
@@ -290,13 +329,14 @@ namespace TestApp
             
         }
 
+        //  Save entered information for the current selected question when button is clicked
+        //  Once all questions have information saved the Finish button is enabled
         private void SaveButton_Click(object sender, EventArgs e)
         {
             QBInstance.Entered = true;
             QBInstance.TestPath = TBInstance.TestPath;
             TBInstance.Questions[QBInstance.QuestionNum] = QBInstance;
             QBInstance = new QuestionBehaviour();
-
 
             for (int i = 0; i < TBInstance.QuestionSize; i++)
             {
