@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace TestApp
 {
-
     //  Types of question
     public enum QuestionType
     {

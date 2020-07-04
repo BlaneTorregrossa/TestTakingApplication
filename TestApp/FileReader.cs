@@ -13,6 +13,7 @@ namespace TestApp
         public List<FileInfo> testFiles;    //  List of test files
         public DirectoryInfo currentDirectory;  //  Current directory being used
         public TestBehaviour testInfo;  //  Test information
+        public FileWriter fileWriter;   //  For error logging
 
         //  Checkes for needed information in test file
         private bool testInfoCheck = false;
@@ -43,6 +44,7 @@ namespace TestApp
         {
             testFiles = new List<FileInfo>();
             testInfo = new TestBehaviour();
+            fileWriter = new FileWriter();
         }
 
         //  Read the tests to determine what tests will appear in Form1 Dropdown
@@ -51,7 +53,7 @@ namespace TestApp
             currentDirectory = new DirectoryInfo(folderPath);   //  Sets current directory to given folder
             if (!currentDirectory.Exists)   //  Creates this folder if it does not exist
             {
-                Console.WriteLine("This Directory does not exist. Will create a new folder");
+                fileWriter.LogError("This Directory (" + currentDirectory.ToString() + ") does not exist. Will create a new folder");
                 currentDirectory.Create();
             }
 
@@ -72,10 +74,10 @@ namespace TestApp
                         titleCheck = false;
                     }
                     else
-                        Console.Write("File does not meet requirements to be added to test list. Please check what the issue can be and then recreate your test.");
+                        fileWriter.LogError("File " + file.Name + " does not meet requirements to be added to test list. Please check what the issue can be and then recreate your test.");
                 }
                 else
-                    Console.WriteLine("File " + file.Name + " is not of correct file type for tests. Please remove this file.");
+                    fileWriter.LogError("File " + file.Name + " is not of correct file type for tests. Please remove this file.");
             }
         }
 
@@ -140,7 +142,7 @@ namespace TestApp
                                 // if TrueFalseCheck is failed tell the user that something is wrong with the test file and exit application. Else increase question number counter.
                                 if (TrueFalseCheck(currentLine, testInfo, questionNum) == false)
                                 {
-                                    Console.WriteLine("Error with trying to read True/False question. Please check the test file: " + filePath);
+                                    fileWriter.LogError("Error with trying to read True/False question. Please check the test file: " + filePath);
                                     Application.Exit();
                                 }
                                 else
@@ -164,7 +166,7 @@ namespace TestApp
                                     //  Else increase question number counter and reset the FITB answer strings.
                                     if (FillInTheBlankCheck(answersAvalible, answersRequired, answers, testInfo, questionNum) == false)
                                     {
-                                        Console.WriteLine("Error with trying to read Fill in the Blank question. Please check the test file: " + filePath);
+                                        fileWriter.LogError("Error with trying to read Fill in the Blank question. Please check the test file: " + filePath);
                                         Application.Exit();
                                     }
                                     else
@@ -194,7 +196,7 @@ namespace TestApp
                                     //  Else increase question number counter and reset answer string.
                                     if (MultipleChoiceCheck(answers, correctChoice, testInfo, questionNum) == false)
                                     {
-                                        Console.WriteLine("Error with trying to read Multiple Choice question. Please check the thest file: " + filePath);
+                                        fileWriter.LogError("Error with trying to read Multiple Choice question. Please check the thest file: " + filePath);
                                         Application.Exit();
                                     }
                                     else
@@ -211,7 +213,7 @@ namespace TestApp
                     }
                     else if (maxQuestionAmount <= 0)
                     {
-                        Console.WriteLine("Errors with counting the max questions");
+                        fileWriter.LogError("Errors with counting the max questions on test");
                         return false;
                     }
                 }
@@ -255,7 +257,7 @@ namespace TestApp
                         {
                             if (maxQuestionAmount > 99 || maxQuestionAmount < 1)
                             {
-                                Console.WriteLine("Max Questions for test file " + filePath + " is an unacceptable number." +
+                                fileWriter.LogError("Max Questions for test file " + filePath + " is an unacceptable number." +
                                     " The value must be between 1 and 99");
                                 return -1;
                             }
@@ -332,8 +334,6 @@ namespace TestApp
                     //  If all went well reset the question requirments and return true
                     if (answersAvalible == passCounter)
                     {
-                        Console.WriteLine("Fill in the blanks answers." + output);
-
                         answersAvalible = 0;
                         answersRequired = 0;
                         questionNumCheck = false;
@@ -400,10 +400,10 @@ namespace TestApp
                     return testInfo;
                 }
                 else
-                    Console.Write("File does not meet requirements to be used as a test. Please check what the issue can be and then recreate your test.");
+                    fileWriter.LogError("File (" + testPath + ") does not meet requirements to be used as a test. Please check what the issue can be and then recreate your test.");
             }
             else
-                Console.WriteLine("File " + testPath + " is not of correct file type for tests. Please remove this file.");
+                fileWriter.LogError("File (" + testPath + ") is not of correct file type for tests. Please remove this file.");
 
             return testInfo;
         }

@@ -9,6 +9,40 @@ namespace TestApp
 {
     class FileWriter
     {
+        private bool createNewErrorFile;
+
+        public FileWriter()
+        {
+            createNewErrorFile = true;
+        }
+
+        //  For logging errors program has encountered
+        public void LogError(string t)
+        {
+            DirectoryInfo miscDirectory;    //  Directory for the misc. files
+            miscDirectory = new DirectoryInfo("Other"); //  Assigning Directory for misc. files
+            if (!miscDirectory.Exists)
+            {
+                miscDirectory.Create(); //  Creates misc directory if it doesn't exist already
+            }
+
+            //  if this is the first error to be logged create a new file for this else append to the already existing file
+            if (createNewErrorFile == true)
+            {
+                createNewErrorFile = false;
+                using (StreamWriter sw = File.CreateText(miscDirectory + "/ErrorLog.txt"))
+                {
+                    sw.WriteLine(t);
+                }
+            }
+            else
+                using (StreamWriter sw = File.AppendText(miscDirectory + "/ErrorLog.txt"))
+                {
+                    sw.WriteLine(t);
+                }
+
+        }
+
         //  Creating Test File and adding test information excluding questions
         public void CreateTestFile(TestBehaviour tb)
         {
@@ -40,7 +74,7 @@ namespace TestApp
                     sw.WriteLine("AnswersAvalible = " + qb.AnswersAvalible);    //  Answers avalible (interger amount) for fill in the blank question
                     sw.WriteLine("AnswersRequired = " + qb.FITBRequirment); //  Answers required (interger amount) for fill in the blank question
                     //  Answers for fill in the blank question
-                    sw.Write("Answers = "); 
+                    sw.Write("Answers = ");
                     for (int i = 0; i < qb.AnswersAvalible; i++)
                     {
                         if (i == qb.AnswersAvalible - 1)
