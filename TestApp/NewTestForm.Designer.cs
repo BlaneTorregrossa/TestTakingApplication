@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewTestForm));
             this.TrueFalseGroupBox = new System.Windows.Forms.GroupBox();
             this.FalseRadioButton = new System.Windows.Forms.RadioButton();
             this.TrueRadioButton = new System.Windows.Forms.RadioButton();
@@ -675,8 +676,9 @@
             this.Controls.Add(this.QuestionNumberLabel);
             this.Controls.Add(this.AnswersGroupBox);
             this.Controls.Add(this.QuitButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewTestForm";
-            this.Text = "NewTestForm";
+            this.Text = "Question Creation";
             this.Load += new System.EventHandler(this.NewTestForm_Load);
             this.TrueFalseGroupBox.ResumeLayout(false);
             this.TrueFalseGroupBox.PerformLayout();

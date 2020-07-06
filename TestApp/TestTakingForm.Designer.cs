@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestTakingForm));
             this.RemainingTimeLabel = new System.Windows.Forms.Label();
             this.QuestionNumLabel = new System.Windows.Forms.Label();
             this.QuestionTextLabel = new System.Windows.Forms.Label();
@@ -111,6 +112,7 @@
             this.QuestionTestInfoGroupBox.Controls.Add(this.QuestionTextLabel);
             this.QuestionTestInfoGroupBox.Controls.Add(this.RemainingTimeLabel);
             this.QuestionTestInfoGroupBox.Controls.Add(this.QuestionNumLabel);
+            this.QuestionTestInfoGroupBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.QuestionTestInfoGroupBox.Location = new System.Drawing.Point(12, 12);
             this.QuestionTestInfoGroupBox.Name = "QuestionTestInfoGroupBox";
             this.QuestionTestInfoGroupBox.Size = new System.Drawing.Size(1104, 118);
@@ -358,8 +360,9 @@
             this.Controls.Add(this.MultipleChoiceGroupBox);
             this.Controls.Add(this.TrueFalseGroupBox);
             this.Controls.Add(this.QuestionTestInfoGroupBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TestTakingForm";
-            this.Text = "TestTakingForm";
+            this.Text = "Test Taking";
             this.Load += new System.EventHandler(this.TestTakingForm_Load);
             this.QuestionTestInfoGroupBox.ResumeLayout(false);
             this.QuestionTestInfoGroupBox.PerformLayout();

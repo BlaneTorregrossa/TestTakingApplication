@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestReviewForm));
             this.QuestionNumberLabel = new System.Windows.Forms.Label();
             this.NextButton = new System.Windows.Forms.Button();
             this.PreviousButton = new System.Windows.Forms.Button();
@@ -190,8 +191,9 @@
             this.Controls.Add(this.PreviousButton);
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.QuestionNumberLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TestReviewForm";
-            this.Text = "TestReviewForm";
+            this.Text = "Test Review";
             this.Load += new System.EventHandler(this.TestReviewForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

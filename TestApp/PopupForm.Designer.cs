@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PopupForm));
             this.WarningLabel = new System.Windows.Forms.Label();
             this.DescriptionTextBox = new System.Windows.Forms.TextBox();
             this.ReturnButton = new System.Windows.Forms.Button();
@@ -74,8 +75,9 @@
             this.Controls.Add(this.ReturnButton);
             this.Controls.Add(this.DescriptionTextBox);
             this.Controls.Add(this.WarningLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PopupForm";
-            this.Text = "PopupForm";
+            this.Text = "Popup";
             this.Load += new System.EventHandler(this.PopupForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

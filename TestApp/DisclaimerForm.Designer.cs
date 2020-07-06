@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DisclaimerForm));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ReturnButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -61,8 +62,9 @@
             this.ClientSize = new System.Drawing.Size(741, 297);
             this.Controls.Add(this.ReturnButton);
             this.Controls.Add(this.textBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DisclaimerForm";
-            this.Text = "DisclaimerForm";
+            this.Text = "Disclaimer";
             this.Load += new System.EventHandler(this.DisclaimerForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
