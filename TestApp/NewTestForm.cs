@@ -21,6 +21,19 @@ namespace TestApp
             InitializeComponent();
         }
 
+        //  Setting defaults for when this form Loads
+        private void NewTestForm_Load(object sender, EventArgs e)
+        {
+            this.Text = "Question Creation";
+            this.Tag = "Question";
+            QuestionNumberNumericUpDown.Value = 1;
+            QuestionTextTextBox.Text = null;
+            FinishButton.Enabled = false;
+            TrueFalseGroupBox.Enabled = false;
+            FillInTheBlankAnswerGroupBox.Enabled = false;
+            MultipleChoiceGroupBox.Enabled = false;
+        }
+
         //  Set True False answer for question to be true when clicked
         private void TrueRadioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -202,19 +215,6 @@ namespace TestApp
                 QBInstance.FITBRequirment = Convert.ToInt32(AnswersNeededNumericUpDown.Value);
         }
 
-        //  Setting defaults for when this form Loads
-        private void NewTestForm_Load(object sender, EventArgs e)
-        {
-            this.Text = "Question Creation";
-            this.Tag = "Question";
-            QuestionNumberNumericUpDown.Value = 1;
-            QuestionTextTextBox.Text = null;
-            FinishButton.Enabled = false;
-            TrueFalseGroupBox.Enabled = false;
-            FillInTheBlankAnswerGroupBox.Enabled = false;
-            MultipleChoiceGroupBox.Enabled = false;
-        }
-
         //  Refresh current form elements' presentation to represent saved information for question current on Numeric Up Down each time Numeric Up Down is changed
         //  Numeric Up Down value cannot be higher than the Question Size given and no lower than 1
         private void QuestionNumberNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -224,14 +224,15 @@ namespace TestApp
             if (QuestionNumberNumericUpDown.Value <= 0)
                 QuestionNumberNumericUpDown.Value = 1;
 
-            QBInstance.QuestionNum = Decimal.ToInt32(QuestionNumberNumericUpDown.Value) - 1;
+            QBInstance = new QuestionBehaviour();
+            QBInstance.QuestionNum = Convert.ToInt32(QuestionNumberNumericUpDown.Value) - 1;
 
             QuestionTextTextBox.Text = TBInstance.Questions[QBInstance.QuestionNum].QuestionText;
             QuestionTypeDomainUpDown.Text = TBInstance.Questions[QBInstance.QuestionNum].questionType.ToString();
             if (TBInstance.Questions[QBInstance.QuestionNum].TFAnswer == true)
                 TrueRadioButton.Checked = true;
             else if (TBInstance.Questions[QBInstance.QuestionNum].TFAnswer == false)
-                TrueRadioButton.Checked = true;
+                FalseRadioButton.Checked = true;
 
             if (TBInstance.Questions[QBInstance.QuestionNum].AnswersAvalible < 1)
                 TBInstance.Questions[QBInstance.QuestionNum].AnswersAvalible = 1;
@@ -326,7 +327,7 @@ namespace TestApp
                 frm.Activate();
                 this.Close();
             }
-            
+
         }
 
         //  Save entered information for the current selected question when button is clicked
@@ -336,7 +337,6 @@ namespace TestApp
             QBInstance.Entered = true;
             QBInstance.TestPath = TBInstance.TestPath;
             TBInstance.Questions[QBInstance.QuestionNum] = QBInstance;
-            QBInstance = new QuestionBehaviour();
 
             for (int i = 0; i < TBInstance.QuestionSize; i++)
             {
