@@ -71,7 +71,10 @@ namespace TestApp
             if (CurrentQuestion.questionType == QuestionType.TrueFalse)
             {
                 CorrectAnswerTextBox.Text = CurrentQuestion.TFAnswer.ToString();
-                GivenAnswerTextBox.Text = CurrentQuestion.TFUserChoice.ToString();
+                if (CurrentQuestion.Entered == false)
+                    GivenAnswerTextBox.Text = "No answer given.";
+                else
+                    GivenAnswerTextBox.Text = CurrentQuestion.TFUserChoice.ToString();
             }
 
             else if (CurrentQuestion.questionType == QuestionType.FillInTheBlank)
@@ -79,14 +82,17 @@ namespace TestApp
                 for (int i = 0; i < CurrentQuestion.FITBAnswers.Length; i++)
                     CorrectAnswerTextBox.Text += CurrentQuestion.FITBAnswers[i] + " || ";
 
-                for (int j = 0; j < CurrentQuestion.FITBUserChoices.Length; j++)
-                    GivenAnswerTextBox.Text += CurrentQuestion.FITBUserChoices[j] + " || ";
+                if (CurrentQuestion.Entered == false)
+                    GivenAnswerTextBox.Text = "No answer given.";
+                else
+                    for (int j = 0; j < CurrentQuestion.FITBUserChoices.Length; j++)
+                        GivenAnswerTextBox.Text += CurrentQuestion.FITBUserChoices[j] + " || ";
             }
 
             else if (CurrentQuestion.questionType == QuestionType.MultipleChoice)
             {
                 CorrectAnswerTextBox.Text = CurrentQuestion.MCChoices[CurrentQuestion.MCAnswer];
-                if (CurrentQuestion.MCUserChoice < 0)
+                if (CurrentQuestion.MCUserChoice < 0 || CurrentQuestion.Entered == false)
                     GivenAnswerTextBox.Text = "No answer given.";
                 else
                     GivenAnswerTextBox.Text = CurrentQuestion.MCChoices[CurrentQuestion.MCUserChoice];

@@ -171,9 +171,9 @@ namespace TestApp
         //  getting score for True/False question
         public void TrueFalseReview(QuestionBehaviour q)
         {
-            if (q.TFUserChoice == q.TFAnswer)
+            if (q.TFUserChoice == q.TFAnswer && q.Entered == true)
                 q.Score = 1;    //  100 percent of the question is correct
-            else
+            else if (q.TFUserChoice != q.TFAnswer || q.Entered == false)
                 q.Score = 0;    //  0 percent of the question is correct
         }
 
@@ -206,9 +206,9 @@ namespace TestApp
         //  getting score for Multiple Choice question
         public void MultipleChoiceReview(QuestionBehaviour q)
         {
-            if (q.MCUserChoice == q.MCAnswer)
+            if (q.MCUserChoice == q.MCAnswer && q.Entered == true)
                 q.Score = 1;    //  100 percent of the question is correct
-            else
+            else if (q.MCUserChoice != q.MCAnswer || q.Entered == false)
                 q.Score = 0;    //  0 percent of the question is correct
         }
     }

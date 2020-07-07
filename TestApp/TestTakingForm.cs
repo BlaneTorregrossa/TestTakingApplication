@@ -16,7 +16,7 @@ namespace TestApp
         private QuestionBehaviour CurrentQuestion;
         private FileReader FileReaderInstance;
         private int timeLeft;
-
+        private bool elementsCheck;
 
         public TestTakingForm()
         {
@@ -33,6 +33,7 @@ namespace TestApp
             TrueFalseGroupBox.Enabled = false;
             FillInTheBlankGroupBox.Enabled = false;
             MultipleChoiceGroupBox.Enabled = false;
+            elementsCheck = false;
             FileReaderInstance = new FileReader();
             CurrentTestInformation = FileReaderInstance.SaveInformation(CurrentTestInformation.TestPath);
             RemainingTimeLabel.Text = "Time: Hours: Minutes: Seconds:";
@@ -83,6 +84,7 @@ namespace TestApp
         private void NextButton_Click(object sender, EventArgs e)
         {
             CurrentQuestion = CurrentTestInformation.Questions[CurrentQuestion.QuestionNum + 1];
+            elementsCheck = false;
             UpdateTestInformation();
             RefreshAnswerElements();
         }
@@ -91,6 +93,7 @@ namespace TestApp
         private void PreviousButton_Click(object sender, EventArgs e)
         {
             CurrentQuestion = CurrentTestInformation.Questions[CurrentQuestion.QuestionNum - 1];
+            elementsCheck = false;
             UpdateTestInformation();
             RefreshAnswerElements();
         }
@@ -344,6 +347,44 @@ namespace TestApp
                     TrueFalseGroupBox.Enabled = false;
                     FillInTheBlankGroupBox.Enabled = true;
                     MultipleChoiceGroupBox.Enabled = false;
+
+                    if (elementsCheck == false)
+                    {
+                        FITBTextBox1.Enabled = false;
+                        FITBTextBox2.Enabled = false;
+                        FITBTextBox3.Enabled = false;
+                        FITBTextBox4.Enabled = false;
+                        FITBTextBox5.Enabled = false;
+                        FITBTextBox6.Enabled = false;
+                        FITBTextBox7.Enabled = false;
+                        FITBTextBox8.Enabled = false;
+                        FITBTextBox9.Enabled = false;
+                        FITBTextBox10.Enabled = false;
+
+                        if (CurrentQuestion.FITBRequirment >= 1)
+                            FITBTextBox1.Enabled = true;
+                        if (CurrentQuestion.FITBRequirment >= 2)
+                            FITBTextBox2.Enabled = true;
+                        if (CurrentQuestion.FITBRequirment >= 3)
+                            FITBTextBox3.Enabled = true;
+                        if (CurrentQuestion.FITBRequirment >= 4)
+                            FITBTextBox4.Enabled = true;
+                        if (CurrentQuestion.FITBRequirment >= 5)
+                            FITBTextBox5.Enabled = true;
+                        if (CurrentQuestion.FITBRequirment >= 6)
+                            FITBTextBox6.Enabled = true;
+                        if (CurrentQuestion.FITBRequirment >= 7)
+                            FITBTextBox7.Enabled = true;
+                        if (CurrentQuestion.FITBRequirment >= 8)
+                            FITBTextBox8.Enabled = true;
+                        if (CurrentQuestion.FITBRequirment >= 9)
+                            FITBTextBox9.Enabled = true;
+                        if (CurrentQuestion.FITBRequirment == 10)
+                            FITBTextBox10.Enabled = true;
+
+                        elementsCheck = true;
+                    }
+
                 }
                 else if (CurrentQuestion.questionType == QuestionType.MultipleChoice)
                 {
