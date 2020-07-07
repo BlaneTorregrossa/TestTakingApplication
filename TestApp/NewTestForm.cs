@@ -266,6 +266,17 @@ namespace TestApp
             else if (TBInstance.Questions[QBInstance.QuestionNum].MCAnswer == 3)
                 RadioButtonMultipleChoiceD.Checked = true;
 
+            if (TBInstance.Questions[QBInstance.QuestionNum].Entered == false)
+            {
+                TrueRadioButton.Checked = false;
+                FalseRadioButton.Checked = false;
+                RadioButtonMultipleChoiceA.Checked = false;
+                RadioButtonMultipleChoiceB.Checked = false;
+                RadioButtonMultipleChoiceC.Checked = false;
+                RadioButtonMultipleChoiceD.Checked = false;
+            }
+
+
         }
 
         //  Change Question Type from True False/Fill In The Blank/Multiple Choice and enable the proper form elements for that question type
